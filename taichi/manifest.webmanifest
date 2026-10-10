@@ -1,0 +1,10 @@
+{
+  "name": "聰動 · 榕園太極 | SmartAction Tai Chi",
+  "short_name": "SmartAction",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5ef",
+  "theme_color": "#153a36",
+  "icons": [{"src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
+}

@@ -1,0 +1,114 @@
+{
+  "formatVersion": 1,
+  "name": "Qwen3-0.6B Q4_K_M",
+  "repo": "bartowski/Qwen_Qwen3-0.6B-GGUF",
+  "revision": "60b85c0e3d8fe0f6474f406922a26d12aca4550d",
+  "upstream": "Qwen/Qwen3-0.6B",
+  "filename": "Qwen_Qwen3-0.6B-Q4_K_M.gguf",
+  "license": "Apache-2.0",
+  "url": "https://huggingface.co/bartowski/Qwen_Qwen3-0.6B-GGUF/resolve/60b85c0e3d8fe0f6474f406922a26d12aca4550d/Qwen_Qwen3-0.6B-Q4_K_M.gguf?download=true",
+  "bytes": 484220320,
+  "sha256": "9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14",
+  "parts": [
+    {
+      "file": "qwen3-0.6b-q4km.part01",
+      "bytes": 33554432,
+      "sha256": "2b84ab95c8608c9b31faacf583343e4a00087bc327b769d5b34124fab08b5d20",
+      "offset": 0
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part02",
+      "bytes": 33554432,
+      "sha256": "c5042a15f7afd0cc9eacb86509356b212dc3551e5501eb9da55759a204ea3341",
+      "offset": 33554432
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part03",
+      "bytes": 33554432,
+      "sha256": "2569f5de3c9307c120cf7c2225ccb5d9f3c3980c2c2ab660eab3c869c576dd08",
+      "offset": 67108864
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part04",
+      "bytes": 33554432,
+      "sha256": "dae7169052f3c82bc21e30f91fef5d6b3f810c0a88101eae94fbfc02f4733976",
+      "offset": 100663296
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part05",
+      "bytes": 33554432,
+      "sha256": "6b6560f19a8c384e31c1dacafd9ec400d901d6c1a3197ed8ae9ccb971d7b4eec",
+      "offset": 134217728
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part06",
+      "bytes": 33554432,
+      "sha256": "cc17fd0b0bd0d4fb01f1fda991470ed3d8d4855f7a7144b72aba890255bf78d9",
+      "offset": 167772160
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part07",
+      "bytes": 33554432,
+      "sha256": "97f987ea18b942e21aa9ef2962775d3581f0274c6192f8eaccfdd4e9d27999a8",
+      "offset": 201326592
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part08",
+      "bytes": 33554432,
+      "sha256": "ec08c17e0c1b38fe6432cd202b43a47b90c0e809173c0094b93dcc731dd9ac55",
+      "offset": 234881024
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part09",
+      "bytes": 33554432,
+      "sha256": "bee3a3ded41ebeb700ecfc9c7442ca8a176d000691a134381550aec797140a50",
+      "offset": 268435456
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part10",
+      "bytes": 33554432,
+      "sha256": "f0fa473a4710298543b72a42c7a55ebfd30e39bd107af470c47bbbd50d2370b2",
+      "offset": 301989888
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part11",
+      "bytes": 33554432,
+      "sha256": "23afb7a8a69b712dab29235b16a8df12887b782288bf78be3918bb6998f28613",
+      "offset": 335544320
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part12",
+      "bytes": 33554432,
+      "sha256": "1f44c94a5f24f78533162735efd650974aad79892a947c07d090c060fae3a311",
+      "offset": 369098752
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part13",
+      "bytes": 33554432,
+      "sha256": "49a12ec10d0f287f1bf5d623e8196122c17f0a2e95a9d7ac9cbb375eb5f02a89",
+      "offset": 402653184
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part14",
+      "bytes": 33554432,
+      "sha256": "4adfc173d8d3117ffbda3a934fba562b770601ca6bd49ea3d27629489799efc6",
+      "offset": 436207616
+    },
+    {
+      "file": "qwen3-0.6b-q4km.part15",
+      "bytes": 14458272,
+      "sha256": "1ef3a68fbd0fc8fdec3a383a4c1241f69552f70d55a4b9deff3a00b3eac453ba",
+      "offset": 469762048
+    }
+  ],
+  "runtime": {
+    "name": "@wllama/wllama",
+    "version": "3.8.1",
+    "backend": "WebAssembly CPU",
+    "n_ctx": 1024,
+    "threads": 1,
+    "gpuLayers": 0
+  },
+  "verifiedDownload": "2026-10-09",
+  "bundleNote": "Standard app ZIP excludes weight parts. Separate model ZIP or tools/download_model.py supplies them."
+}

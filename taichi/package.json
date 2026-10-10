@@ -1,0 +1,16 @@
+{
+  "name": "smartaction-taichi-garden",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "node tools/build.mjs"
+  },
+  "description": "Buildless, CPU-capable martial-arts practice game for GitHub Pages",
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "happy-dom": "20.0.10"
+  }
+}
