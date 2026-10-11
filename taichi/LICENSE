@@ -20,6 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Third-party photos retain their individual Creative Commons or public-domain
-terms in docs/PHOTO_CREDITS.md. Qwen model weights use Apache-2.0. Three.js,
+Third-party photos and videos retain their individual Creative Commons or public-domain
+terms in docs/PHOTO_CREDITS.html. Qwen model weights use Apache-2.0. Three.js,
 Wllama and llama.cpp retain the licenses included under vendor/.

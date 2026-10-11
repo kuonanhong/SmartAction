@@ -3,12 +3,17 @@ const BASE = typeof document!=='undefined' ? new URL('./',document.baseURI) : ne
 const MODEL_BASE = new URL('models/', BASE);
 const hex = bytes => Array.from(new Uint8Array(bytes), n => n.toString(16).padStart(2, '0')).join('');
 const clean = (x, n = 240) => String(x ?? '').replace(/<\|[^>]*\|>/g, '').slice(0, n);
-const names = {'zh-TW':'Traditional Chinese','zh-CN':'Simplified Chinese',en:'English',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',de:'German',pt:'Portuguese'};
+const names = {'zh-TW':'Traditional Chinese','zh-CN':'Simplified Chinese',en:'English',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',de:'German',pt:'Portuguese',it:'Italian',id:'Indonesian',vi:'Vietnamese',th:'Thai',ar:'Arabic',hi:'Hindi'};
 const messages = {
   'zh-TW': {ready:'離線生成式教練已就緒',loading:'正在驗證並載入 CPU 模型',downloading:'正在下載模型；首次約 484 MB',local:'本機 GGUF 模型',unavailable:'使用課程要領提示；尚未載入生成式模型',error:'模型未載入，仍可使用課程提示',busy:'教練正在回答，請稍候',cancelled:'已取消'},
   en: {ready:'Offline generative coach ready',loading:'Verifying and loading the CPU model',downloading:'Downloading model; first download about 484 MB',local:'Local GGUF model',unavailable:'Course guide mode; generative model not loaded',error:'Model unavailable; course guide still works',busy:'Coach is answering; please wait',cancelled:'Cancelled'}
 };
-function language(lang) {return String(lang || 'zh-TW').startsWith('zh') ? (lang === 'zh-CN' ? 'zh-CN' : 'zh-TW') : (names[lang] ? lang : 'en');}
+function language(lang) {
+  const tag = String(lang || 'zh-TW').replace(/_/g,'-').toLowerCase();
+  if (tag.startsWith('zh')) return /(?:^|-)hans(?:-|$)|^zh-(?:cn|sg)(?:-|$)/.test(tag) ? 'zh-CN' : 'zh-TW';
+  const base = tag.split('-')[0];
+  return names[base] ? base : 'en';
+}
 function pick(value, lang) {
   if (value == null) return '';
   if (typeof value === 'string' || typeof value === 'number') return String(value);
@@ -37,7 +42,15 @@ function moveFacts(context) {
 }
 function guidedReply(context) {
   const f = moveFacts(context), zh = f.lang.startsWith('zh');
-  const pain = /痛|暈|眩|受傷|疼|めまい|けが|통증|어지|부상|다친|pain|dizz|injur|dolor|mareo|lesi[oó]n|douleur|vertige|blessure/i.test(f.question);
+  const extraPain = {
+    it:/\b(?:dolor\w*|male|ferit\w*|capogir\w*|vertigin\w*)\b/i,
+    id:/\b(?:sakit|nyeri|pusing|cedera|luka)\b/i,
+    vi:/đau|chóng mặt|choáng|bị thương|chấn thương/iu,
+    th:/ปวด|เจ็บ|เวียนหัว|เวียนศีรษะ|บาดเจ็บ/u,
+    ar:/ألم|الم في|وجع|دوخة|دوار|إصابة|اصابة|جرح/u,
+    hi:/दर्द|चक्कर|चोट|घायल/u
+  };
+  const pain = extraPain[f.lang]?.test(f.question) || /痛|暈|眩|受傷|疼|めまい|けが|통증|어지|부상|다친|pain|dizz|injur|dolor|mareo|lesi[oó]n|douleur|vertige|blessure/i.test(f.question);
   if (pain) {
     const advice = {
       'zh-TW':'如果有疼痛、暈眩或受傷，先停止這次練習；遊戲分數不能判定身體是否安全。可請現場老師協助，持續不適時找醫療人員評估。',
@@ -48,12 +61,26 @@ function guidedReply(context) {
       es:'Detén la práctica si sientes dolor, mareo o una lesión. La puntuación del juego no determina la seguridad física. Pide ayuda al profesor presente y consulta a un profesional sanitario si los síntomas persisten.',
       de:'Bei Schmerzen, Schwindel oder Verletzung beende die Übung. Ein Spielwert kann körperliche Sicherheit nicht beurteilen. Bitte die Lehrkraft vor Ort um Hilfe und lass anhaltende Beschwerden medizinisch abklären.',
       pt:'Pare se sentir dor, tontura ou lesão. A pontuação do jogo não determina a segurança física. Peça ajuda ao professor e procure avaliação médica se os sintomas persistirem.',
+      it:'Se provi dolore, capogiri o hai una lesione, interrompi la pratica. Il punteggio del gioco non può stabilire se il movimento è sicuro per il corpo. Chiedi aiuto all’insegnante presente e, se i sintomi persistono, rivolgiti a un professionista sanitario.',
+      id:'Hentikan latihan jika terasa nyeri, pusing, atau mengalami cedera. Skor permainan tidak dapat menentukan keamanan kondisi tubuh. Minta bantuan guru yang mendampingi dan cari penilaian tenaga kesehatan jika keluhan berlanjut.',
+      vi:'Nếu bạn bị đau, chóng mặt hoặc chấn thương, hãy dừng buổi tập. Điểm trong trò chơi không thể xác định mức độ an toàn của cơ thể. Hãy nhờ giáo viên trực tiếp hỗ trợ và đến nhân viên y tế để được đánh giá nếu triệu chứng kéo dài.',
+      th:'หากมีอาการปวด เวียนศีรษะ หรือบาดเจ็บ ให้หยุดฝึกก่อน คะแนนในเกมไม่สามารถบอกได้ว่าร่างกายปลอดภัยหรือไม่ ขอคำแนะนำจากครูที่อยู่ด้วย และปรึกษาบุคลากรทางการแพทย์หากยังมีอาการต่อเนื่อง',
+      ar:'توقف عن التدريب إذا شعرت بألم أو دوخة أو تعرضت لإصابة. لا يمكن لدرجة اللعبة تحديد سلامة جسمك. اطلب المساعدة من المدرب الموجود معك، واستشر مختصًا صحيًا إذا استمرت الأعراض.',
+      hi:'दर्द, चक्कर या चोट होने पर अभ्यास रोक दें। खेल का स्कोर यह तय नहीं कर सकता कि शरीर के लिए अभ्यास सुरक्षित है या नहीं। साथ मौजूद शिक्षक से मदद लें और लक्षण बने रहने पर स्वास्थ्यकर्मी से जाँच कराएँ।',
       fr:'Arrêtez la pratique en cas de douleur, de vertige ou de blessure. Le score du jeu ne détermine pas la sécurité physique. Demandez conseil au professeur présent et consultez un professionnel de santé si les symptômes persistent.'
     };
     return advice[f.lang] || advice.en;
   }
-  const name = f.name || (zh ? '目前動作' : 'this movement');
-  const cues = f.cues || (zh ? '放慢速度，維持可舒適站穩的步幅；手臂放鬆，膝蓋與腳尖方向相近。' : 'Move slowly, choose a comfortable stable stance, relax your arms, and keep knees aligned with your toes.');
+  const defaults = {
+    it:['il movimento attuale','Muoviti lentamente, scegli una posizione comoda e stabile, rilassa le braccia e mantieni le ginocchia nella direzione delle punte dei piedi.'],
+    id:['gerakan saat ini','Bergerak perlahan, pilih posisi berdiri yang nyaman dan stabil, rilekskan lengan, serta arahkan lutut searah dengan jari kaki.'],
+    vi:['động tác hiện tại','Di chuyển chậm, chọn tư thế đứng thoải mái và vững, thả lỏng hai tay, giữ đầu gối cùng hướng với mũi chân.'],
+    th:['ท่าปัจจุบัน','เคลื่อนไหวช้า ๆ ยืนในท่าที่สบายและมั่นคง ผ่อนคลายแขน และให้เข่าหันไปทางเดียวกับปลายเท้า'],
+    ar:['الحركة الحالية','تحرك ببطء، واختر وقفة مريحة وثابتة، وأرخ ذراعيك، وحافظ على اتجاه الركبتين نحو أصابع القدمين.'],
+    hi:['वर्तमान मुद्रा','धीरे चलें, आरामदायक और स्थिर स्थिति चुनें, बाँहों को ढीला रखें और घुटनों को पैर की उँगलियों की दिशा में रखें।']
+  };
+  const name = f.name || defaults[f.lang]?.[0] || (zh ? '目前動作' : 'this movement');
+  const cues = f.cues || defaults[f.lang]?.[1] || (zh ? '放慢速度，維持可舒適站穩的步幅；手臂放鬆，膝蓋與腳尖方向相近。' : 'Move slowly, choose a comfortable stable stance, relax your arms, and keep knees aligned with your toes.');
   const out = {
     'zh-TW': `課程提示｜${name}：${cues}${f.score ? ` 目前遊戲姿態分數 ${f.score}。` : ''} 先觀察老師的手、腳與轉腰，再分段練習。這是課程要領整理，並非生成式回答。`,
     'zh-CN': `课程提示｜${name}：${cues}${f.score ? ` 当前游戏姿态分数 ${f.score}。` : ''} 先观察老师的手、脚与转腰，再分段练习。这是课程要领整理，并非生成式回答。`,
@@ -63,6 +90,12 @@ function guidedReply(context) {
     es: `Guía del curso | ${name}: ${cues} Observa manos, pies y cintura; practica por etapas. Es una guía del curso, no una respuesta generada.`,
     de: `Kursanleitung | ${name}: ${cues} Beobachte Hände, Füße und Taille und übe in Etappen. Dies ist eine Kursanleitung, keine generierte Antwort.`,
     pt: `Guia do curso | ${name}: ${cues} Observe mãos, pés e cintura e pratique por etapas. Este é um guia do curso, não uma resposta gerada.`,
+    it: `Guida del corso | ${name}: ${cues}${f.score ? ` Punteggio della posa nel gioco: ${f.score}.` : ''} Osserva mani, piedi e rotazione del busto dell’insegnante, poi esercitati per fasi. Questa è una guida del corso, non una risposta generata.`,
+    id: `Panduan latihan | ${name}: ${cues}${f.score ? ` Skor pose dalam permainan: ${f.score}.` : ''} Amati tangan, kaki, dan putaran pinggang guru, lalu berlatih secara bertahap. Ini panduan latihan, bukan jawaban yang dihasilkan model.`,
+    vi: `Hướng dẫn bài tập | ${name}: ${cues}${f.score ? ` Điểm tư thế trong trò chơi: ${f.score}.` : ''} Quan sát tay, chân và cách xoay eo của giáo viên, rồi tập theo từng phần. Đây là hướng dẫn bài tập, không phải câu trả lời do mô hình tạo ra.`,
+    th: `คำแนะนำบทเรียน | ${name}: ${cues}${f.score ? ` คะแนนท่าทางในเกม: ${f.score}` : ''} สังเกตมือ เท้า และการหมุนเอวของครู แล้วค่อยฝึกทีละส่วน นี่คือคำแนะนำจากบทเรียน ไม่ใช่คำตอบที่โมเดลสร้างขึ้น`,
+    ar: `دليل التدريب | ${name}: ${cues}${f.score ? ` درجة وضعية الشخصية في اللعبة: ${f.score}.` : ''} راقب يدي المدرب وقدميه ودوران خصره، ثم تدرب على مراحل. هذا دليل للدورة، وليس إجابة مولدة من النموذج.`,
+    hi: `अभ्यास मार्गदर्शिका | ${name}: ${cues}${f.score ? ` खेल में मुद्रा का स्कोर: ${f.score}।` : ''} शिक्षक के हाथ, पैर और कमर का घुमाव देखें, फिर चरणों में अभ्यास करें। यह पाठ्यक्रम की मार्गदर्शिका है, मॉडल द्वारा बनाया गया उत्तर नहीं।`,
     fr: `Guide du cours | ${name} : ${cues} Observez les mains, les pieds et la taille, puis pratiquez par étapes. Ceci est un guide, pas une réponse générée.`
   };
   return out[f.lang] || out.en;

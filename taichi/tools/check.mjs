@@ -54,11 +54,21 @@ for(const [id,action]of[['sparStrikeBtn','attack'],['sparBlockBtn','block']]){
   const tag=[...html.matchAll(/<button\b[^>]*>/g)].find(m=>new RegExp(`id=['"]${id}['"]`).test(m[0]))?.[0]||'';
   expect(new RegExp(`data-action=['"]${action}['"]`).test(tag),`${id} is not wired to touch action ${action}`);
 }
+const approvedLicense=/^(?:CC BY(?:-SA)? (?:2\.0|2\.5|3\.0|4\.0)(?: [a-z]+)?|CC0|Public domain)$/i;
+async function checkMedia(reference,credit,id){
+  expect(!!credit?.author&&approvedLicense.test(credit?.license||'')&&/^https:\/\//.test(credit?.licenseUrl||'')&&/^https:\/\//.test(credit?.url||credit?.source||''),`Incomplete/unapproved media attribution: ${id}`);
+  await asset(reference,htmlPath);const file=path.join(root,reference);
+  if(await exists(file)){const bytes=await readFile(file);expect(bytes.length===(credit.size??credit.bytes)&&digest(bytes)===credit.sha256,`Media bytes or hash mismatch: ${id}`);if(/\.jpg$/.test(reference))expect(bytes[0]===0xff&&bytes[1]===0xd8,`Media is not JPEG: ${id}`);}
+}
+expect(new Set(locations.map(p=>p.id)).size===locations.length,'Duplicate location IDs');
 for(const place of locations){
-  const credit=place.photoCredit;expect(!!credit?.author&&!!credit?.license&&/^https:\/\//.test(credit?.licenseUrl||'')&&/^https:\/\//.test(credit?.url||''),`Incomplete photo attribution: ${place.id}`);
-  expect(/^(?:CC BY(?:-SA)? (?:2\.0|2\.5|3\.0|4\.0)|CC0|Public domain)$/.test(credit?.license||''),`Unapproved photo license: ${place.id}`);
-  await asset(place.photo,htmlPath);const photo=path.join(root,place.photo);
-  if(await exists(photo)){const bytes=await readFile(photo);expect(bytes.length===credit.size&&digest(bytes)===credit.sha256,`Photo bytes or hash mismatch: ${place.id}`);expect(bytes[0]===0xff&&bytes[1]===0xd8,`Photo is not JPEG: ${place.id}`);}
+  if(!place.photo){expect(place.photoUnavailable===true,`Missing photograph must be disclosed: ${place.id}`);continue;}
+  await checkMedia(place.photo,place.photoCredit,place.id);
+  if(place.projection==='equirectangular'){
+    expect(place.panoramaVerified===true,`Unverified 360 panorama: ${place.id}`);
+    expect(Math.abs(place.photoCredit.width/place.photoCredit.height-2)<.04,`360 panorama must be approximately 2:1: ${place.id}`);
+  }
+  if(place.video)await checkMedia(place.video.src,place.video,`${place.id} video`);
 }
 const runtimePath=path.join(root,'vendor/wllama'),runtime=JSON.parse(await readFile(path.join(runtimePath,'runtime-manifest.json'),'utf8'));
 for(const item of runtime.files){
@@ -92,17 +102,18 @@ if(await exists(workerPath)){
 }
 const offlinePath=path.join(root,'offline-manifest.json');
 if(await exists(offlinePath)){
-  const offline=JSON.parse(await readFile(offlinePath,'utf8')),files=new Set(offline.files||[]);
-  expect(files.size===(offline.files||[]).length,'Duplicate offline manifest entries');
+  const offline=JSON.parse(await readFile(offlinePath,'utf8')),files=new Set([...(offline.files||[]),...(offline.optional||[])]);
+  expect(files.size===(offline.files||[]).length+(offline.optional||[]).length,'Duplicate offline manifest entries');
   for(const file of files)await asset(file,offlinePath);
-  const required=['index.html','styles.css','js/game.js','js/bootstrap.js','js/body-worker.bundle.js','models/pose/pose_landmarker_lite.task','js/app.js','js/coach.js','models/manifest.json',...locations.map(p=>p.photo),...runtime.files.filter(f=>/\.(?:js|wasm)$/.test(f.file)).map(f=>`vendor/wllama/${f.file}`)];
+  const required=['index.html','styles.css','js/game.js','js/bootstrap.js','js/body-worker.bundle.js','models/pose/pose_landmarker_lite.task','js/app.js','js/coach.js','models/manifest.json',...locations.map(p=>p.photo).filter(Boolean),...runtime.files.filter(f=>/\.(?:js|wasm)$/.test(f.file)).map(f=>`vendor/wllama/${f.file}`)];
   for(const file of required)expect(files.has(file)||files.has(`./${file}`),`Offline cache omits ${file}`);
+  expect((offline.files||[]).length<=12,'Core offline installation must stay small; media is opt-in');
   expect(![...files].some(f=>/\.(?:part\d+|gguf)$/.test(f)),'Offline cache should not duplicate large IndexedDB model weights');
 }else expect(false,'Missing offline-manifest.json');
 const webManifestPath=path.join(root,'manifest.webmanifest');
 if(await exists(webManifestPath)){
   const web=JSON.parse(await readFile(webManifestPath,'utf8'));for(const icon of web.icons||[])await asset(icon.src,webManifestPath);await asset(web.start_url,webManifestPath);
 }
-console.log(`Checked ${ownFiles.length} source/document files, ${seen.size} referenced assets, ${ids.length} UI IDs, ${supportedLanguages.length} languages, ${locations.length} licensed photos, ${runtime.files.length+poseManifest.files.length} runtime/model files and ${found}/15 model parts.`);
+console.log(`Checked ${ownFiles.length} source/document files, ${seen.size} referenced assets, ${ids.length} UI IDs, ${supportedLanguages.length} languages, ${locations.length} locations / ${locations.filter(p=>p.photo).length} licensed photos / ${locations.filter(p=>p.panoramaVerified).length} verified panoramas / ${locations.filter(p=>p.video).length} videos, ${runtime.files.length+poseManifest.files.length} runtime/model files and ${found}/15 model parts.`);
 for(const note of notes)console.log(`NOTE: ${note}`);
 if(fail.length){console.error(fail.map(x=>`FAIL: ${x}`).join('\n'));process.exitCode=1;}else console.log('PASS: no missing dependencies or integrity mismatches in the checked package.');

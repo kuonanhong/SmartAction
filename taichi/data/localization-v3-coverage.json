@@ -1,0 +1,199 @@
+{
+  "generatedDate": "2026-10-11",
+  "locales": [
+    "zh-TW",
+    "zh-CN",
+    "en",
+    "ja",
+    "ko",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "it",
+    "id",
+    "vi",
+    "th",
+    "ar",
+    "hi"
+  ],
+  "uiKeyCount": 180,
+  "runtimeKeyCount": 148,
+  "coverage": [
+    {
+      "language": "zh-TW",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "zh-CN",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "en",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "ja",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "ko",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "es",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "fr",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "de",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "pt",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "it",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "id",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "vi",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "th",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "ar",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    },
+    {
+      "language": "hi",
+      "uiKeys": 180,
+      "runtimeKeys": 148,
+      "courseNames": 13,
+      "courseSourceNotes": 13,
+      "movementNames": 131,
+      "movementCues": 131,
+      "movementBenefits": 131,
+      "audioClips": 38
+    }
+  ],
+  "behavior": {
+    "localeDetection": "navigator.languages ordered preference; explicit saved manual choice takes precedence; auto option resets manual choice",
+    "geolocation": "Language does not require geolocation or Google Maps. Location permission is separate.",
+    "arabic": "RTL document; directional game pads stay LTR",
+    "speech": "Native matching voice preferred; synchronous trusted tap unlock, voiceschanged refresh, actual voice language display, onstart/onplaying status, error/start timeout, retained utterance and reusable Audio element",
+    "recordings": "37 default Cheng form names plus test phrase only; 570 generated MP3, 7549394 bytes",
+    "generatedDialogue": "Uses available system speech voice. Arbitrary generated replies have no fixed MP3 fallback.",
+    "mobileVerification": "Automated mocks and audio-file decode only; not physical Safari/Android device tests",
+    "review": "Translations and mechanical pronunciation have not received native-speaker instructor review; source move names retained for comparison"
+  }
+}

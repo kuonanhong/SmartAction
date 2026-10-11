@@ -122,13 +122,15 @@ test('file:// optional model and camera errors do not freeze controls or fetch w
   assert.deepEqual(f.fetches,[],'optional file:// features fail before any fetch');
 });
 
-test('model-free form produces labelled guide and can send answer to speech API',async t=>{
+test('model-free form remains readable and offers speech activation without faking a trusted mobile gesture',async t=>{
   const f=await fixture(t);
   f.$('language').value='en';f.$('language').dispatchEvent(new f.window.Event('change'));
   f.$('coachInput').value='How can I practise this movement?';f.$('coachForm').dispatchEvent(new f.window.Event('submit',{cancelable:true}));await flush();
   assert.match(f.$('coachAnswer').textContent,/not generated|not a generated|non-generative/i);
-  assert.equal(f.$('coachSend').disabled,false);assert.ok(f.speech.length>=1);
-  assert.ok(f.speech.at(-1).text.length>20);assert.equal(f.speech.at(-1).lang,'en');
+  assert.equal(f.$('coachSend').disabled,false);assert.equal(f.speech.length,0,'no voice or trusted gesture exists in this DOM fixture');
+  assert.ok(f.$('enableVoiceBtn'));assert.equal(f.$('readAnswerBtn').disabled,false);assert.ok(f.$('voiceStatus').textContent.length>0);
+  f.$('readAnswerBtn').click();assert.equal(f.speech.length,0,'synthetic .click() must not masquerade as a device gesture');
+  assert.equal(f.$('voiceStatus').dataset.state,'needsGesture');
   f.$('startBtn').click();assert.equal(f.diag().phase,'demo');assert.deepEqual(f.fetches,[]);
 });
 

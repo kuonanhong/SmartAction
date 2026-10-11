@@ -15,7 +15,7 @@
 <label><span data-zh="瀏覽器" data-en="Browser">瀏覽器</span><select id="browser"><option>iOS / iPadOS Safari</option><option>iOS / iPadOS Chrome</option><option>iOS / iPadOS Firefox</option><option>iOS / iPadOS Edge</option><option>Android Chrome</option><option>Android Firefox</option><option>Android Edge</option><option>Android Samsung Internet</option><option>macOS Safari</option><option>Desktop Chrome / Chromium</option><option>Desktop Firefox</option><option>Desktop Edge</option><option>Other</option></select></label>
 <label><span data-zh="瀏覽器版本" data-en="Browser version">瀏覽器版本</span><input id="version" autocomplete="off"></label>
 <label><span data-zh="遊戲開啟方式" data-en="Game origin">遊戲開啟方式</span><select id="origin"><option value="https">GitHub Pages / HTTPS</option><option value="localhost">localhost</option><option value="file">file://</option><option value="other">Other</option></select></label>
-<label><span data-zh="遊戲網址或版本" data-en="Game URL or version">遊戲網址或版本</span><input id="game" value="SmartAction Taichi v2" autocomplete="off"></label>
+<label><span data-zh="遊戲網址或版本" data-en="Game URL or version">遊戲網址或版本</span><input id="game" value="SmartAction Taichi v3" autocomplete="off"></label>
 <label><span data-zh="測試日期" data-en="Test date">測試日期</span><input id="date" type="date"></label>
 <label><span data-zh="測試者代號（選填）" data-en="Tester alias (optional)">測試者代號（選填）</span><input id="tester" autocomplete="off"></label></div>
 <p class="muted" data-zh="建議至少涵蓋：iPhone Safari、iPad Safari、Android Chrome、Android Firefox、Android Edge、Samsung Internet。若聲稱其他瀏覽器相容，也請各填一份；不能以一個瀏覽器的結果代替另一個。" data-en="Suggested minimum: iPhone Safari, iPad Safari, Android Chrome, Android Firefox, Android Edge and Samsung Internet. Record additional browsers separately when claiming support; one browser result does not stand in for another.">建議至少涵蓋：iPhone Safari、iPad Safari、Android Chrome、Android Firefox、Android Edge、Samsung Internet。若聲稱其他瀏覽器相容，也請各填一份；不能以一個瀏覽器的結果代替另一個。</p>
@@ -25,6 +25,12 @@
 </main><script>
 (function(){'use strict';
 var checks=[
+['voice-mobile-v3','手機啟用與語音狀態','重新開啟後點「啟用手機聲音／試聽」。記錄實際聽見的語言、OS語音名稱、切到背景再回來是否需重新點擊。','Mobile voice activation','Tap Enable sound / test after a fresh load. Record audible language and OS voice; repeat after backgrounding the page.'],
+['partner-v3','雙人對練六回合','選雙人對練後開始；老師示範再讓玩家操作。姿勢不合不能直接通過，正確保持後前進；六回合後可重玩。','Six-exchange partner round','Start partner mode; observe then respond. Incorrect pose cannot pass; matching and holding advances; replay works at completion.'],
+['spar-v3','節奏攻防回合','確認準備、出手、格擋提示各不同；只在合適窗口得分。60秒結束並可重玩；暫停不扣時間。','Rhythm attack and guard','Check separate prepare/attack/guard cues and timing-sensitive feedback. The 60-second round ends and restarts; pause freezes time.'],
+['walk-v3','走走後恢復練習','練到中段轉走走；左盤移動、右盤環視、跳起蹲下、靠近居民問候。回練拳應保留原式、結果與暫停狀態。','Walk and resume','Enter walk mid-session, move/look, jump/crouch and greet a nearby resident. Resume the same movement, results and paused state.'],
+['scene360-v3','360與平面照片區別','選明確360來源，環視一圈無水平鏡像；平面照片保持平面。切換影片景後回照片景，舊影片應停止。','360 and flat media','Inspect a verified 360 scene for full rotation and correct orientation. Flat photos stay flat. Switching away from video stops the old video.'],
+['mapwalk-v3','虛擬座標與真街景','走動後Google連結座標改變；不冒稱手機GPS變動。未確認座標地點只能地名搜尋，不能假定0,0。','Virtual map position','Movement changes the Google-link virtual coordinates, not device GPS. Unlocated places use name searches rather than fictitious 0,0 coordinates.'],
 ['boot','初次開啟與按鈕','解壓後開啟完整資料夾的 index.html，或開啟 HTTPS；預設應顯示 37 式，開始、重播、輔助、專注按鈕均有反應。','Initial boot and controls','Open index.html from the extracted complete folder, or use HTTPS. Default course has 37 movements. Start, Replay, Assist and Focus must respond.'],
 ['progress','老師等待與正確進階','開始後等待示範結束，不操作不應自行連過關。操作姿勢或使用輔助達標並維持，才前進一式。','Teacher waits and advances correctly','After the demonstration, inactivity must not pass the movement. Matching and holding the pose, manually or with Assist, advances exactly one movement.'],
 ['multitouch','左右手多點觸控','兩指同時長按腳與手方向鍵，兩肢都持續移動；放開其中一指只停止該肢。','Simultaneous touch controls','Hold one foot direction and one hand direction with two fingers. Both change continuously; releasing one stops only that action.'],

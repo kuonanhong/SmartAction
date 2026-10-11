@@ -1,3 +1,5 @@
+import {featureMessages} from '../data/localization-v3-features.js';
+import {extraRuntime} from '../data/localization-v3-base.js';
 /** Runtime status strings: every supported locale is complete. */
 import {normalizeLanguage} from './i18n.js';
 export const messageDictionary = {
@@ -614,6 +616,9 @@ export const messageDictionary = {
     "readyInput": "Use um controle para concluir a postura; o professor espera"
   }
 };
+Object.assign(messageDictionary, extraRuntime);
+for (const [lang, pack] of Object.entries(featureMessages)) Object.assign(messageDictionary[lang], pack);
+
 export function getMessage(lang, key, vars = {}) {
   const locale = messageDictionary[lang] ? lang : normalizeLanguage(lang) || 'en';
   const text = messageDictionary[locale]?.[key] ?? messageDictionary.en[key] ?? key;

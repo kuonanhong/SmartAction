@@ -21,20 +21,23 @@ def main():
     static = []
     for p in files():
         rel = p.relative_to(ROOT).as_posix()
-        if p.suffix in {'.html','.css','.js','.json','.webmanifest','.svg','.jpg','.jpeg','.png','.wasm','.md','.mjs','.task'}:
+        if p.suffix in {'.html','.css','.js','.json','.webmanifest','.svg','.jpg','.jpeg','.png','.webp','.wasm','.md','.mjs','.task','.mp3','.wav','.ogg','.mp4','.webm'}:
             if rel.startswith(('tests/','tools/')) or rel in {'package.json','offline-manifest.json'}:
                 continue
             static.append(rel)
-    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'2.0.0','files':static},ensure_ascii=False,indent=2)+'\n')
+    shell_names={'index.html','styles.css','js/game.js','js/bootstrap.js','manifest.webmanifest','assets/icon.svg','assets/photos/weiwuying.jpg','models/manifest.json'}
+    shell=[name for name in static if name in shell_names]
+    optional=[name for name in static if name not in shell_names]
+    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'3.0.0','files':shell,'optional':optional,'optionalBytes':sum((ROOT/name).stat().st_size for name in optional)},ensure_ascii=False,indent=2)+'\n')
     checksums = {p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in files() if p.name!='PACKAGE_SHA256.json'}
     (ROOT/'PACKAGE_SHA256.json').write_text(json.dumps(checksums,ensure_ascii=False,indent=2)+'\n')
-    destination = ROOT.parent/'SmartAction_Taichi_Game_v2.zip'
+    destination = ROOT.parent/'SmartAction_Taichi_Game_v3.zip'
     with zipfile.ZipFile(destination,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=8) as archive:
         for p in files():
-            archive.write(p,'SmartAction_Taichi_Game_v2/'+p.relative_to(ROOT).as_posix())
+            archive.write(p,'SmartAction_Taichi_Game_v3/'+p.relative_to(ROOT).as_posix())
     print(f'Core package: {destination} | {destination.stat().st_size:,} bytes | {len(files())} files')
-    print(f'CPU weights are separate. Precache: {len(static)} files.')
+    print(f'CPU weights are separate. Shell: {len(shell)} files; optional on demand: {len(optional)}.')
 
 if __name__=='__main__':
     main()

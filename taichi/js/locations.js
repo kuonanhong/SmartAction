@@ -7,7 +7,8 @@ const languageCode = lang => String(lang || 'en').toLowerCase().startsWith('zh')
 const shortLanguage = lang => String(lang || 'en').split('-')[0].toLowerCase();
 
 function validPosition(position) {
-  const lat = Number(position?.lat), lng = Number(position?.lng);
+  if(position?.lat == null || position?.lng == null || position.lat === '' || position.lng === '') throw new TypeError('Missing latitude or longitude');
+  const lat = Number(position.lat), lng = Number(position.lng);
   if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
     throw new TypeError('Invalid latitude or longitude');
   }
@@ -22,17 +23,21 @@ export function distanceKm(a, b) {
   return 6371.0088 * 2 * Math.atan2(Math.sqrt(k), Math.sqrt(Math.max(0, 1 - k)));
 }
 
+function mapQuery(place,lang) {
+  try { const {lat,lng}=validPosition(place); return `${lat},${lng}`; }
+  catch { const name=place?.name||place?.names; const label=typeof name==='string'?name:name?.[lang]||name?.['zh-TW']||name?.['zh-Hant']||name?.en; if(!label)throw new TypeError('A place name or coordinates is required'); return label; }
+}
 export function mapsEmbedUrl(place, lang = 'en') {
-  const { lat, lng } = validPosition(place);
+  const query=mapQuery(place,lang);
   const url = new URL('https://maps.google.com/maps');
-  url.search = new URLSearchParams({ q: `${lat},${lng}`, z: '15', output: 'embed', hl: languageCode(lang) });
+  url.search = new URLSearchParams({ q: query, z: '15', output: 'embed', hl: languageCode(lang) });
   return url.href;
 }
 
 export function mapsLink(place, lang = 'en') {
-  const { lat, lng } = validPosition(place);
+  const query=mapQuery(place,lang);
   const url = new URL('https://www.google.com/maps/search/');
-  url.search = new URLSearchParams({ api: '1', query: `${lat},${lng}`, hl: languageCode(lang) });
+  url.search = new URLSearchParams({ api: '1', query, hl: languageCode(lang) });
   return url.href;
 }
 
@@ -125,9 +130,9 @@ async function linkedPhoto(tags) {
   }
 }
 
-export function bundledByDistance(position, limit = 9) {
+export function bundledByDistance(position, limit = 40) {
   position = validPosition(position);
-  return locations.map(place => ({ ...place, distanceKm: distanceKm(position, place), source: 'bundled-distance-fallback', sourceLabel: 'Bundled scenes, sorted by distance; not a live nearby search', isLiveNearby: false })).sort((a, b) => a.distanceKm - b.distanceKm).slice(0, limit);
+  return locations.filter(place=>place.lat!=null&&place.lng!=null).map(place => ({ ...place, distanceKm: distanceKm(position, place), source: 'bundled-distance-fallback', sourceLabel: 'Bundled scenes, sorted by distance; not a live nearby search', isLiveNearby: false })).sort((a, b) => a.distanceKm - b.distanceKm).slice(0, limit);
 }
 
 export async function findNearby(position, lang = 'en') {
@@ -153,18 +158,65 @@ export async function findNearby(position, lang = 'en') {
       local.push({ id: `osm-${key}`, name, ...coordinates, kind: tags.leisure === 'park' ? 'park' : 'dojo', country: tags['addr:country'] || '', photo: null, photoCredit: null, photoStatus: 'no-verified-licensed-photo', source: 'OpenStreetMap / Overpass', sourceUrl: `https://www.openstreetmap.org/${element.type}/${element.id}`, isLiveNearby: true, distanceKm: distanceKm(position, coordinates), tags });
     }
     local.sort((a, b) => a.distanceKm - b.distanceKm);
-    const selected = local.slice(0, 12);
+    const selected = local.slice(0, 60);
     if (!selected.length) return bundledByDistance(position);
     // Only a place's explicitly linked image is eligible. A nearby generic image
     // must never be passed off as a photograph of a different park or dojo.
-    await Promise.all(selected.map(async place => {
-      const known = locations.find(item => distanceKm(item, place) < 0.25 && (place.tags.wikimedia_commons === item.photoCredit.fileTitle || place.name.en.includes(item.name.en.split(' · ')[0])));
-      const verified = known ? { photo: known.photo, photoCredit: known.photoCredit } : await linkedPhoto(place.tags);
+    await Promise.all(selected.map(async (place,index) => {
+      const known = locations.find(item => item.photo && distanceKm(item, place) < 0.5 &&
+        ((place.tags.wikimedia_commons && place.tags.wikimedia_commons === item.photoCredit?.fileTitle) ||
+        [item.name?.en,item.name?.zh,item.name?.['zh-TW']].filter(Boolean).some(name => Object.values(place.name).some(value=>value.includes(name.split(' · ')[0])))));
+      // Limit optional online photo lookups; distant OSM entries remain honest
+      // map listings without borrowing another park's photograph.
+      const verified = known ? { photo: known.photo, photoCredit: known.photoCredit, projection:known.projection } : index<10 ? await linkedPhoto(place.tags) : null;
       if (verified) Object.assign(place, verified, { photoStatus: 'verified-licensed-photo' });
       delete place.tags;
     }));
-    return selected;
+    const bundled=bundledByDistance(position,60).filter(place=>place.distanceKm<=25 && !selected.some(item=>distanceKm(item,place)<.2 && Object.values(item.name).some(name=>Object.values(place.name).some(n=>n&&name.includes(n.split(' · ')[0])))));
+    return [...selected,...bundled].sort((a,b)=>a.distanceKm-b.distanceKm);
   } catch {
     return bundledByDistance(position);
   }
+}
+
+/** Official Google Maps URLs need no key. The panorama opens in Google's UI;
+ * its coverage and capture dates are controlled by Google, not this game. */
+export function streetViewLink(position,{heading=0,pitch=0,fov=90}={}) {
+  const {lat,lng}=validPosition(position);
+  const bound=(v,a,b)=>Math.max(a,Math.min(b,Number(v)||0));
+  const url=new URL('https://www.google.com/maps/@');
+  url.search=new URLSearchParams({api:'1',map_action:'pano',viewpoint:`${lat},${lng}`,heading:String(((Number(heading)||0)%360+360)%360),pitch:String(bound(pitch,-90,90)),fov:String(bound(fov,10,100))});
+  return url.href;
+}
+
+export function directionsLink(origin,destination,lang='en') {
+  const a=validPosition(origin),b=validPosition(destination);
+  const url=new URL('https://www.google.com/maps/dir/');
+  url.search=new URLSearchParams({api:'1',origin:`${a.lat},${a.lng}`,destination:`${b.lat},${b.lng}`,travelmode:'walking',hl:languageCode(lang)});
+  return url.href;
+}
+
+/** An optional restricted browser API key can enable official embedded Street
+ * View. No image is downloaded or cached by this application. */
+export function streetViewEmbedUrl(position,key,{heading=0,pitch=0,fov=90,lang='en'}={}) {
+  const {lat,lng}=validPosition(position);
+  if(!/^[A-Za-z0-9_-]{20,200}$/.test(String(key||'')))throw new TypeError('A valid restricted Google Maps Embed API key is required.');
+  const url=new URL('https://www.google.com/maps/embed/v1/streetview');
+  url.search=new URLSearchParams({key:String(key),location:`${lat},${lng}`,heading:String(((Number(heading)||0)%360+360)%360),pitch:String(Math.max(-90,Math.min(90,Number(pitch)||0))),fov:String(Math.max(10,Math.min(100,Number(fov)||90))),language:languageCode(lang)});
+  return url.href;
+}
+
+// Manual submission only: no autocomplete, no background address collection.
+const addressCache=new Map();let lastGeocode=0;
+export async function geocodeAddress(query,lang='en') {
+  query=String(query||'').trim();if(query.length<2||query.length>200)throw new TypeError('Enter 2–200 characters.');
+  const cacheKey=`${languageCode(lang)}:${query}`;if(addressCache.has(cacheKey))return addressCache.get(cacheKey);
+  if(Date.now()-lastGeocode<1100)throw new Error('Please wait a moment before another address search.');
+  lastGeocode=Date.now();
+  const url=new URL('https://nominatim.openstreetmap.org/search');
+  url.search=new URLSearchParams({q:query,format:'jsonv2',limit:'1','accept-language':languageCode(lang)});
+  const data=await jsonFetch(url,{},12000);const item=Array.isArray(data)?data[0]:null;
+  if(!item)throw new Error('No matching location was found.');
+  const result={...validPosition({lat:item.lat,lng:item.lon}),name:item.display_name,source:'OpenStreetMap / Nominatim',sourceUrl:'https://www.openstreetmap.org/copyright'};
+  addressCache.set(cacheKey,result);return result;
 }

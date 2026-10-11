@@ -1,5 +1,5 @@
 #!/bin/bash
-# SmartAction v2.2 — Bash 3.2+, Git, Python 3.8+. Run from any working directory.
+# SmartAction v3.0 — Bash 3.2+, Git, Python 3.8+. Run from any working directory.
 # Credentials are handled by Git; this script never requests, prints or saves a PAT.
 set -euo pipefail
 export GIT_LFS_SKIP_SMUDGE=1
@@ -11,12 +11,16 @@ smartaction_tmp=''
 smartaction_auth_tmp=''
 smartaction_fresh_login=0
 smartaction_buffered=0
+smartaction_both=0
+smartaction_explicit_target=0
 smartaction_git=(git)
 
 fail() { printf '%s\n' "$*" >&2; exit 1; }
 usage() {
   cat <<'USAGE'
 用法 / Usage:
+  bash Upload_SmartAction.sh --both          同時更新 SmartAction/taichi/ 與 /taichi/（含模型）
+  bash Upload_Both_Sites.sh --fresh-login     推薦：一行雙站，兩站共用本次登入
   bash Upload_SmartAction.sh                 上傳網站及已完整下載的模型
   bash Upload_SmartAction.sh --with-model    先下載/驗證 Qwen3，再上傳網站及模型
   bash Upload_SmartAction.sh --web-only      只更新網站，保留遠端已存在的模型
@@ -27,7 +31,7 @@ usage() {
 --with-model 會優先合併旁邊 SmartAction_Qwen3_CPU_Weights/models/ 的有效分片。
 請把此檔放在遊戲 index.html 同一層。可從任何工作目錄執行。
 不需要 Git LFS；模型每兩片一批提交、上傳、核對（最多 64 MiB），重跑會跳過相同檔案。
-v2.2：空儲存庫自動建立 main；斷線先核對遠端 SHA，再最多重試 3 次。
+v3.0：雙站部署、96 MiB 網站分批、協會首頁太極入口；保留空庫初始化與斷線重試。
 USAGE
 }
 on_exit() {
@@ -47,10 +51,12 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 while [ "$#" -gt 0 ]; do
   case "$1" in
+    --both) smartaction_both=1; shift ;;
     --with-model) [ "$smartaction_model_mode" != 'web-only' ] || fail '不能同時使用 --with-model 和 --web-only。'; smartaction_model_mode='download'; shift ;;
     --web-only) [ "$smartaction_model_mode" != 'download' ] || fail '不能同時使用 --with-model 和 --web-only。'; smartaction_model_mode='web-only'; shift ;;
     --fresh-login) smartaction_fresh_login=1; shift ;;
     --site)
+      smartaction_explicit_target=1
       [ "$#" -ge 2 ] || fail '--site 後填 smartaction 或 taichi。'
       case "$2" in
         smartaction) smartaction_repo='https://github.com/kuonanhong/SmartAction.git'; smartaction_folder='taichi' ;;
@@ -58,13 +64,21 @@ while [ "$#" -gt 0 ]; do
         *) fail '--site 只能填 smartaction 或 taichi。' ;;
       esac
       shift 2 ;;
-    --repo) [ "$#" -ge 2 ] || fail '--repo 後缺少網址。'; smartaction_repo="$2"; shift 2 ;;
-    --folder) [ "$#" -ge 2 ] || fail '--folder 後缺少名稱。'; smartaction_folder="$2"; shift 2 ;;
+    --repo) [ "$#" -ge 2 ] || fail '--repo 後缺少網址。'; smartaction_repo="$2"; smartaction_explicit_target=1; shift 2 ;;
+    --folder) [ "$#" -ge 2 ] || fail '--folder 後缺少名稱。'; smartaction_folder="$2"; smartaction_explicit_target=1; shift 2 ;;
     --help|-h) usage; exit 0 ;;
     *) fail '無法辨識參數；請執行 bash Upload_SmartAction.sh --help。' ;;
   esac
 done
-printf '%s\n' 'SmartAction uploader v2.2 — 空儲存庫初始化 / 斷線核對與重試'
+if [ "$smartaction_both" -eq 1 ]; then
+  [ "$smartaction_explicit_target" -eq 0 ] || fail '--both 已固定兩站，不能另加 --site、--repo 或 --folder。'
+  [ -f "$smartaction_source/Upload_Both_Sites.sh" ] || fail '缺少 Upload_Both_Sites.sh；請解壓完整 v3 套件。'
+  smartaction_both_args=(--with-model)
+  if [ "$smartaction_model_mode" = 'web-only' ]; then smartaction_both_args=(--web-only); fi
+  if [ "$smartaction_fresh_login" -eq 1 ]; then smartaction_both_args+=(--fresh-login); fi
+  exec bash "$smartaction_source/Upload_Both_Sites.sh" "${smartaction_both_args[@]}"
+fi
+printf '%s\n' 'SmartAction uploader v3.0 — 雙站 / 網站與模型分批 / 斷線核對與重試' 
 [[ "$smartaction_repo" =~ ^https://github\.com/[A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || fail '只接受 https://github.com/OWNER/REPO.git；網址不可含 Token、密碼、查詢字串或空白。'
 if [ "$smartaction_folder" = '.' ]; then
   case "$smartaction_repo" in https://github.com/*/taichi|https://github.com/*/taichi.git) ;; *) fail '根目錄發布僅允許獨立 taichi 儲存庫，避免覆寫協會首頁。' ;; esac
@@ -89,7 +103,7 @@ import hashlib, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 mode, source_arg, checkout_arg, folder, model_mode, report_arg = sys.argv[1:7]
 source, checkout, report = Path(source_arg).resolve(), Path(checkout_arg).resolve(), Path(report_arg)
-ROOT_FILES = {'index.html','styles.css','service-worker.js','manifest.webmanifest','offline-manifest.json','README.md','README_ZH.md','LICENSE','LICENSE.txt','THIRD_PARTY_NOTICES.md','.gitattributes','.nojekyll','Start_Mac.command','Start_Windows.bat','Start_Linux.sh','Upload_SmartAction.sh','Upload_GitHub.command','Upload_GitHub.bat','package.json','PACKAGE_SHA256.json'}
+ROOT_FILES = {'index.html','styles.css','service-worker.js','manifest.webmanifest','offline-manifest.json','README.md','README_ZH.md','LICENSE','LICENSE.txt','THIRD_PARTY_NOTICES.md','.gitattributes','.nojekyll','Start_Mac.command','Start_Windows.bat','Start_Linux.sh','Upload_SmartAction.sh','Upload_Both_Sites.sh','Upload_GitHub.command','Upload_GitHub.bat','package.json','PACKAGE_SHA256.json'}
 PUBLIC_DIRS = {'assets','data','js','vendor','models','docs','tools','tests','dist'}
 SKIP_DIRS = {'.git','.github','tmp','temp','__pycache__','node_modules'}
 def fail(msg): raise RuntimeError(msg)
@@ -169,12 +183,27 @@ try:
     if source==checkout or source in checkout.parents or checkout in source.parents: fail('來源與上傳副本不可重疊。')
     if mode=='validate':
         parts=validate_parts(); paths=public_files()
-        report.write_text(json.dumps({'parts':parts,'webfiles':[str(p.relative_to(source)) for p in paths]},ensure_ascii=False),encoding='utf-8')
+        deploy_bytes=sum(p.stat().st_size for p in paths)+sum((source/'models'/p).stat().st_size for p in parts)
+        if deploy_bytes>950*1024*1024: fail('本次網站與模型超過 950 MiB 部署預算；請減少素材或改採模型來源下載。')
+        # Bound each website push too: expanded photo collections need several batches.
+        batches=[]; batch=[]; size=0
+        for p in paths:
+            n=p.stat().st_size
+            if n>96*1024*1024: fail('單一網站檔案超過 96 MiB 批次上限：'+str(p.relative_to(source)))
+            if batch and size+n>96*1024*1024: batches.append(batch); batch=[];size=0
+            batch.append(str(p.relative_to(source)));size+=n
+        if batch:batches.append(batch)
+        report.write_text(json.dumps({'parts':parts,'webfiles':[str(p.relative_to(source)) for p in paths],'webbatches':batches,'deploy_bytes':deploy_bytes},ensure_ascii=False),encoding='utf-8')
         print('本地檢查完成：{} 個網站檔案；{} 個模型分片。'.format(len(paths),len(parts)))
+        maximum=len(batches)+(len(parts)+1)//2
+        print('本次內容 {:.1f} MiB；最多 {} 個網站 push + {} 個模型 push = {} 個更新 push／本站。相同批次會跳過。'.format(deploy_bytes/1048576,len(batches),(len(parts)+1)//2,maximum))
+        if maximum>10: print('提醒：本次上限超過每站每小時 10 次 Pages build 的軟性限制；Git 可完成上傳，Pages 最後部署可能需等待後重跑。',file=sys.stderr)
     else:
         if Path(git('rev-parse','--show-toplevel')).resolve()!=checkout: fail('上傳副本不是獨立 Git 專案。')
         plan=json.loads(report.read_text(encoding='utf-8'))
-        if mode=='web': copy_stage([source/p for p in plan['webfiles']])
+        if mode=='web':
+            batch=int(sys.argv[7]) if len(sys.argv)>7 else 0
+            copy_stage([source/p for p in plan['webbatches'][batch]])
         elif mode=='part':
             name=sys.argv[7]
             if name not in plan['parts']: fail('分片未列在驗證清單。')
@@ -193,10 +222,22 @@ fi
 if [ "$smartaction_fresh_login" -eq 1 ]; then
   unset GIT_ASKPASS SSH_ASKPASS
   smartaction_git=(git -c credential.helper= -c core.askPass= -c credential.username=kuonanhong -c http.extraheader= -c http.https://github.com/.extraheader= -c "http.$smartaction_repo.extraheader=" -c "http.${smartaction_repo%.git}.extraheader=")
-  smartaction_auth_tmp="$(mktemp -d /tmp/sa-auth.XXXXXX)"
-  chmod 700 "$smartaction_auth_tmp"
-  if git credential-cache --socket="$smartaction_auth_tmp/socket" get </dev/null >/dev/null 2>&1; then
-    smartaction_git+=(-c "credential.helper=cache --timeout=3600 --socket=$smartaction_auth_tmp/socket")
+  if [ -n "${SMARTACTION_SHARED_AUTH_DIR:-}" ]; then
+    # Only the dual-site wrapper creates this private directory; it owns cleanup.
+    case "$SMARTACTION_SHARED_AUTH_DIR" in /tmp/sa-both-auth.??????) ;; *) fail '共用認證快取路徑無效。' ;; esac
+    "$smartaction_python" - "$SMARTACTION_SHARED_AUTH_DIR" <<'AUTHCHECK'
+import os,stat,sys
+p=sys.argv[1]; s=os.lstat(p)
+if not stat.S_ISDIR(s.st_mode) or s.st_uid!=os.getuid() or stat.S_IMODE(s.st_mode)!=0o700:raise SystemExit('共用認證快取權限無效。')
+AUTHCHECK
+    smartaction_cache_dir="$SMARTACTION_SHARED_AUTH_DIR"
+  else
+    smartaction_auth_tmp="$(mktemp -d /tmp/sa-auth.XXXXXX)"
+    chmod 700 "$smartaction_auth_tmp"
+    smartaction_cache_dir="$smartaction_auth_tmp"
+  fi
+  if printf 'protocol=https\nhost=github.com\n\n' | git credential-cache --socket="$smartaction_cache_dir/socket" get >/dev/null 2>&1; then
+    smartaction_git+=(-c credential.useHttpPath=false -c "credential.helper=cache --timeout=3600 --socket=$smartaction_cache_dir/socket")
   fi
   printf '%s\n' '本次繞過舊憑證；Username 為 kuonanhong，Password 請貼上具 Contents 寫入權限的新 Token。'
 fi
@@ -224,7 +265,7 @@ if ! git -C "$smartaction_checkout" rev-parse --verify HEAD >/dev/null 2>&1; the
   git -C "$smartaction_checkout" -c commit.gpgsign=false commit --allow-empty -m 'Initialize SmartAction deployment'
 fi
 if [ "$smartaction_folder" != '.' ]; then
-  "${smartaction_git[@]}" -C "$smartaction_checkout" sparse-checkout set --no-cone "/$smartaction_folder/"
+  "${smartaction_git[@]}" -C "$smartaction_checkout" sparse-checkout set --no-cone "/$smartaction_folder/" "/index.html"
 fi
 "${smartaction_git[@]}" -C "$smartaction_checkout" checkout --quiet HEAD
 smartaction_branch="$(git -C "$smartaction_checkout" symbolic-ref --short HEAD)"
@@ -321,13 +362,34 @@ if [ "$smartaction_folder" = '.' ]; then
 else
   printf '[3/4] 上傳網站到 %s/，保留根首頁與其他遠端檔案。\n' "$smartaction_folder"
 fi
-"$smartaction_python" "$smartaction_tmp/stage.py" web "$smartaction_source" "$smartaction_checkout" "$smartaction_folder" "$smartaction_model_mode" "$smartaction_tmp/plan.json"
-commit_push "Update SmartAction web app in $smartaction_folder"
+smartaction_web_count="$("$smartaction_python" -c 'import json,sys;print(len(json.load(open(sys.argv[1]))["webbatches"]))' "$smartaction_tmp/plan.json")"
+smartaction_web_index=0
+while [ "$smartaction_web_index" -lt "$smartaction_web_count" ]; do
+  printf '網站批次 %s/%s（每批最多 96 MiB）\n' "$((smartaction_web_index + 1))" "$smartaction_web_count"
+  "$smartaction_python" "$smartaction_tmp/stage.py" web "$smartaction_source" "$smartaction_checkout" "$smartaction_folder" "$smartaction_model_mode" "$smartaction_tmp/plan.json" "$smartaction_web_index"
+  if [ "$smartaction_web_index" -eq 0 ] && [ "$smartaction_repo" = 'https://github.com/kuonanhong/SmartAction.git' ] && [ "$smartaction_folder" = 'taichi' ]; then
+    if [ -f "$smartaction_source/tools/patch_smartaction_home.py" ]; then
+      "$smartaction_python" "$smartaction_source/tools/patch_smartaction_home.py" "$smartaction_checkout/index.html"
+      if [ -f "$smartaction_checkout/index.html" ] && [ ! -L "$smartaction_checkout/index.html" ]; then
+        git -C "$smartaction_checkout" add -- index.html
+        [ "$(git -C "$smartaction_checkout" hash-object --no-filters "$smartaction_checkout/index.html")" = "$(git -C "$smartaction_checkout" rev-parse :index.html)" ] || fail 'Git 過濾器改變協會首頁內容；停止上傳，未覆寫遠端首頁。' 
+      fi
+    else
+      printf '%s\n' '未附首頁入口工具；保留原首頁。完整 v3 套件才會加入太極入口。'
+    fi
+  fi
+  if [ "$smartaction_web_count" -eq 1 ]; then
+    commit_push "Update SmartAction web app in $smartaction_folder"
+  else
+    commit_push "Update SmartAction web app in $smartaction_folder ($((smartaction_web_index + 1))/$smartaction_web_count)"
+  fi
+  smartaction_web_index=$((smartaction_web_index + 1))
+done
 printf '%s\n' '[4/4] 分批上傳模型（每片最多 32 MiB，每批最多兩片 / 64 MiB）。'
 if [ ! -s "$smartaction_tmp/parts.txt" ]; then
   printf '%s\n' '本次沒有上傳模型權重；遊戲可使用。可在網頁下載模型，或再加 --with-model 上傳權重。'
 else
-  # At most 8 model pushes for the 15 fixed parts, plus one web push.
+  # At most 8 model pushes for the 15 fixed parts; website pushes are size-bounded too.
   smartaction_batch_count=0
   smartaction_batch_label=''
   # Use fd 3 so Git's interactive credential prompts retain normal standard input.

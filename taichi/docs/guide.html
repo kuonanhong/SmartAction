@@ -1,1 +1,178 @@
-<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartAction v2 完整教學</title><style>body{max-width:940px;margin:auto;padding:32px 22px 80px;background:#f7f7ef;color:#253c34;font:16px/1.85 system-ui,sans-serif}h1,h2,h3{line-height:1.5}h1{font-size:34px}h2{border-top:1px solid #cbd3c1;padding-top:26px;margin-top:40px}pre{padding:18px;border-radius:10px;background:#163c35;color:#eaffda;overflow:auto;font-size:14px}p{overflow-wrap:anywhere}a{color:#286c52}.nav{display:flex;gap:12px;flex-wrap:wrap;padding:16px;background:#e8edde;border-radius:12px}.table-row{display:grid;grid-template-columns:1fr 2fr 2fr;border-bottom:1px solid #cbd3c1;gap:12px;padding:10px 0;font-size:14px}@media(max-width:600px){h1{font-size:26px}.table-row{grid-template-columns:1fr;gap:4px}.table-row>div:first-child{font-weight:bold}pre{font-size:12px}}</style><body><nav class="nav"><a href="UPLOAD_PAT.html">PAT 與一鍵上傳教學</a><a href="DEVICE_TESTS.html">手機測試記錄表</a><a href="https://github.com/settings/personal-access-tokens/new">申請 Token</a><a href="https://github.com/settings/personal-access-tokens">管理 Token</a><a href="https://github.com/kuonanhong/SmartAction/settings/pages">Pages 設定</a></nav><h1>SmartAction 聰動太極拳遊戲 v2</h1><p>此套件是可下載、可部署到 GitHub Pages 的互動教學原型。預設衛武營場景、鄭曼青 37 式；13 類課程共 131 個練習節點，九種語言（繁中、簡中、英、日、韓、西、法、德、葡），依瀏覽器語言自動選擇，可手動切換。</p><h2>先讓遊戲動起來</h2><p>1. 完整解壓縮 `SmartAction_Taichi_Game_v2.zip`，不要只抽出 index.html。</p><p>2. 電腦直接雙擊 `index.html` 即可操作核心遊戲；v2 以已打包的 `js/game.js` 載入，不再靠 file:// 不允許的 ES module 匯入。</p><p>3. 如需 CPU 對話模型、攝影機、定位或離線快取，請使用本地啟動檔或 HTTPS 網址。</p><p>Mac（解壓到下載資料夾）：</p><pre><code>bash &quot;$HOME/Downloads/SmartAction_Taichi_Game_v2/Start_Mac.command&quot;</code></pre><p>Windows：雙擊 `Start_Windows.bat`。Linux：`bash Start_Linux.sh`。啟動檔使用 Python 3 標準函式庫，不必 pip install。缺少 Python 時，請先從 https://www.python.org/downloads/ 安裝。伺服器啟動後保留終端機，關閉時按 Ctrl+C。手機請使用部署完成的 HTTPS 網址；電腦的 localhost 不能直接當成手機的網址。</p><h2>操作</h2><p>左控制盤移動腳、右控制盤移動手；各自的換腳／換手按鈕支援觸控。鍵盤 W/A/S/D 控制腳、方向鍵控制手；Q/E 換脚／換手，F/B 手前伸／收回，J/K 抬腳／落腳，Z/C 轉腰，X/T 蹲下／站起，V/N 伸展／放鬆。空白鍵暫停、R 老師再示範、H 動作輔助，1/2/3 切換視角。對打 P 出手、G 按住格擋。</p><p>按開始，老師示範一式後會等玩家。基本／專業／大師級分別要求不同角色姿態吻合度與保持時間；各部位也有最低門檻。輔助完成有標記，大師級不提供輔助。專注模式仍有「返回選單」。觸控可同時按住兩個控制鍵；抬手、切換頁面及視窗失焦時釋放按鍵，避免卡住。</p><h2>37 式的範圍</h2><p>預設編號依鄭曼青紀念館同網域的時中學社《學員手冊》：https://www.37taichi.org.tw/shizhong/學員手冊 。第1式為預備式，37式為彎躬射虎。名稱分組可能與其他教學版本不同。</p><p>3D 人物使用程序骨架與姿態插值，非拳師動作捕捉。37 個主式各有目標姿勢；拳譜另列的 24 個重複、銜接、收式存於 `continuations`，目前不逐段演示或評分。其餘拳種也屬遊戲練習編排。不可當作完整、經拳師驗證的套路教材。詳見 `docs/CURRICULUM_SOURCES.md`。</p><h2>三種不同技術</h2><div class="table-row"><div>模組</div><div>用途</div><div>權重與執行方式</div></div><div class="table-row"><div>Qwen3 0.6B Q4_K_M</div><div>依當前教材、問題、角色分數及有效的攝影機摘要產生文字</div><div>484,220,320 bytes，15 個分片；Wllama / WASM，單 CPU 執行緒，無 GPU</div></div><div class="table-row"><div>MediaPipe Pose Landmarker Lite</div><div>從攝影機估算 33 個身體關鍵點，顯示粗略手腳比對及調整提示</div><div>5,777,746-byte `.task` 真實權重已內含；CPU Worker</div></div><div class="table-row"><div>程序 3D 人物</div><div>老師、玩家、同好、手腳控制與視角</div><div>無神經網路權重；Three.js 與 IK</div></div><p>Qwen 不是臉部表情模型，也不是身體動作辨識或動畫生成模型。本專案沒有使用 LivePortrait。身體辨識由獨立 MediaPipe 模型負責；教練只收到數值摘要，不收到攝影機畫面。</p><h3>Qwen 模型是否已經包含？</h3><p>上一版約 11 MB 核心 ZIP 沒有包含 484 MB 權重。此 v2 核心 ZIP 也刻意分開大型 Qwen 權重，但人體辨識權重已內含。本次已實際下載 Qwen 全部15片並核對 SHA256；另提供 `SmartAction_Qwen3_CPU_Weights.zip`，將其中 `models` 內的15片複製進遊戲的 `models/`（保留原有 `pose/` 等檔案）。</p><p>也可直接執行 `Download_Model.command`（Mac）、`Download_Model.bat`（Windows）或 `python3 tools/download_model.py`。固定模型來源與各片雜湊在 `models/manifest.json`。完整檔 SHA256：`9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14`。</p><p>開啟本地啟動網址或 HTTPS 網站後，展開「與練拳教練對話」→「離線生成式模型」→「載入已下載模型」。也可在網頁按「下載並啟用」直接從來源下載。看到 CPU / Qwen3 就緒才是生成式回答；尚未載入時明確標示「課程資料提示（非生成式）」。</p><p>網頁下載的權重放在瀏覽器儲存空間，**不會自動出現在你電腦專案的 models 資料夾，也不會自動上傳 GitHub**。要發布模型檔，使用下載腳本或上傳腳本 `--with-model`。GitHub Pages 只供應檔案，推論在訪客裝置執行。首次需網路；檔案與模型快取完成後才可離線。瀏覽器可能清除快取，CPU AI 也可能因手機記憶體不足而載入失敗。</p><h3>對話及語音</h3><p>輸入問題按送出。可勾選朗讀回答、重播答案、停止朗讀，或在支援的瀏覽器按語音輸入。朗讀使用作業系統／瀏覽器的語音；能否離線取決於是否安裝對應語音。語音輸入可能使用瀏覽器線上服務，並非 Qwen 本地語音辨識。文字與本地生成式模型不必把問題送給 AI 雲端服務。</p><p>小模型不是經驗證的太極專家。實測曾出現語義錯誤；請以顯示的教材及現場老師為準，不把生成內容當成醫療或動作安全判定。</p><h3>真人動作比對</h3><p>在 HTTPS 或 localhost 點「真人肢體比對」→「啟用攝影機」。相機只在按鈕操作後請求權限；請讓全身、手腕、腳踝入鏡並面向鏡頭。影像在本機 CPU Worker 處理，不錄影、不上傳；停止、離開頁面或切到背景會關閉攝影機。</p><p>分數只比對經身體比例正規化的正面 2D 手腕／腳踝位置；它與遊戲角色分數分開，不會讓角色自動過關。無人、低可信度、腳部被裁切、側身或目標需明顯轉腰時不提供分數。不能評估深度、完整腰轉、受力、膝關節安全或拳術品質。缺少 Worker、OffscreenCanvas、createImageBitmap 或攝影機 API 的瀏覽器會提示無法啟用，核心按鍵仍可玩。詳見 `docs/BODY_TRACKING.md`。</p><h2>地圖、照片與環境</h2><p>內附9張有出處、作者和授權的實景照。預設位置為衛武營；預設背景照是衛武營自然探索區，不宣稱是榕園的精密掃描。日光、氣候、天氣、季節是視覺模擬，不是即時氣象。Google 地圖與附近查詢需網路；定位只在按「尋找附近」後要求授權。沒有查到可用授權照片時，顯示虛擬場景，不用其他地點照片冒充。來源見 `docs/PHOTO_CREDITS.md`。</p><h2>一個指令上傳</h2><p>在完整解壓後的專案根目錄已附 `Upload_SmartAction.sh`。Mac：</p><pre><code>bash &quot;$HOME/Downloads/SmartAction_Taichi_Game_v2/Upload_SmartAction.sh&quot; --with-model</code></pre><p>此選項會下載／驗證缺少的 Qwen 權重，先上傳網站，再分批上傳模型，成功批次不必重傳。只想先發布遊戲：</p><pre><code>bash &quot;$HOME/Downloads/SmartAction_Taichi_Game_v2/Upload_SmartAction.sh&quot; --web-only</code></pre><p>Linux 也可用 bash；Windows 安裝 Git for Windows 和 Python 3 後在 Git Bash 執行 `bash Upload_SmartAction.sh --with-model`。不需 Git LFS、不把大型完整 `.gguf` 直接 git add、不將 Token 寫入檔案。Git 與 Python 必須先存在。</p><p>預設目標 `https://github.com/kuonanhong/SmartAction.git` 的 `taichi/`；保留根首頁與其他遠端檔案，不 force push。上傳腳本會比較內容、驗證檔案與遠端 SHA；有變更才提交。上傳中斷可重跑同一指令。這不會自動改 GitHub Pages 的發佈設定。</p><p>請完整閱讀 `docs/UPLOAD_PAT.html`，內有 PAT 申請、Pages 設定、分批上傳及錯誤排除。最終網址應是 https://kuonanhong.github.io/SmartAction/taichi/ ，只有你執行上傳且 Pages 部署成功後才存在新版。</p><h2>測試的實際範圍</h2><p>已執行：48 項 Node 邏輯／DOM 回歸、模型與附件雜湊、CPU 原生 Qwen 生成測試，以及本地 bare-Git 上傳／續傳整合測試。DOM 測試使用 Canvas 替身，非真實瀏覽器畫面測試；原生 CPU 結果不能推算手機或 WASM 速度。</p><p>未完成：iPhone/iPad/Android 實機、真實 WebGL 畫面、各手機瀏覽器的攝影機推論與語音測試。環境沒有實體裝置，也缺少 Sites 技能所要求的 control-browser，因此不得宣稱實機全部通過。附 `docs/DEVICE_TESTS.html` 可在各裝置填寫20项測試、記錄版本並匯出 JSON；初始結果全部未測。</p><h2>給開發者</h2><p>一般使用者不需 npm。修改 js/data 後，需 `npm install`、`npm run build`，重新生成已打包的核心與 classic CPU worker；只改 source 不重建，index.html 仍會載入旧 game.js。`npm test` 執行回歸，`npm run check` 核對依賴，`python3 tools/package.py` 重新打包核心（不含大型 Qwen 分片）。</p><p>所有相對路徑支援 `/SmartAction/taichi/`，不需要後端 AI API 金鑰。自己的程式 MIT；Qwen、MediaPipe、Three.js、Wllama 與照片各按隨附授權使用。</p></body></html>
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartAction v3｜練拳、散步與雙站發布手冊</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f4f3ec;color:#193431;font:17px/1.8 system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif}header{background:#123e37;color:#fff;padding:52px max(5vw,24px) 38px}header .inner{max-width:1100px;margin:auto}.eyebrow{letter-spacing:.16em;color:#bfdaaa;font-size:13px;font-weight:700}h1{font-size:clamp(30px,5vw,49px);line-height:1.25;margin:12px 0}header p{max-width:760px;color:#e5eee6}header a{color:white}.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.badges span{border:1px solid #729186;border-radius:24px;padding:4px 14px;font-size:14px}main{max-width:1100px;padding:28px 24px 72px;margin:auto}nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 16px;background:#e8ede3;padding:22px;border-radius:16px;margin-bottom:30px}nav a{font-size:15px;text-decoration:none}a{color:#11685a;text-underline-offset:3px;overflow-wrap:anywhere}section{background:white;border:1px solid #dde3d9;border-radius:16px;padding:28px;margin:22px 0;scroll-margin-top:18px}h2{line-height:1.4;font-size:26px;margin:0 0 20px}h3{font-size:20px;margin-top:30px}p{margin:14px 0}li{margin:9px 0;padding-left:3px}code{font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#edf2ed;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{background:#17382f;color:#edffe4;overflow:auto;border-radius:10px;padding:18px;line-height:1.6}pre code{background:transparent;color:inherit;padding:0;white-space:pre;overflow-wrap:normal}.table-scroll{overflow-x:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:15px;min-width:600px}th{background:#edf2e7;text-align:left}td,th{border:1px solid #d8e1d5;padding:12px;vertical-align:top}footer{max-width:1100px;padding:0 24px 44px;margin:auto;color:#53655c;font-size:14px}.note{border-left:4px solid #b79140;padding-left:16px}strong{color:#224d3e}@media(max-width:600px){body{font-size:16px}header{padding:32px 20px}main{padding:18px 12px 40px}section{padding:21px 16px}h2{font-size:23px}nav{grid-template-columns:1fr}code{font-size:13px}}@media print{header{background:white;color:#193431}header p,header a{color:#193431}nav{display:none}section{break-inside:auto;border:0;padding:0}body{background:white;font-size:11pt}pre{white-space:pre-wrap}table{min-width:0}a{color:inherit}footer{display:none}}</style></head><body>
+<header><div class="inner"><div class="eyebrow">SMARTACTION / USER GUIDE / VERSION 3</div><h1>練拳、散步與雙站發布</h1><p>從第一次開啟、手機啟聲，到模型放置與一個指令更新兩站。照著這份手冊操作，並了解實景、語音與動作評分的適用範圍。</p><a href="../index.html">← 返回練習遊戲</a><div class="badges"><span>15 種介面與課程語言</span><span>13 類課程 · 131 節</span><span>158 個地點</span><span>CPU 文字教練可選配</span></div></div></header>
+<main><nav aria-label="手冊目錄"><a href="#section-1">v3 相對 v2 的主要變更</a><a href="#section-2">一、先在本機開啟</a><a href="#section-3">二、手機如何有聲音</a><a href="#section-4">三、語言與發音如何選擇</a><a href="#section-5">四、三種練習模式</a><a href="#section-6">五、基本、專業與大師的差別</a><a href="#section-7">六、控制方法與三個視角</a><a href="#section-8">七、附近走走：移動、地圖與恢復練習</a><a href="#section-9">八、實景、附近公園與授權</a><a href="#section-10">九、生成式教練與身體模型</a><a href="#section-11">十、有網路與離線怎麼用</a><a href="#section-12">十一、一個指令上傳兩個網站</a><a href="#section-13">十二、教材、相容性與驗證範圍</a><a href="#section-14">開發者更新方式</a></nav><p>可下載、可部署到 GitHub Pages 的練拳互動遊戲。預設「衛武營榕園」與鄭曼青太極 37 式；包含 13 類課程、131 個練習節點。完整解壓縮後即可操作，不需先安裝模型或購買 AI 服務。</p>
+<section id="section-1"><h2>v3 相對 v2 的主要變更</h2>
+<ul>
+<li>手機語音改成明確點按啟用、試聽與狀態顯示；可選裝置提供的聲音，另附鄭曼青 37 式的 15 語合成預錄音備援，不再把「朗讀：開」誤當成已經播放。</li>
+<li>雙人對練改為示範、限時接招、保持姿勢、計分的六次交換；節奏對打有 60 秒回合、出手窗口、按住格擋及體力結果。</li>
+<li>介面與課程擴充至 15 語，新增義大利文、印尼文、越南文、泰文、阿拉伯文、印地文。</li>
+<li>場景增為 158 個不同地點、155 張授權實景圖，其中 5 張是真正 360° 全景，另有 2 段各 12 秒的平面實景短片。</li>
+<li>新增「附近走走」，保留練習進度、移動與環視控制、跳躍、蹲下、居民招呼和 Google 地圖／街景連結。</li>
+<li>新增一個指令更新兩個 GitHub 儲存庫，並在 SmartAction 原首頁加入太極遊戲入口。</li>
+</ul>
+</section>
+<section id="section-2"><h2>一、先在本機開啟</h2>
+<ol>
+<li>完整解壓 <code>SmartAction_Taichi_Game_v3.zip</code>；保留 <code>index.html</code>、<code>js/</code>、<code>data/</code>、<code>assets/</code>、<code>vendor/</code>、<code>models/</code>、<code>tools/</code> 等原有相對位置。</li>
+<li>只要玩核心遊戲，可直接雙擊 <code>index.html</code>。CPU 模型、相機、定位、離線快取及影片等完整功能，請使用下面的本地伺服器或已部署的 HTTPS 網站。</li>
+<li>電腦先安裝 Python 3。啟動檔僅用標準函式庫，不需 <code>pip install</code>；開啟後預設網址是 <code>http://localhost:8088/</code>。</li>
+</ol>
+<div class="table-scroll"><table><thead><tr><th>系統</th><th>啟動方式</th></tr></thead><tbody>
+<tr><td>macOS</td><td>在遊戲資料夾執行 <code>bash Start_Mac.command</code></td></tr>
+<tr><td>Windows</td><td>雙擊 <code>Start_Windows.bat</code></td></tr>
+<tr><td>Linux</td><td>在遊戲資料夾執行 <code>bash Start_Linux.sh</code></td></tr>
+</tbody></table></div>
+<p>Mac 若解壓在「下載項目」，可以直接貼：</p>
+<pre><code>bash &quot;$HOME/Downloads/SmartAction_Taichi_Game_v3/Start_Mac.command&quot;</code></pre>
+<p>保留伺服器終端機；結束時按 Ctrl+C。8088 已被使用時，在啟動指令後加 <code>--port 8090</code>。手機請開部署後的 HTTPS 網址；電腦的 localhost 不是手機能直接存取的網址。</p>
+</section>
+<section id="section-3"><h2>二、手機如何有聲音</h2>
+<ol>
+<li>開啟頁面，確認手機「媒體音量」，也檢查藍牙耳機或其他音訊輸出裝置。</li>
+<li>第一次請親手點「啟用／試聽語音」。開始練習、老師再示範及朗讀回答的點按也會嘗試啟用語音。</li>
+<li>使用「選擇朗讀聲音」選取可用的系統聲音，再點試聽。系統語音優先；沒有相符語音時，已附的固定語句可使用明確標示的「合成預錄音（機械語音）」。畫面會顯示等待、正在朗讀、完成、缺少語音或播放失敗的狀態。</li>
+<li>套件已附 15 語 ×（鄭曼青 37 式招名＋1 句試聽）＝570 段本地 MP3，約 7.6 MB，作為固定內容備援。這些是 eSpeak 機械合成語音，不是真人配音，也未經母語者校聽。任意 Qwen 回答與其他拳種的招名不在這份預錄清單；若缺少相符系統語音，仍請到手機系統設定下載該語言聲音，再重新開頁試聽。</li>
+<li>生成回答是非同步工作；手機可能仍要求再次點按。若回答有文字但無聲音，請點「朗讀回答」。切到背景時會停止朗讀，再回來請重新試聽。</li>
+</ol>
+<p>「朗讀：開」只是使用者偏好；不是聲音已成功播放的證明。即使收到瀏覽器播放事件，也無法檢測您是否真的聽見，仍需確認裝置音量與輸出。本地 MP3 不需線上語音服務，但仍須先下載到裝置並符合瀏覽器的播放手勢要求。部分系統聲音要連網；語音輸入也可能使用瀏覽器線上服務，與本地 Qwen 文字模型是不同功能。</p>
+</section>
+<section id="section-4"><h2>三、語言與發音如何選擇</h2>
+<p>首次開啟依瀏覽器 <code>navigator.languages</code> 的偏好順序選擇支援語言，支援繁中、簡中、英文、日文、韓文、西班牙文、法文、德文、葡萄牙文、義大利文、印尼文、越南文、泰文、阿拉伯文、印地文。您可以手動指定，或選「自動（依瀏覽器）」；手動偏好會保留於同一瀏覽器。</p>
+<p>語言與 Google 地圖、GPS 是分開的：GPS 決定附近搜尋位置，瀏覽器語言決定介面與預期發音，不能由地理位置推定一個人的母語。地圖開啟時會帶入目前語言。任意文字的朗讀以裝置聲音清單為準，不保證所有裝置具有全部 15 語聲音。鄭曼青 37 式招名與試聽句另有 15 語預錄備援；不能據此推定任意文字都有相同備援。</p>
+<p>課程包含各語言名稱、說明、來源、練習要領及一般運動目標。新增六語的要領以同一 3D 目標姿勢產生，並加入原本安全限制；不是繁中、英文稿的逐句翻譯。地名與人名可能保留來源專名或拉丁轉寫。翻譯尚未經各語母語教練校閱。</p>
+</section>
+<section id="section-5"><h2>四、三種練習模式</h2>
+<div class="table-scroll"><table><thead><tr><th>模式</th><th>玩法</th><th>回合如何完成</th></tr></thead><tbody>
+<tr><td>跟隨老師</td><td>老師示範後等待玩家。用控制盤調整角色姿勢，再維持到門檻</td><td>當前式通過後進入下一式，直到所選課程完成</td></tr>
+<tr><td>雙人對練</td><td>電腦同好示範 3.5 秒，輪到玩家在時間內接招；逾時會改為 5 秒示範並重試</td><td>成功配合 6 次，顯示平均分；逾時不跳過未完成的招式</td></tr>
+<tr><td>節奏對打</td><td>點開始回合，看到出手窗口時按「出手」，對方出招時按住「格擋」；姿勢分數影響效果</td><td>最長 60 秒，或任一方體力歸零；顯示雙方剩餘體力與結果</td></tr>
+</tbody></table></div>
+<p>雙人對練的接招時間：基本級 24 秒、專業級 18 秒、大師級 14 秒。「節奏對打」出手有 0.9 秒冷卻，對手攻擊週期依等級約 5／4／3 秒。這是非接觸式遊戲規則，不是教人真實對打，也不是線上雙人連線。</p>
+<p>選模式後，還需按「開始此回合」。在附近走走時不能改拳種、等級或模式，請先按「繼續練習」。</p>
+</section>
+<section id="section-6"><h2>五、基本、專業與大師的差別</h2>
+<div class="table-scroll"><table><thead><tr><th>等級</th><th>總分至少</th><th>手、腿、身體各至少</th><th>合格姿勢保持</th><th>位置評分尺度</th><th>輔助</th></tr></thead><tbody>
+<tr><td>基本級</td><td>78</td><td>65</td><td>1.0 秒</td><td>0.29 m</td><td>可看目標及使用動作輔助</td></tr>
+<tr><td>專業級</td><td>88</td><td>78</td><td>1.6 秒</td><td>0.21 m</td><td>可看目標及使用動作輔助</td></tr>
+<tr><td>大師級</td><td>94</td><td>88</td><td>2.2 秒</td><td>0.15 m</td><td>隱藏目標輪廓、停用動作輔助</td></tr>
+</tbody></table></div>
+<p>位置尺度是角色端點距離評分公式的參數，數值越小越嚴格；不是「偏差小於該公尺數就自動通過」。總分與各部位分數必須同時達標。使用輔助的成績會有標記。這些是遊戲難度，不能當成真人拳術資格、健康或安全評量。</p>
+</section>
+<section id="section-7"><h2>六、控制方法與三個視角</h2>
+<p>手機／平板可以同時按兩個控制鍵。練拳模式下：左控制盤調整所選腳，右控制盤調整所選手；按各盤的切換鍵換腳／換手；另有抬腳、前伸、轉腰、蹲下與伸展。第一視角從角色眼睛觀看；第二視角靠近角色；第三視角看完整角色與老師。</p>
+<div class="table-scroll"><table><thead><tr><th>鍵盤</th><th>練拳時</th><th>附近走走時</th></tr></thead><tbody>
+<tr><td>W／A／S／D</td><td>所選腳前後左右</td><td>向前／左／後／右走</td></tr>
+<tr><td>方向鍵</td><td>所選手上下左右</td><td>轉頭／左右環視</td></tr>
+<tr><td>Q／E</td><td>換腳／換手</td><td>跳躍／打招呼</td></tr>
+<tr><td>F／B</td><td>手向前／收回</td><td>不需用來換肢</td></tr>
+<tr><td>J／K</td><td>抬腳／落腳</td><td>可使用畫面跳躍鍵</td></tr>
+<tr><td>Z／C</td><td>腰左轉／右轉</td><td>左右環視</td></tr>
+<tr><td>X／T</td><td>蹲下／站起</td><td>按住 X 蹲下，放開恢復</td></tr>
+<tr><td>V／N</td><td>伸展／放鬆</td><td>使用畫面已重設的控制標籤</td></tr>
+<tr><td>1／2／3</td><td>第一／第二／第三視角</td><td>同樣三種視角</td></tr>
+<tr><td>P／G</td><td>節奏對打出手／按住格擋</td><td>不執行對打</td></tr>
+<tr><td>空白鍵、R、H</td><td>暫停、再示範、動作輔助</td><td>請使用「繼續練習」返回</td></tr>
+</tbody></table></div>
+</section>
+<section id="section-8"><h2>七、附近走走：移動、地圖與恢復練習</h2>
+<ol>
+<li>練到一半按「附近走走」。目前招式、角色姿勢、分數、回合與暫停狀態留在本頁記憶體；不用重新開始。</li>
+<li>左盤改成移動整個角色，右盤改成環視與抬頭，不再要求切換左右手腳。可跳躍、按住蹲下、走近虛擬居民打招呼。</li>
+<li>居民會顯示與朗讀預先編寫的在地招呼，不是即時真人，也不是 Qwen 生成回答。</li>
+<li>三視角都能使用。走路模式將水平視野約增加 5%，屬廣角視野調整，不是精密魚眼鏡頭校正。</li>
+<li>地面、樹木、椅子與程序 3D 人物隨相機位移呈現透視與視差。真實照片作為實景背景；五個真正 360° 場景可環視，平面照片不會被冒稱為完整 360°。</li>
+<li>虛擬步行限定在場景中心東西、南北各約 ±60 m 的範圍；畫面把角色位移換算成附近經緯度，並標示「虛擬座標」。這不是手機實際 GPS 路線，也不是可用於實地導航的測量結果。</li>
+<li>點 Google 地圖或 Google 街景連結，會在外部 Google 頁面查看該座標；有沒有街景及該座標的影像由 Google 提供。本遊戲沒有下載、內嵌或重製 Google 街景影像。</li>
+<li>按「繼續練習」，恢復進入散步前的角色姿勢、進度與視角。若離開頁面或重新整理，這份中場快照不會作為完整存檔永久保留；重新整理前先完成當前回合。</li>
+</ol>
+<p>目前場景是「真實照片＋程序 3D 公園」；不是每個公園的逐棵樹、道路、建築、坡度數位孿生，也不是連續街景漫遊。照片不會因角色前進而產生未拍到的背面細節，切換位置也不是實際跨街導航。</p>
+</section>
+<section id="section-9"><h2>八、實景、附近公園與授權</h2>
+<p>目錄含 158 個不同地點、155 張本地實景照片，其中 5 張是真正 360° 全景；另附 2 段各 12 秒的普通平面實景影片。影片不宣稱是 360° 影片或即時直播。可搜尋公園或城市，依台灣北、中、南、東／離島、世界篩選，以及只顯示有照片的地點。</p>
+<p>高雄包含您指定的大東、澄清湖、果嶺、鳥松濕地、觀音湖、金獅湖、中山大學、壽山、觀音山、美濃中正湖等。夢裡森林公園、雙湖公園、仁武公園尚缺可驗證授權照片，顯示無照片狀態；夢裡另缺可靠座標，提供地名地圖搜尋，不允許冒用他處照片或座標啟動散步。衛武營預設照片是公園自然探索區，不宣稱為榕園同一鏡位。</p>
+<p>按「尋找附近」才請求定位權限。瀏覽器可能拒絕、精度不足，或定位到網路出口。附近結果取自隨附目錄與可用的 OpenStreetMap 查詢；無法保證列出濱山街附近「全部」中大型公園或道館。道館另有 Google 搜尋入口，可補查營業與交通資訊。天氣、季節、氣候和時段是視覺效果，不是即時天氣預報。</p>
+<p>圖片／影片附來源、作者、授權、修改說明與雜湊紀錄；請保留 <code>docs/PHOTO_CREDITS.html</code> 與原始資料中的署名。CC BY、CC BY-SA 與公有領域素材各有適用條件，不應把全部素材一概當成自有著作或任意移除署名。</p>
+</section>
+<section id="section-10"><h2>九、生成式教練與身體模型</h2>
+<div class="table-scroll"><table><thead><tr><th>模組</th><th>做什麼</th><th>不做什麼</th></tr></thead><tbody>
+<tr><td>Qwen3 0.6B、Q4_K_M</td><td>依課程、問題和分數摘要在訪客裝置 CPU 生成文字</td><td>不是臉部表情模型，不產生肢體動畫，也不自行觀察相機</td></tr>
+<tr><td>MediaPipe Pose Landmarker Lite</td><td>從相機估算 33 個身體點，供粗略 2D 手腳比對</td><td>不判斷完整深度、受力、膝蓋安全或拳術品質</td></tr>
+<tr><td>程序 3D 人物</td><td>老師、玩家、同好姿勢插值、行走與相機控制</td><td>不是拳師動作捕捉，也不是真人寫實數位替身</td></tr>
+</tbody></table></div>
+<p>Qwen 使用 Wllama／WASM 單 CPU 執行緒，不需 GPU。完整權重 484,220,320 bytes（約 484.22 MB），分成 15 片，另附 <code>SmartAction_Qwen3_CPU_Weights.zip</code>，不塞入核心遊戲 ZIP。人體 <code>.task</code> 權重已隨核心套件附上。本版沒有 LivePortrait。</p>
+<h3>模型檔案放在哪裡</h3>
+<div class="table-scroll"><table><thead><tr><th>遊戲資料夾內的相對路徑</th><th>用途</th></tr></thead><tbody>
+<tr><td><code>index.html</code></td><td>網頁入口</td></tr>
+<tr><td><code>models/manifest.json</code></td><td>Qwen 來源、分片及 SHA256</td></tr>
+<tr><td><code>models/qwen3-0.6b-q4km.part01</code> 至 <code>part15</code></td><td>實際的 Qwen 權重分片</td></tr>
+<tr><td><code>models/pose/pose_landmarker_lite.task</code></td><td>人體辨識模型</td></tr>
+</tbody></table></div>
+<p><code>SmartAction_Qwen3_CPU_Weights/</code> 外層資料夾可放在遊戲資料夾旁邊；它是安裝來源，不是網頁直接讀取的模型路徑。雙站上傳腳本會從旁邊的 <code>SmartAction_Qwen3_CPU_Weights/models/</code> 複製並驗證有效分片到遊戲內 <code>models/</code>，保留 <code>models/pose/</code>。已有正確分片不必重新下載。</p>
+<p>如需在本機先啟用，可把權重包中 15 個 <code>.part</code> 檔合併到遊戲 <code>models/</code>，保留既有其他檔案；或在遊戲資料夾執行：</p>
+<pre><code>python3 tools/download_model.py</code></pre>
+<p>也附 <code>Download_Model.command</code>／<code>Download_Model.bat</code>。之後從 localhost／HTTPS 開啟遊戲，展開「與練拳教練對話」→「離線生成式模型」→「載入已下載模型」。也可在網頁選「下載並啟用」，或匯入相容的 <code>.gguf</code>。看到 Qwen3／CPU 就緒才是生成式回答；未載入時是明確標示的課程資料提示。</p>
+<p>瀏覽器下載的權重存在瀏覽器儲存空間，不會自動變成本機專案資料夾檔案，也不會自動上傳 GitHub。模型未下載、載入失敗或記憶體不足，不會阻止核心練拳按鈕。Qwen 是小型通用文字模型，仍可能答錯，不能替代老師或醫療專業判斷。</p>
+<h3>真人相機比對</h3>
+<p>在 HTTPS／localhost 點「真人肢體比對」→「啟用攝影機」。站在可拍到全身、手腕與腳踝的位置。影像在本機 CPU Worker 處理，不錄影、不上傳；生成式教練只接收有效的數字摘要，不收到影像。停止或頁面進入背景會關閉相機。</p>
+<p>真人分數與遊戲角色分數分開；相機不會操控角色自動過關。沒有完整身體、低可信度、側身或需要顯著腰轉時不應解讀為可靠評分。詳見 <code>docs/BODY_TRACKING.md</code>。</p>
+</section>
+<section id="section-11"><h2>十、有網路與離線怎麼用</h2>
+<div class="table-scroll"><table><thead><tr><th>情況</th><th>操作／可用功能</th></tr></thead><tbody>
+<tr><td>第一次線上使用</td><td>從 HTTPS 開啟，等待核心載入，按「下載離線場景」保存照片與影片；Qwen 需另下載並載入</td></tr>
+<tr><td>之後同一瀏覽器離線</td><td>已快取的核心、場景和模型可使用；前提是快取未遭清除且瀏覽器功能允許</td></tr>
+<tr><td>電腦完整本機套件</td><td>用本地啟動檔；本地已有的素材不需連網讀取，模型也須先取得完整分片</td></tr>
+<tr><td>Google Maps、街景、附近即時查詢</td><td>需要網路；離線不保證可用</td></tr>
+<tr><td>朗讀</td><td>隨附鄭曼青招名／試聽 MP3 下載後可離線；任意文字使用本機已安裝的語音才可能離線，部分系統聲音仍需網路</td></tr>
+<tr><td>語音輸入</td><td>視瀏覽器服務而定，不宣稱離線語音辨識</td></tr>
+</tbody></table></div>
+<p>「下載離線場景」若顯示部分失敗，可再按一次補齊。首次不要假設所有場景都已自動預載。私人瀏覽、空間不足或系統清理會影響儲存；完整本地套件是另一路徑，不依賴瀏覽器曾看過哪張照片。</p>
+</section>
+<section id="section-12"><h2>十一、一個指令上傳兩個網站</h2>
+<p>請使用完整 v3 資料夾。<code>Upload_Both_Sites.sh</code>、<code>Upload_SmartAction.sh</code> 與 <code>index.html</code> 在同一層，<code>tools/</code> 要完整保留。Mac／Linux 需要 Bash、Git、Python 3.8 以上；Windows 請安裝 Git for Windows 與 Python 3，從 Git Bash 執行。</p>
+<h3>第一次的 GitHub 準備</h3>
+<ol>
+<li>登入 <code>kuonanhong</code>，確認已有公開 <code>SmartAction</code> 和 <code>taichi</code> 儲存庫。需要時從 <a href="https://github.com/new" target="_blank" rel="noopener noreferrer">https://github.com/new</a> 建立；真正的空儲存庫由腳本初始化，不必先放 README。</li>
+<li>開啟 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">https://github.com/settings/personal-access-tokens/new</a> 建立 Fine-grained personal access token。</li>
+<li>設定名稱與適當期限；Resource owner 選 <code>kuonanhong</code>；Only select repositories 同時勾選 <code>SmartAction</code>、<code>taichi</code>。</li>
+<li>Repository permissions 的 Contents 設為 Read and write；Metadata 保留基本讀取權限。這個上傳流程不需要把 Token 放進網頁或程式碼。</li>
+<li>產生後自行保存 Token。Git 問 Password 時貼 Token，不能用 GitHub 帳號密碼；終端機不顯示輸入字元是正常現象。請勿把 Token 貼到聊天或上傳檔案。</li>
+<li>Token 管理／修改入口：<a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">https://github.com/settings/personal-access-tokens</a> 。若 expired、repository 未選或缺少 Contents 寫入，先修正權限。</li>
+</ol>
+<p>在完整 v3 資料夾內只需：</p>
+<pre><code>bash Upload_Both_Sites.sh --fresh-login</code></pre>
+<p>這個雙站指令<strong>預設包含模型</strong>：先找現有／旁邊權重包的分片，驗證後只補齊缺少部分；再比較本地與遠端內容，分批上傳網站、照片與模型。<code>--fresh-login</code> 只繞過本次的舊憑證；不替 Token 增加權限，也不修改其他專案的全域登入設定。</p>
+<p>只更新網站、照片與程式，不補下載／上傳 Qwen 分片：</p>
+<pre><code>bash Upload_Both_Sites.sh --web-only --fresh-login</code></pre>
+<p><code>--web-only</code> 保留遠端已存在的權重，不會把它們刪掉。單站也可用：</p>
+<pre><code>bash Upload_SmartAction.sh --site smartaction --with-model --fresh-login
+bash Upload_SmartAction.sh --site taichi --with-model --fresh-login</code></pre>
+<div class="table-scroll"><table><thead><tr><th>儲存庫</th><th>放置遊戲內容</th><th>發布後網址</th></tr></thead><tbody>
+<tr><td><code>kuonanhong/SmartAction</code></td><td><code>taichi/</code> 子目錄；根首頁新增太極入口</td><td><a href="https://kuonanhong.github.io/SmartAction/taichi/" target="_blank" rel="noopener noreferrer">https://kuonanhong.github.io/SmartAction/taichi/</a></td></tr>
+<tr><td><code>kuonanhong/taichi</code></td><td>根目錄直接放 <code>index.html</code> 及同層資料夾</td><td><a href="https://kuonanhong.github.io/taichi/" target="_blank" rel="noopener noreferrer">https://kuonanhong.github.io/taichi/</a></td></tr>
+</tbody></table></div>
+<p>腳本傳的是 v3 資料夾<strong>內部檔案</strong>，不是再嵌入 <code>SmartAction_Taichi_Game_v3/</code> 外層。兩個網址使用相同相對路徑，<code>index.html</code> 不需改模型位置。SmartAction 首頁的新增圖示連向可玩的 Pages 網址 <code>./taichi/</code>；遊戲中可返回協會主頁。GitHub 儲存庫目錄是看原始碼，不是玩家的遊戲入口。</p>
+<p>上傳不刪除遠端其他內容、不 force push。中途斷線會核對遠端提交，已成功的批次可跳過；重跑同一指令比對續傳。如果停在第二站，第一站成功的內容仍保留。遇到 403 請先確認兩個儲存庫的 Token 權限；遇到持續網路斷線，可改穩定網路後重跑。</p>
+<h3>上傳完成後，兩站分別開啟 Pages</h3>
+<ol>
+<li>開啟 <a href="https://github.com/kuonanhong/SmartAction/settings/pages" target="_blank" rel="noopener noreferrer">https://github.com/kuonanhong/SmartAction/settings/pages</a> 和 <a href="https://github.com/kuonanhong/taichi/settings/pages" target="_blank" rel="noopener noreferrer">https://github.com/kuonanhong/taichi/settings/pages</a> 。</li>
+<li>若尚未設定，選 Deploy from a branch → 腳本顯示的分支（通常 <code>main</code>）→ <code>/(root)</code> → Save。</li>
+<li>已有自訂 Actions 發布流程時，保留原發布方式並確認它會包含 <code>taichi/</code>；腳本不會自動改帳號端 Pages 設定。</li>
+<li>到兩站 Actions 確認最新部署成功，再打開上表的 Pages 網址。</li>
+<li>如果仍看到舊內容，重新整理／關閉後再開，必要時清除此網站的舊快取後重載；清除快取也會移除離線場景或模型，需重新下載。</li>
+</ol>
+<p><code>Everything up-to-date</code> 或 <code>create mode</code> 單獨出現不代表兩站完成；請看腳本最後的兩站核對完成訊息，再看各站 Pages Actions。詳見 <code>docs/UPLOAD_PAT.html</code>。本次交付提供腳本與測試，沒有代您登入或實際推送 GitHub。</p>
+</section>
+<section id="section-13"><h2>十二、教材、相容性與驗證範圍</h2>
+<p>鄭曼青 37 式的名稱與編號依時中學社《學員手冊》；每式是一個遊戲目標姿勢，另外 24 個重複／銜接／收式保留為資料，尚未全部逐段動畫化。其餘武術是原有的入門示意節點，不是新增完整流派教材。人物、居民與公園物件為程序 3D，非真人寫實或拳師動作捕捉。</p>
+<p>已針對程式邏輯、資料覆蓋與上傳流程執行可重現測試；詳細測試數字以 <code>docs/TEST_REPORT.md</code> 為準。沒有完成 iPhone、iPad、Android 實機或各瀏覽器真實 WebGL／語音／相機畫面驗證，不宣稱各款手機全通過。缺少必要 API 時會提示限制，核心練拳功能應可獨立使用。可用 <code>docs/DEVICE_TESTS.html</code> 記錄您自己的裝置測試。</p>
+</section>
+<section id="section-14"><h2>開發者更新方式</h2>
+<p>一般玩家不需 npm。修改 <code>js/</code> 或 <code>data/</code> 原始碼後須重建：</p>
+<pre><code>npm install
+npm run build
+npm test
+npm run check
+python3 tools/package.py</code></pre>
+<p><code>index.html</code> 使用已打包的 <code>js/game.js</code>；只修改原始碼卻不重建，畫面仍會執行舊版本。核心包不含大型 Qwen 分片。程式、模型、外部函式庫、照片與影片各依隨附授權使用。</p>
+</section></main><footer><p>版本 3 · 完整素材請保留原有相對路徑與署名。此手冊可列印或由瀏覽器另存 PDF。</p><a href="../index.html">返回遊戲</a> · <a href="README_EN.md">English guide</a> · <a href="FEATURES_AND_LIMITS.md">功能與限制</a> · <a href="TEST_REPORT.md">測試紀錄</a></footer></body></html>

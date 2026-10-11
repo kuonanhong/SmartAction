@@ -1,105 +1,122 @@
-# SmartAction 聰動太極拳遊戲 v2
+# SmartAction Tai Chi Practice Game v3
 
-此套件是可下載、可部署到 GitHub Pages 的互動教學原型。預設衛武營場景、鄭曼青 37 式；13 類課程共 131 個練習節點，九種語言（繁中、簡中、英、日、韓、西、法、德、葡），依瀏覽器語言自動選擇，可手動切換。
+A downloadable static practice game for GitHub Pages. Defaults: Weiwuying, Kaohsiung; Cheng Man-ching's 37 named sections. Includes 13 curricula, 131 practice nodes, 15 interface/curriculum languages and a photo-backed virtual park walk.
 
-## 先讓遊戲動起來
+**繁體中文完整教學：[README_ZH.md](README_ZH.md) · [HTML 手冊](docs/guide.html)**
 
-1. 完整解壓縮 `SmartAction_Taichi_Game_v2.zip`，不要只抽出 index.html。
-2. 電腦直接雙擊 `index.html` 即可操作核心遊戲；v2 以已打包的 `js/game.js` 載入，不再靠 file:// 不允許的 ES module 匯入。
-3. 如需 CPU 對話模型、攝影機、定位或離線快取，請使用本地啟動檔或 HTTPS 網址。
+## Quick start
 
-Mac（解壓到下載資料夾）：
+Extract the entire `SmartAction_Taichi_Game_v3.zip`, keeping all directories beside `index.html`. Opening `index.html` directly runs the core game. For models, camera, geolocation, media and offline caching, use HTTPS or the included local server:
+
 ```bash
-bash "$HOME/Downloads/SmartAction_Taichi_Game_v2/Start_Mac.command"
+# macOS, from the extracted game directory
+bash Start_Mac.command
+# Linux
+bash Start_Linux.sh
 ```
-Windows：雙擊 `Start_Windows.bat`。Linux：`bash Start_Linux.sh`。啟動檔使用 Python 3 標準函式庫，不必 pip install。缺少 Python 時，請先從 https://www.python.org/downloads/ 安裝。伺服器啟動後保留終端機，關閉時按 Ctrl+C。手機請使用部署完成的 HTTPS 網址；電腦的 localhost 不能直接當成手機的網址。
 
-## 操作
+Windows: open `Start_Windows.bat`. Python 3 is required; no Python packages are needed. Default address: `http://localhost:8088/`. Keep the server terminal open; Ctrl+C stops it. Add `--port 8090` if necessary. Phones should use the deployed HTTPS site; your desktop's localhost is not a phone URL.
 
-左控制盤移動腳、右控制盤移動手；各自的換腳／換手按鈕支援觸控。鍵盤 W/A/S/D 控制腳、方向鍵控制手；Q/E 換脚／換手，F/B 手前伸／收回，J/K 抬腳／落腳，Z/C 轉腰，X/T 蹲下／站起，V/N 伸展／放鬆。空白鍵暫停、R 老師再示範、H 動作輔助，1/2/3 切換視角。對打 P 出手、G 按住格擋。
+## What changed in v3
 
-按開始，老師示範一式後會等玩家。基本／專業／大師級分別要求不同角色姿態吻合度與保持時間；各部位也有最低門檻。輔助完成有標記，大師級不提供輔助。專注模式仍有「返回選單」。觸控可同時按住兩個控制鍵；抬手、切換頁面及視窗失焦時釋放按鍵，避免卡住。
+- Mobile speech uses explicit **Enable / test voice**, playback status, and an available-device voice selector. A default “on” preference alone is not evidence of sound. Tap to activate; check media volume. For fixed Cheng 37 names and the test sentence, missing matching system voices can use explicitly labeled synthesized recordings. Async coach replies can be replayed with a direct tap.
+- Partner practice has six alternating demonstrations and responses. Response windows are 24/18/14 seconds for Basic/Pro/Master. Failed attempts repeat more slowly.
+- Rhythm sparring has a 60-second round, Strike/Block cues, cooldown, stamina and results. It is a non-contact game against a computer avatar, not network multiplayer or physical sparring instruction.
+- Nearby walk preserves the current in-page practice state. Left pad moves, right pad looks, Q jumps, E greets and holding X crouches. Resume practice restores the saved state. Reloading the page does not preserve this complete mid-round snapshot.
+- Real-location catalog: 158 distinct entries, 155 bundled licensed photos including five verified 360° panoramas, plus two 12-second flat real-world video clips.
+- One script updates both repositories and adds a small game entry to the existing SmartAction home page.
 
-## 37 式的範圍
+## Difficulty
 
-預設編號依鄭曼青紀念館同網域的時中學社《學員手冊》：https://www.37taichi.org.tw/shizhong/學員手冊 。第1式為預備式，37式為彎躬射虎。名稱分組可能與其他教學版本不同。
+| Level | Total score | Minimum hands/feet/body | Hold | Position scoring scale |
+|---|---:|---:|---:|---:|
+| Basic | 78 | 65 each | 1.0 s | 0.29 m |
+| Pro | 88 | 78 each | 1.6 s | 0.21 m |
+| Master | 94 | 88 each | 2.2 s | 0.15 m |
 
-3D 人物使用程序骨架與姿態插值，非拳師動作捕捉。37 個主式各有目標姿勢；拳譜另列的 24 個重複、銜接、收式存於 `continuations`，目前不逐段演示或評分。其餘拳種也屬遊戲練習編排。不可當作完整、經拳師驗證的套路教材。詳見 `docs/CURRICULUM_SOURCES.md`。
+Master hides the target outline and disables assistance. The position scale is a parameter of the avatar score, not a hard acceptance radius or a human skill certificate. Both total and component thresholds must be met.
 
-## 三種不同技術
+Practice controls: WASD feet, arrows hands, Q/E switch leg/hand, F/B reach/retract, J/K lift/lower foot, Z/C waist, X/T crouch/rise, V/N stretch/relax. Space pauses, R replays, H assists, 1/2/3 select views. Rhythm sparring: P strikes, hold G to block. Touch controls support concurrent presses.
 
-| 模組 | 用途 | 權重與執行方式 |
+## Languages and speech
+
+Traditional Chinese, Simplified Chinese, English, Japanese, Korean, Spanish, French, German, Portuguese, Italian, Indonesian, Vietnamese, Thai, Arabic and Hindi. First launch follows `navigator.languages`; a manual override is saved. GPS does not determine a person's language. Maps links use the selected language where supported.
+
+All curriculum fields and movement/continuation names are covered. The six added languages use localized endpoint-derived cues, following the existing adapter approach, with movement safety limits retained. They are not sentence-for-sentence translations of the Chinese/English prose and have not been reviewed by native-speaking instructors. Place proper names may remain transliterated.
+
+Speech prefers installed browser/OS voices; not every device supplies every language. The package also includes **570 local MP3 clips**: 15 languages × (37 Cheng movement names + one test sentence), about 7.6 MB. These are explicitly labeled eSpeak mechanical recordings, not human narration or native-speaker-reviewed pronunciation. They provide fallback for those fixed phrases; arbitrary Qwen answers and other curricula still need an appropriate OS voice. Some system voices and speech recognition require a network. Media volume/output remains under device control. Text remains usable if speech is unavailable.
+
+## Scenes, maps and walking
+
+The scene combines real photographs with a procedural 3D park and avatars. Ground and objects provide camera parallax; a flat photo cannot provide unseen geometry. Five sources are true 360° panoramas; the other photos and the two video clips are flat. These are not exact digital twins or continuous reconstructed street walks.
+
+Walking increases horizontal field of view by about 5%. The virtual scene is bounded to approximately ±60 m on each horizontal axis. Coordinates are calculated from the avatar's virtual offset from a representative location; they are not live GPS tracking or surveyed navigation. Residents use scripted greetings.
+
+Google Maps and Street View open external Google views at the virtual coordinate. Street View availability is controlled by Google; its imagery is not downloaded or rehosted. Nearby search uses browser geolocation, the bundled catalog and available OpenStreetMap results, with an external dojo-search link. It is not an exhaustive directory.
+
+Three requested parks lack verified reusable photos: Mengli Forest Park, Shuanghu Park and Renwu Park. Mengli also lacks a sufficiently reliable coordinate here and provides a place-name map search instead. No unrelated photo is substituted. Credits and license details must remain attached; see `docs/PHOTO_CREDITS.html`.
+
+## Models
+
+| Component | Purpose |
+|---|---|
+| Qwen3 0.6B Q4_K_M | Local text generation through Wllama/WASM, single CPU thread; no GPU required |
+| MediaPipe Pose Landmarker Lite | Optional camera-based 33-point body estimate and rough frontal 2D comparison |
+| Three.js procedural avatars | Animation, controls and camera; not neural motion capture |
+
+Qwen is neither a face-animation model nor a body detector. It receives text/numeric context, not camera images. This project does not use LivePortrait. Camera matching does not automatically pass an avatar lesson and cannot assess joint safety, full depth, force or Tai Chi quality.
+
+The 484,220,320-byte Qwen model is distributed separately as 15 parts. The small MediaPipe `.task` is included. Place Qwen parts in `models/` beside `models/manifest.json`, preserving `models/pose/`. The separate `SmartAction_Qwen3_CPU_Weights/models/` folder may remain a sibling installation source; the upload script imports valid parts from it.
+
+```bash
+python3 tools/download_model.py
+```
+
+Then open the game via localhost/HTTPS, expand the coach/model panel and load the downloaded model. Browser downloads go to browser storage, not automatically to project files or GitHub. The core game remains available without Qwen. Responses can be incorrect; the small general language model is not a validated martial-arts coach.
+
+For offline use, first cache scenes with **Download offline scenes** and separately acquire/load the model. Bundled MP3 recordings can play offline once downloaded. Maps, live nearby queries and some system voices still require a network. Browsers may evict stored content.
+
+## Deploy both sites
+
+Prerequisites: Bash 3.2+, Git, Python 3.8+, and a fine-grained GitHub token with **Contents: Read and write** for both `kuonanhong/SmartAction` and `kuonanhong/taichi`. Windows users can run the script in Git Bash. See `docs/UPLOAD_PAT.html` for account setup.
+
+From the complete v3 game directory:
+
+```bash
+bash Upload_Both_Sites.sh --fresh-login
+```
+
+The default includes model verification/import/download and uploads. To update only web assets and preserve existing remote weights:
+
+```bash
+bash Upload_Both_Sites.sh --web-only --fresh-login
+```
+
+| Repository | Destination | Public game URL |
 |---|---|---|
-| Qwen3 0.6B Q4_K_M | 依當前教材、問題、角色分數及有效的攝影機摘要產生文字 | 484,220,320 bytes，15 個分片；Wllama / WASM，單 CPU 執行緒，無 GPU |
-| MediaPipe Pose Landmarker Lite | 從攝影機估算 33 個身體關鍵點，顯示粗略手腳比對及調整提示 | 5,777,746-byte `.task` 真實權重已內含；CPU Worker |
-| 程序 3D 人物 | 老師、玩家、同好、手腳控制與視角 | 無神經網路權重；Three.js 與 IK |
+| `kuonanhong/SmartAction` | `taichi/` plus a small home-page entry | https://kuonanhong.github.io/SmartAction/taichi/ |
+| `kuonanhong/taichi` | repository root | https://kuonanhong.github.io/taichi/ |
 
-Qwen 不是臉部表情模型，也不是身體動作辨識或動畫生成模型。本專案沒有使用 LivePortrait。身體辨識由獨立 MediaPipe 模型負責；教練只收到數值摘要，不收到攝影機畫面。
+Upload the contents, not an extra enclosing game directory. Relative model paths work for both URLs. The game links back to the association home page. The script compares files, verifies commits and supports reruns after partial success; it does not delete unrelated remote content or force-push. `--fresh-login` bypasses old credentials for this invocation, but cannot grant missing permissions.
 
-### Qwen 模型是否已經包含？
+Configure each repository's Pages source separately and wait for successful Pages Actions. Existing custom publishing workflows must include the game directory. No actual account login or GitHub push was performed for this delivery.
 
-上一版約 11 MB 核心 ZIP 沒有包含 484 MB 權重。此 v2 核心 ZIP 也刻意分開大型 Qwen 權重，但人體辨識權重已內含。本次已實際下載 Qwen 全部15片並核對 SHA256；另提供 `SmartAction_Qwen3_CPU_Weights.zip`，將其中 `models` 內的15片複製進遊戲的 `models/`（保留原有 `pose/` 等檔案）。
+## Evidence and limitations
 
-也可直接執行 `Download_Model.command`（Mac）、`Download_Model.bat`（Windows）或 `python3 tools/download_model.py`。固定模型來源與各片雜湊在 `models/manifest.json`。完整檔 SHA256：`9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14`。
+The 37 names/numbering follow the cited Shizhong handbook. Each game section is one authored target pose; 24 connecting/repeated/closing movements are metadata, not all fully animated. Other curricula remain introductory samples, not complete certified forms.
 
-開啟本地啟動網址或 HTTPS 網站後，展開「與練拳教練對話」→「離線生成式模型」→「載入已下載模型」。也可在網頁按「下載並啟用」直接從來源下載。看到 CPU / Qwen3 就緒才是生成式回答；尚未載入時明確標示「課程資料提示（非生成式）」。
+Logic, data and deployment checks are documented in `docs/TEST_REPORT.md`. Physical iPhone/iPad/Android tests and real browser WebGL/speech/camera QA have not been completed. Do not interpret automated or DOM tests as device certification. Use `docs/DEVICE_TESTS.html` to record local observations.
 
-網頁下載的權重放在瀏覽器儲存空間，**不會自動出現在你電腦專案的 models 資料夾，也不會自動上傳 GitHub**。要發布模型檔，使用下載腳本或上傳腳本 `--with-model`。GitHub Pages 只供應檔案，推論在訪客裝置執行。首次需網路；檔案與模型快取完成後才可離線。瀏覽器可能清除快取，CPU AI 也可能因手機記憶體不足而載入失敗。
+## Development
 
-### 對話及語音
-
-輸入問題按送出。可勾選朗讀回答、重播答案、停止朗讀，或在支援的瀏覽器按語音輸入。朗讀使用作業系統／瀏覽器的語音；能否離線取決於是否安裝對應語音。語音輸入可能使用瀏覽器線上服務，並非 Qwen 本地語音辨識。文字與本地生成式模型不必把問題送給 AI 雲端服務。
-
-小模型不是經驗證的太極專家。實測曾出現語義錯誤；請以顯示的教材及現場老師為準，不把生成內容當成醫療或動作安全判定。
-
-### 真人動作比對
-
-在 HTTPS 或 localhost 點「真人肢體比對」→「啟用攝影機」。相機只在按鈕操作後請求權限；請讓全身、手腕、腳踝入鏡並面向鏡頭。影像在本機 CPU Worker 處理，不錄影、不上傳；停止、離開頁面或切到背景會關閉攝影機。
-
-分數只比對經身體比例正規化的正面 2D 手腕／腳踝位置；它與遊戲角色分數分開，不會讓角色自動過關。無人、低可信度、腳部被裁切、側身或目標需明顯轉腰時不提供分數。不能評估深度、完整腰轉、受力、膝關節安全或拳術品質。缺少 Worker、OffscreenCanvas、createImageBitmap 或攝影機 API 的瀏覽器會提示無法啟用，核心按鍵仍可玩。詳見 `docs/BODY_TRACKING.md`。
-
-## 地圖、照片與環境
-
-內附9張有出處、作者和授權的實景照。預設位置為衛武營；預設背景照是衛武營自然探索區，不宣稱是榕園的精密掃描。日光、氣候、天氣、季節是視覺模擬，不是即時氣象。Google 地圖與附近查詢需網路；定位只在按「尋找附近」後要求授權。沒有查到可用授權照片時，顯示虛擬場景，不用其他地點照片冒充。來源見 `docs/PHOTO_CREDITS.md`。
-
-## 一個指令上傳
-
-在完整解壓後的專案根目錄已附 `Upload_SmartAction.sh`。Mac：
-```bash
-bash "$HOME/Downloads/SmartAction_Taichi_Game_v2/Upload_SmartAction.sh" --with-model
-```
-v2.1 上傳腳本先檢查 Git 寫入認證，再從旁邊 `SmartAction_Qwen3_CPU_Weights/models/` 合併有效分片；缺少時下載／驗證 Qwen 權重。接著先上傳網站，再分批上傳模型，成功批次不必重傳。只想先發布遊戲：
-```bash
-bash "$HOME/Downloads/SmartAction_Taichi_Game_v2/Upload_SmartAction.sh" --web-only
-```
-Linux 也可用 bash；Windows 安裝 Git for Windows 和 Python 3 後在 Git Bash 執行 `bash Upload_SmartAction.sh --with-model`。不需 Git LFS、不把大型完整 `.gguf` 直接 git add、不將 Token 寫入檔案。Git 與 Python 必須先存在。
-
-預設目標 `https://github.com/kuonanhong/SmartAction.git` 的 `taichi/`；保留根首頁與其他遠端檔案，不 force push。上傳腳本會比較內容、驗證檔案與遠端 SHA；有變更才提交。上傳中斷可重跑同一指令。這不會自動改 GitHub Pages 的發佈設定。
-
-若遇到 `403 Permission denied`，先確認 PAT 選取正確儲存庫、Contents 為 Read and write，再加 `--fresh-login`，在 Git 的 Password 提示貼新 Token。此選項只繞過這次的舊憑證，不修改 Keychain 或全域 Git 設定，也不能替 Token 增加權限。
+Players do not need npm. After editing `js/` or `data/`, rebuild the bundled script consumed by `index.html`:
 
 ```bash
-bash Upload_SmartAction.sh --with-model --fresh-login
+npm install
+npm run build
+npm test
+npm run check
+python3 tools/package.py
 ```
 
-若想發布到 https://kuonanhong.github.io/taichi/ ，先建立公開 `kuonanhong/taichi` 儲存庫並勾 Add README，讓 Token 可寫入此儲存庫，然後在遊戲資料夾執行：
-
-```bash
-bash Upload_SmartAction.sh --site taichi --with-model --fresh-login
-```
-
-此模式把遊戲**內部檔案**放到 taichi 儲存庫根目錄；index.html 與 `models/` 並排，模型分片在 `models/` 裡。外層 `SmartAction_Qwen3_CPU_Weights` 是安裝來源，不是網頁模型路徑。兩種網址不需修改 index.html。到相應儲存庫 Settings → Pages 選分支與 /(root)，再確認 Actions 部署成功。
-
-請完整閱讀 `docs/UPLOAD_PAT.html`，內有 PAT 申請、Pages 設定、分批上傳及錯誤排除。最終網址應是 https://kuonanhong.github.io/SmartAction/taichi/ ，只有你執行上傳且 Pages 部署成功後才存在新版。
-
-## 測試的實際範圍
-
-已執行：48 項 Node 邏輯／DOM 回歸、模型與附件雜湊、CPU 原生 Qwen 生成測試，以及本地 bare-Git 上傳／續傳整合測試。DOM 測試使用 Canvas 替身，非真實瀏覽器畫面測試；原生 CPU 結果不能推算手機或 WASM 速度。
-
-未完成：iPhone/iPad/Android 實機、真實 WebGL 畫面、各手機瀏覽器的攝影機推論與語音測試。環境沒有實體裝置，也缺少 Sites 技能所要求的 control-browser，因此不得宣稱實機全部通過。附 `docs/DEVICE_TESTS.html` 可在各裝置填寫20项測試、記錄版本並匯出 JSON；初始結果全部未測。
-
-## 給開發者
-
-一般使用者不需 npm。修改 js/data 後，需 `npm install`、`npm run build`，重新生成已打包的核心與 classic CPU worker；只改 source 不重建，index.html 仍會載入旧 game.js。`npm test` 執行回歸，`npm run check` 核對依賴，`python3 tools/package.py` 重新打包核心（不含大型 Qwen 分片）。
-
-所有相對路徑支援 `/SmartAction/taichi/` 與 `/taichi/`，不需要後端 AI API 金鑰。自己的程式 MIT；Qwen、MediaPipe、Three.js、Wllama 與照片各按隨附授權使用。
+Core archives exclude the large Qwen parts. Code, third-party runtimes, models, images and videos retain their respective included licenses.

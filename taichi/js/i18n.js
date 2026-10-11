@@ -1,6 +1,7 @@
+import {extraUI} from '../data/localization-v3-base.js';
 /** Complete local UI dictionaries. Locale comes from browser preferences, never IP location. */
-export const supportedLanguages = ["zh-TW", "zh-CN", "en", "ja", "ko", "es", "fr", "de", "pt"];
-export const languageNames = {'zh-TW':'繁體中文','zh-CN':'简体中文',en:'English',ja:'日本語',ko:'한국어',es:'Español',fr:'Français',de:'Deutsch',pt:'Português'};
+export const supportedLanguages = ["zh-TW", "zh-CN", "en", "ja", "ko", "es", "fr", "de", "pt", "it", "id", "vi", "th", "ar", "hi"];
+export const languageNames = {'zh-TW':'繁體中文','zh-CN':'简体中文',en:'English',ja:'日本語',ko:'한국어',es:'Español',fr:'Français',de:'Deutsch',pt:'Português',it:'Italiano',id:'Bahasa Indonesia',vi:'Tiếng Việt',th:'ไทย',ar:'العربية',hi:'हिन्दी'};
 const messages = {
   "zh-TW": {
     "brand": "聰動 · 榕園太極",
@@ -1633,6 +1634,8 @@ const messages = {
   }
 };
 
+Object.assign(messages, extraUI);
+
 export function normalizeLanguage(value) {
   const tag = String(value || '').replace(/_/g, '-').toLowerCase();
   if (tag.startsWith('zh')) return /(?:cn|sg|hans)/.test(tag) ? 'zh-CN' : 'zh-TW';
@@ -1661,15 +1664,11 @@ export function applyLanguage(lang, root = document) {
   root.querySelectorAll('[data-i18n-aria]').forEach(element => { element.setAttribute('aria-label', t(element.dataset.i18nAria, lang)); });
   if (typeof document !== 'undefined') {
     document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.title = `${t('brand', lang)} | SmartAction`;
     document.querySelectorAll('#closeMapBtn,#closeHelpBtn').forEach(button => button.setAttribute('aria-label', t('close', lang)));
-    const select = document.getElementById('language');
-    if (select) {
-      if (select.options.length !== supportedLanguages.length) select.replaceChildren(...supportedLanguages.map(value => {const option=document.createElement('option');option.value=value;option.textContent=languageNames[value];return option;}));
-      select.value = lang;
-    }
   }
-  try { localStorage.setItem('smartaction-language', lang); } catch { /* Optional preference. */ }
+
   return lang;
 }
 export const dictionary = messages;

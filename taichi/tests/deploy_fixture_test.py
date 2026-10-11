@@ -66,6 +66,58 @@ class DeploymentFixture(unittest.TestCase):
     def head(self): return self.run_command('git','--git-dir',str(self.remote),'rev-parse','main').stdout.strip()
     def add_parts(self):
         for i,data in enumerate(self.parts,1): (self.source/('models/qwen-fixture.part%02d'%i)).write_bytes(data)
+    def inject_transport_fault(self, mode):
+        """Wrap local Git operations; never add a network remote or real credential.
+
+        The wrapper records the exact commit retried and per-command HTTP buffer.
+        Failure modes intentionally print Git's misleading success-looking line.
+        """
+        real_git=shutil.which('git')
+        bindir=self.root/'transport-bin'; bindir.mkdir()
+        self.transport_audit=self.root/'transport-audit.jsonl'
+        wrapper=bindir/'git'
+        wrapper.write_text('''#!/usr/bin/env python3
+import json,os,subprocess,sys
+from pathlib import Path
+REAL_GIT=REAL_GIT_PLACEHOLDER
+AUDIT=Path(AUDIT_PLACEHOLDER)
+MODE=MODE_PLACEHOLDER
+args=sys.argv[1:]
+def records():
+    return [json.loads(line) for line in AUDIT.read_text().splitlines()] if AUDIT.exists() else []
+def record(data):
+    with AUDIT.open('a') as stream:stream.write(json.dumps(data)+'\\n')
+def disconnect(code=1):
+    print('send-pack: unexpected disconnect while reading sideband packet',file=sys.stderr)
+    print('fatal: the remote end hung up unexpectedly',file=sys.stderr)
+    print('Everything up-to-date',file=sys.stderr)
+    sys.exit(code)
+if 'push' in args and '--dry-run' not in args:
+    attempt=1+sum(row['event']=='push' for row in records())
+    cwd=args[args.index('-C')+1]
+    head=subprocess.check_output([REAL_GIT,'-C',cwd,'rev-parse','HEAD'],text=True).strip()
+    record({'event':'push','attempt':attempt,'head':head,
+            'buffered':'http.postBuffer=134217728' in args})
+    if MODE=='interrupt_before':disconnect(130)
+    if MODE=='persistent_before' or MODE=='transient_before' and attempt==1:disconnect()
+    if MODE=='after_success':
+        status=subprocess.call([REAL_GIT]+args)
+        if status:sys.exit(status)
+        disconnect()
+if 'ls-remote' in args and '--heads' in args and MODE=='query_failure':
+    record({'event':'query-failure'})
+    # Even a matching SHA on stdout cannot make a failed query authoritative.
+    result=subprocess.run([REAL_GIT]+args,text=True,capture_output=True)
+    sys.stdout.write(result.stdout)
+    print('fixture ls-remote connection failed after partial response',file=sys.stderr)
+    sys.exit(128)
+os.execv(REAL_GIT,[REAL_GIT]+args)
+'''.replace('REAL_GIT_PLACEHOLDER',repr(real_git)).replace('AUDIT_PLACEHOLDER',repr(str(self.transport_audit))).replace('MODE_PLACEHOLDER',repr(mode)))
+        wrapper.chmod(0o755)
+        self.env['PATH']=str(bindir)+os.pathsep+self.env['PATH']
+    def push_attempts(self):
+        if not self.transport_audit.exists(): return []
+        return [row for row in map(json.loads,self.transport_audit.read_text().splitlines()) if row['event']=='push']
     def assert_preserved(self):
         self.assertEqual(self.show('index.html'),'EXISTING ASSOCIATION HOMEPAGE')
         self.assertEqual(self.show('.nojekyll'),'PRESERVE CONTENTS')
@@ -210,5 +262,99 @@ class DeploymentFixture(unittest.TestCase):
         self.assertIn('來源 models 不可為符號連結',result.stderr)
         self.assertNotIn('[1/4]',result.stdout)
         self.assertEqual(previous,self.head())
+
+    def test_empty_standalone_initializes_and_is_noop_on_rerun(self):
+        self.run_command('git','--git-dir',str(self.remote),'update-ref','-d','refs/heads/main')
+        self.assertEqual(self.run_command('git','ls-remote','--refs',str(self.remote)).stdout,'')
+        result=self.deploy('--site','taichi','--web-only')
+        self.assertIn('自動初始化 main',result.stdout)
+        self.assertEqual(self.show('index.html'),(self.source/'index.html').read_text())
+        self.assertEqual(self.show('js/app.js'),'console.log("fixture");\n')
+        subjects=self.run_command('git','--git-dir',str(self.remote),'log','--format=%s','main').stdout.splitlines()
+        self.assertEqual(subjects,['Update SmartAction web app in .','Initialize SmartAction deployment'])
+        previous=self.head(); again=self.deploy('--site','taichi','--web-only')
+        self.assertEqual(previous,self.head())
+        self.assertIn('內容相同',again.stdout)
+        self.assertNotIn('自動初始化 main',again.stdout)
+
+    def test_broken_remote_head_with_existing_refs_is_not_initialized(self):
+        previous=self.head()
+        self.run_command('git','--git-dir',str(self.remote),'symbolic-ref','HEAD','refs/heads/missing')
+        result=self.deploy('--site','taichi','--web-only',check=False)
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('預設 HEAD 無效',result.stderr)
+        self.assertNotIn('自動初始化 main',result.stdout)
+        self.assertEqual(previous,self.head())
+
+    def test_tag_only_remote_is_not_mistaken_for_empty(self):
+        previous=self.head()
+        self.run_command('git','--git-dir',str(self.remote),'update-ref','refs/tags/keep',previous)
+        self.run_command('git','--git-dir',str(self.remote),'update-ref','-d','refs/heads/main')
+        result=self.deploy('--site','taichi','--web-only',check=False)
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('預設 HEAD 無效',result.stderr)
+        self.assertEqual(self.run_command('git','--git-dir',str(self.remote),'rev-parse','refs/tags/keep').stdout.strip(),previous)
+        self.assertNotEqual(self.run_command('git','--git-dir',str(self.remote),'show-ref','--verify','refs/heads/main',check=False).returncode,0)
+
+    def test_transport_failure_before_push_retries_same_commit(self):
+        self.inject_transport_fault('transient_before')
+        config_before=self.config.read_bytes()
+        result=self.deploy('--web-only')
+        attempts=self.push_attempts()
+        self.assertEqual(len(attempts),2)
+        self.assertEqual(attempts[0]['head'],attempts[1]['head'])
+        self.assertEqual(self.head(),attempts[0]['head'])
+        self.assertEqual([row['buffered'] for row in attempts],[False,True])
+        self.assertEqual(self.config.read_bytes(),config_before)
+        self.assertEqual(self.show('taichi/index.html'),(self.source/'index.html').read_text())
+        self.assertIn('GitHub 檔案上傳已核對完成',result.stdout)
+        self.assert_preserved()
+
+    def test_lost_success_response_confirms_sha_without_repush(self):
+        self.inject_transport_fault('after_success')
+        result=self.deploy('--web-only')
+        attempts=self.push_attempts()
+        self.assertEqual(len(attempts),1)
+        self.assertEqual(self.head(),attempts[0]['head'])
+        self.assertIn('Git 回報斷線，但已確認遠端收到相同提交',result.stdout)
+        self.assertIn('GitHub 檔案上傳已核對完成',result.stdout)
+        self.assert_preserved()
+
+    def test_persistent_transport_failure_is_bounded_and_never_success(self):
+        previous=self.head()
+        self.inject_transport_fault('persistent_before')
+        result=self.deploy('--web-only',check=False)
+        attempts=self.push_attempts()
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(len(attempts),3)
+        self.assertEqual(len({row['head'] for row in attempts}),1)
+        self.assertEqual([row['buffered'] for row in attempts],[False,True,True])
+        self.assertEqual(self.head(),previous)
+        self.assertIn('Everything up-to-date',result.stdout+result.stderr)
+        self.assertIn('三次推送後仍未確認成功',result.stderr)
+        self.assertNotIn('GitHub 檔案上傳已核對完成',result.stdout)
+
+    def test_interrupted_push_does_not_retry(self):
+        previous=self.head()
+        self.inject_transport_fault('interrupt_before')
+        result=self.deploy('--web-only',check=False)
+        self.assertEqual(result.returncode,130)
+        self.assertEqual(len(self.push_attempts()),1)
+        self.assertEqual(self.head(),previous)
+        self.assertNotIn('GitHub 檔案上傳已核對完成',result.stdout)
+
+    def test_failed_remote_query_cannot_confirm_even_matching_stdout(self):
+        previous=self.head()
+        self.inject_transport_fault('query_failure')
+        result=self.deploy('--web-only',check=False)
+        attempts=self.push_attempts()
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(len(attempts),3)
+        self.assertEqual(len({row['head'] for row in attempts}),1)
+        self.assertNotEqual(previous,self.head())
+        self.assertEqual(self.head(),attempts[0]['head'])
+        self.assertIn('目前無法讀取遠端提交',result.stderr)
+        self.assertIn('三次推送後仍未確認成功',result.stderr)
+        self.assertNotIn('GitHub 檔案上傳已核對完成',result.stdout)
 
 if __name__=='__main__': unittest.main(verbosity=2)

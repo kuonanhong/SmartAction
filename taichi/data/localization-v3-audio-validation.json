@@ -1,0 +1,95 @@
+{
+  "validation": "File decoding and non-silent signal only; not human listening, pronunciation quality or mobile playback testing.",
+  "samples": [
+    {
+      "language": "zh-TW",
+      "durationSeconds": 4.75,
+      "rms": 3499.1,
+      "codec": "mp3"
+    },
+    {
+      "language": "zh-CN",
+      "durationSeconds": 4.75,
+      "rms": 3499.1,
+      "codec": "mp3"
+    },
+    {
+      "language": "en",
+      "durationSeconds": 3.79,
+      "rms": 2242.5,
+      "codec": "mp3"
+    },
+    {
+      "language": "ja",
+      "durationSeconds": 4.02,
+      "rms": 3188.1,
+      "codec": "mp3"
+    },
+    {
+      "language": "ko",
+      "durationSeconds": 3.81,
+      "rms": 3248.1,
+      "codec": "mp3"
+    },
+    {
+      "language": "es",
+      "durationSeconds": 3.87,
+      "rms": 2447.8,
+      "codec": "mp3"
+    },
+    {
+      "language": "fr",
+      "durationSeconds": 3.68,
+      "rms": 2243.3,
+      "codec": "mp3"
+    },
+    {
+      "language": "de",
+      "durationSeconds": 4.02,
+      "rms": 2773.4,
+      "codec": "mp3"
+    },
+    {
+      "language": "pt",
+      "durationSeconds": 4.21,
+      "rms": 2678.6,
+      "codec": "mp3"
+    },
+    {
+      "language": "it",
+      "durationSeconds": 3.71,
+      "rms": 2480.0,
+      "codec": "mp3"
+    },
+    {
+      "language": "id",
+      "durationSeconds": 3.71,
+      "rms": 2613.0,
+      "codec": "mp3"
+    },
+    {
+      "language": "vi",
+      "durationSeconds": 3.06,
+      "rms": 3161.7,
+      "codec": "mp3"
+    },
+    {
+      "language": "th",
+      "durationSeconds": 3.47,
+      "rms": 3188.9,
+      "codec": "mp3"
+    },
+    {
+      "language": "ar",
+      "durationSeconds": 2.9,
+      "rms": 1757.1,
+      "codec": "mp3"
+    },
+    {
+      "language": "hi",
+      "durationSeconds": 4.13,
+      "rms": 2991.5,
+      "codec": "mp3"
+    }
+  ]
+}

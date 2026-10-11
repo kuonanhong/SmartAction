@@ -1,0 +1,181 @@
+{
+  "version": 3,
+  "languages": 15,
+  "courses": 13,
+  "movements": 131,
+  "continuations": 24,
+  "notes": [
+    "Added locales: Italian, Indonesian, Vietnamese, Thai, Arabic, Hindi.",
+    "New cue sets describe the same game-authored 3D endpoints, following the existing ja/ko/es/fr/de/pt adapter; they are not sentence-by-sentence translations of the zh/en prose.",
+    "Localized safety cues retain no-impact, no-forced-breathing, virtual-sword, low-kick and reduced-turn constraints where relevant.",
+    "All original pose geometry, metadata, existing-language content and curriculum order are preserved.",
+    "Coverage tests validate completeness and no English paragraph fallback, not instructor certification or native-speaker review."
+  ],
+  "rows": [
+    {
+      "locale": "zh-TW",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "zh-CN",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "en",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "ja",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "ko",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "es",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "fr",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "de",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "pt",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "it",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "id",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "vi",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "th",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "ar",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    },
+    {
+      "locale": "hi",
+      "courses": 13,
+      "courseNames": 13,
+      "courseDescriptions": 13,
+      "sourceNotes": 13,
+      "movementNames": 131,
+      "movementCueSets": 131,
+      "benefitTexts": 131,
+      "continuationNames": 24
+    }
+  ]
+}

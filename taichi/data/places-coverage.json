@@ -1,0 +1,44 @@
+{
+  "places": 158,
+  "withPhoto": 155,
+  "with360": 5,
+  "withVideo": 2,
+  "withCoordinates": 157,
+  "photoUnavailable": [
+    "夢裡森林公園",
+    "雙湖森林公園",
+    "仁武運動公園"
+  ],
+  "regionCounts": {
+    "south": 36,
+    "north": 22,
+    "central": 16,
+    "east": 8,
+    "world": 76
+  },
+  "totalBytes": 39032356,
+  "licenseCounts": {
+    "CC BY-SA 3.0 tw": 2,
+    "CC BY-SA 4.0": 55,
+    "CC BY-SA 3.0": 25,
+    "CC BY-SA 2.0": 12,
+    "CC BY 2.0": 23,
+    "CC BY 3.0": 12,
+    "CC0": 5,
+    "CC BY 4.0": 7,
+    "CC BY-SA 2.5": 3,
+    "Public domain": 9,
+    "CC BY-SA 3.0 de": 1,
+    "CC BY 2.5": 2,
+    "CC BY-SA 3.0 au": 1
+  },
+  "verifiedDate": "2026-10-11",
+  "googleStreetViewDownloaded": false,
+  "sourceNotes": [
+    "Photo scenes are original licensed photographs, not complete 3D reconstructions.",
+    "Only five sources explicitly verified as 360×180 equirectangular are flagged panorama360.",
+    "Two real videos are flat 12-second licensed MP4 excerpts, not 360 video.",
+    "Coordinate points are place centers or source points; maps/nearby results are not exhaustive or surveyed routes.",
+    "No precise coordinates or licensed photo verified for Mengli Forest Park; maps use a name search."
+  ]
+}
