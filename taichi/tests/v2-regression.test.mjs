@@ -56,8 +56,8 @@ async function fixture(t,{protocol='file:',width=1280,boot=true}={}){
 
 test('HTML loads classic scripts so file:// core has no mandatory module entry',()=>{
   assert.ok(!/<script\b[^>]*type=["']module["']/i.test(html));
-  assert.match(html,/<script\b[^>]*src=["']js\/bootstrap\.js["']/);
-  assert.match(html,/<script\b[^>]*src=["']js\/game\.js["']/);
+  assert.match(html,/<script\b[^>]*src=["']js\/bootstrap\.js(?:\?v=[^"']+)?["']/);
+  assert.match(html,/<script\b[^>]*src=["']js\/game\.js(?:\?v=[^"']+)?["']/);
   assert.ok(!/\bimport\.meta\b/.test(bundle),'bundled entry must not retain unsupported classic-script import.meta');
 });
 

@@ -1,5 +1,5 @@
 /** Explicit user-requested photo/audio cache. Models use their own verified store. */
-export const SCENE_CACHE='smartaction-scenes-v4';
+export const SCENE_CACHE='smartaction-scenes-v41';
 const appRoot=()=>new URL('./',document.baseURI);
 export async function cacheOfflineScenes({onProgress=()=>{}}={}) {
   if(location.protocol==='file:'||!globalThis.caches)throw new Error('Offline scene downloads require HTTPS or localhost.');

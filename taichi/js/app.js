@@ -8,6 +8,7 @@ import {TrainingSession,LEVELS,neutralPose,copyPose,interpolatePose,applyAction,
 import {CombatRound,PartnerRound} from './combat.js';
 import {pauseForWalk,resumeFromWalk,walkInputs} from './walk.js';
 import {SpeechController} from './speech.js';
+import {PoseAssistance} from './assist.js';
 import {naturalVoiceBanks} from '../data/natural-voices-v4.js';
 import {initPracticeLayout,openPracticeDetails} from './layout.js';
 import {cacheOfflineScenes} from './offline-cache.js';
@@ -25,18 +26,21 @@ function local(value) {
   return value?.[language]??value?.[shortLang(language)]??value?.en??value?.zh??'';
 }
 function status(text){if($('statusText'))$('statusText').textContent=text;}
+function assistNotice(key){if($('assistStatus')){$('assistStatus').textContent=msg(key);$('assistStatus').hidden=false;}}
 function options(element,items,current) {
   element.replaceChildren(...items.map(({value,label})=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o;}));
   element.value=current;
 }
 let course=curricula.find(c=>c.id===defaultCurriculumId)||curricula[0];
-let level='basic',mode='follow',selectedLeg='left',selectedHand='right',player=neutralPose(),assistTime=0;
+let level='basic',mode='follow',selectedLeg='left',selectedHand='right',player=neutralPose();
+const poseAssistance=new PoseAssistance();
 let session,combat,partner,scene,currentPlace=locations[0],voice=true,modelBusy=false,chatBusy=false;
 let focused=false,hasAutoFocused=false;
 let tracker=null,bodyActive=false,bodyMetrics=null,bodyLastFrame=0,recognition=null,lastReply='';
 let lastFrame=0,lastUi=0,lastRender=0,sparMoveTime=0,settings={time:'morning',weather:'clear',season:'spring',climate:'tropical'};
 let walkActive=false,walkSaved=null,jumpRequested=false;
 let lastSpeechStatus={code:'needsGesture'};
+let directVoicePlaying=false,directVoiceClip=null;
 const held=new Set(),pointerHeld=new Map();
 let lastModelStatus={code:'local'},availablePlaces=[...locations],placePage=0;
 const completed={};
@@ -62,21 +66,36 @@ function renderVoiceOptions(voices){
   if($('voiceRateValue'))$('voiceRateValue').textContent=voicePreferences.rate.toFixed(2)+'×';
 }
 function restoreVoicePreference(){const preferred=voicePreferences.voices[language];if(typeof preferred==='string'&&preferred!==speech.selectedURI)speech.setVoice(preferred);renderVoiceOptions(speech.getVoices());}
+function renderVoiceButton(){
+  const ready=voice&&lastSpeechStatus.hasStarted&&!['blocked','error','needsGesture','unsupported','voiceMissing','voiceLoading'].includes(lastSpeechStatus.code);
+  const button=$('voiceBtn');if(!button)return;button.textContent=msg(ready?'voiceOn':'voiceActivate');button.setAttribute('aria-pressed',String(Boolean(ready)));button.title=msg(ready?'voiceOn':'voiceActivate');
+}
+function stopDirectVoice(){const audio=$('directVoicePlayer');if(audio&&!audio.paused)audio.pause();directVoicePlaying=false;}
+function refreshDirectVoice(){
+  const audio=$('directVoicePlayer');if(!audio||!session)return;
+  const clip=speech.getRecordedClip(local(session.move.name));
+  directVoiceClip=clip;
+  if(clip){const url=new URL(clip.path,document.baseURI).href;if(audio.src!==url){stopDirectVoice();audio.src=url;}audio.hidden=false;$('directVoiceLink').hidden=false;$('directVoiceLink').href=url;$('directVoiceName').textContent=clip.voiceName+' · '+clip.lang;}
+  else{stopDirectVoice();audio.removeAttribute('src');audio.hidden=true;$('directVoiceLink').hidden=true;$('directVoiceName').textContent=msg('directVoiceMissing');}
+  audio.setAttribute('aria-label',msg('directVoiceLabel'));audio.playbackRate=voicePreferences.rate;
+}
 function renderSpeechStatus(){
   if(!$('voiceStatus'))return;
   const s=lastSpeechStatus;
   $('voiceStatus').textContent=msg(`voiceStatus_${s.code}`,{name:s.voiceName||'',language:s.voiceLang||language,error:s.error||''});
   $('voiceStatus').dataset.state=s.code;
+  renderVoiceButton();
   if(s.voiceSource&&['queued','speaking','ready'].includes(s.code))$('voiceStatus').textContent+=' · '+msg('voiceSourceFilter')+': '+s.voiceSource+(s.voiceLang?' / '+s.voiceLang:'');
+  if($('quickVoiceStatus'))$('quickVoiceStatus').textContent=directVoicePlaying&&directVoiceClip?msg('voiceStatus_speaking',{name:directVoiceClip.voiceName,language:directVoiceClip.lang}):$('voiceStatus').textContent;
 }
-function speak(text){if(voice)speech.speak(text);}
-function enableSpeech(event,text=msg('voiceTest')){voice=true;speech.setEnabled(true);speech.unlockFromGesture(text,event);$('voiceBtn').textContent=msg('voiceOn');$('voiceBtn').setAttribute('aria-pressed','true');}
+function speak(text){if(voice){stopDirectVoice();speech.speak(text);}}
+function enableSpeech(event,text=msg('voiceTest')){stopDirectVoice();voice=true;speech.setEnabled(true);speech.unlockFromGesture(text,event);renderVoiceButton();}
 function renderNewMessages(){document.querySelectorAll('[data-msg]').forEach(el=>{el.textContent=msg(el.dataset.msg);});}
 function renderLevel(){
   const rule=LEVELS[level];$('levelDetails').textContent=msg('levelRule',{score:rule.threshold,minimum:rule.minimum,hold:rule.hold.toFixed(1),tolerance:rule.tolerance.toFixed(2)})+(level==='master'?' '+msg('masterRule'):'');
 }
 function makeSession(){
-  if(walkActive)return;clearHeld();
+  if(walkActive)return;clearHeld();poseAssistance.cancel();if($('assistStatus'))$('assistStatus').hidden=true;
   session=new TrainingSession(course.moves,{level,mode,requireInput:true,onEvent:event=>{
     if(event.type==='demo'){bodyMetrics=null;tracker?.setTarget(event.move.pose);showMove();speak(local(event.move.name));status(msg('demo'));}
     if(event.type==='wait')status(msg('wait'));
@@ -98,7 +117,7 @@ function makeSession(){
   }});
   partner=new PartnerRound({level,total:Math.min(6,course.moves.length),onEvent:e=>{
     if(e.type==='demo'){
-      session.previous=copyPose(session.teacher);session.index=e.index%course.moves.length;session.elapsed=0;session.phase='demo';session.hold=0;assistTime=0;
+      session.previous=copyPose(session.teacher);session.index=e.index%course.moves.length;session.elapsed=0;session.phase='demo';session.hold=0;poseAssistance.cancel();
       bodyMetrics=null;tracker?.setTarget(session.target);showMove();speak(local(session.move.name));
     }
     if(e.type==='respond'){session.phase='wait';status(msg('partnerRespond',{seconds:partner.rule.window,hold:partner.rule.hold}));}
@@ -111,10 +130,11 @@ function makeSession(){
     if(e.type==='retry')status(msg('partnerRetry'));
     if(e.type==='finish'){session.phase='complete';$('achievement').hidden=false;$('achievement').textContent=msg('partnerDone',{score:e.average});status(msg('partnerDone',{score:e.average}));speak(msg('partnerDone',{score:e.average}));}
   }});
-  player=neutralPose();assistTime=0;sparMoveTime=0;bodyMetrics=null;tracker?.setTarget(session.target);
+  player=neutralPose();poseAssistance.cancel();sparMoveTime=0;bodyMetrics=null;tracker?.setTarget(session.target);
   $('achievement').textContent='';$('achievement').hidden=true;showMove();scene?.setMode(mode);scene?.setEquipment?.(course.id==='taijisword'?'sword':'none');showCombat();renderLevel();updateUi(scorePose(player,session.target,level));
 }
 function showMove(){
+  refreshDirectVoice();
   const move=session.move;$('moveName').textContent=local(move.name);$('moveCount').textContent=`${session.index+1} / ${course.moves.length}`;
   $('cues').replaceChildren(...(local(move.cues)||[]).map(c=>{const li=document.createElement('li');li.textContent=c;return li;}));
   $('benefits').textContent=local(move.benefits);if($('courseNote'))$('courseNote').textContent=local(course.sourceNote);
@@ -168,6 +188,8 @@ function updateWalkUi(){
   $('residentStatus').textContent=w.atBoundary?msg('walkBoundary'):w.nearbyNPC?.available?msg('greetingNearby',{distance:w.nearbyNPC.distance.toFixed(1)}):msg('walkHint');
 }
 function updateUi(score){
+  $('assistBtn').setAttribute('aria-pressed',String(poseAssistance.active));
+  $('assistBtn').classList.toggle('assisting',poseAssistance.active);
   $('followScore').textContent=Math.round(score.total);
   for(const [id,key]of[['handsScore','hands'],['feetScore','feet'],['bodyScore','body']]){
     const el=$(id);if(el.tagName==='PROGRESS')el.value=score[key];else{el.textContent=`${Math.round(score[key])}%`;el.style.setProperty('--score',`${score[key]}%`);}
@@ -194,7 +216,7 @@ function changeLanguage(preference){
   try{localStorage.setItem('smartaction-language',preference);}catch{}
   options($('course'),curricula.map(c=>({value:c.id,label:local(c.name)})),course.id);
   $('language').value=preference;const auto=$('language').querySelector('[value="auto"]');if(auto)auto.textContent=msg('autoLanguage');renderNewMessages();showMove();updateLimbLabels();renderPlaces();renderLevel();renderSpeechStatus();updateModelStatus(lastModelStatus);showCombat();
-  $('voiceBtn').textContent=msg(voice?'voiceOn':'voiceOff');$('voiceBtn').setAttribute('aria-pressed',String(voice));status(msg('welcome'));
+  renderVoiceButton();status(msg('welcome'));
   $('focusBtn').textContent=msg(focused?'exitFocus':'focus');
   $('coachCancelBtn').textContent=msg('cancelModel');
   $('localModeBanner').hidden=location.protocol!=='file:';
@@ -332,6 +354,12 @@ $('bodyCameraBtn').addEventListener('click',toggleBody);$('bodyStopBtn').addEven
 $('readAnswerBtn').addEventListener('click',event=>enableSpeech(event,lastReply||$('coachAnswer').textContent));
 $('stopSpeechBtn').addEventListener('click',()=>speech.stop());
 $('enableVoiceBtn').addEventListener('click',event=>enableSpeech(event));
+$('enableSoundBtn').addEventListener('click',event=>enableSpeech(event));
+const directPlayer=$('directVoicePlayer');
+directPlayer.addEventListener('play',()=>{speech.stop();});
+directPlayer.addEventListener('playing',()=>{directVoicePlaying=true;renderSpeechStatus();});
+for(const name of ['pause','ended'])directPlayer.addEventListener(name,()=>{directVoicePlaying=false;renderSpeechStatus();});
+directPlayer.addEventListener('error',()=>{directVoicePlaying=false;$('quickVoiceStatus').textContent=msg('voiceStatus_error',{error:'audio-file-'+(directPlayer.error?.code||'unavailable')});});
 $('voiceInputBtn').addEventListener('click',()=>{
   if(recognition){recognition.stop();return;}
   const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -343,16 +371,16 @@ $('voiceInputBtn').addEventListener('click',()=>{
   $('voiceInputBtn').textContent=t('voiceInputStop',language);
   try{recognition.start();}catch(error){recognition=null;$('voiceInputBtn').textContent=t('voiceInput',language);status(t('voiceInputError',language));}
 });
-window.addEventListener('pagehide',()=>{stopBody();recognition?.abort();coach.abort();speech.stop();});
+window.addEventListener('pagehide',()=>{stopBody();recognition?.abort();coach.abort();speech.stop();stopDirectVoice();});
 function assistance(){
   if(walkActive)return;
-  if(level==='master'){status(msg('masterAssist'));return;}
-  if(mode==='partner'&&!partner.active)partner.start();
-  if(session.phase==='idle')session.start();session.paused=false;assistTime=2.6+(mode==='partner'&&partner.phase==='demo'?partner.demoDuration:0);session.assisted=true;session.markInput();partner?.markInput();status(msg('assist'));
+  const result=poseAssistance.request({session,partner,mode,level});
+  const key=result.ok?'assist':result.reason==='master'?'masterAssist':'success';status(msg(key));assistNotice(key);
+  $('assistBtn').setAttribute('aria-pressed',String(poseAssistance.active));
 }
 function startPause(event){
   if(walkActive){toggleWalk();return;}
-  if(voice&&event)speech.unlockFromGesture(local(session.move.name),event);
+  if(voice&&event){stopDirectVoice();speech.unlockFromGesture(local(session.move.name),event);}
   if(!bodyActive&&!hasAutoFocused&&matchMedia('(max-width:860px)').matches){hasAutoFocused=true;setFocus(true);}
   if(mode==='spar'){
     if(combat.finished){combat.reset();session.restart();$('achievement').hidden=true;}
@@ -421,25 +449,25 @@ document.addEventListener('keydown',event=>{
   if(event.code.startsWith('Digit')&&['1','2','3'].includes(event.code.at(-1))){$('camera').value=['first','second','third'][Number(event.code.at(-1))-1];$('camera').dispatchEvent(new Event('change'));}
 });
 document.addEventListener('keyup',e=>{if(keyActions[e.code])held.delete(keyActions[e.code]);});
-window.addEventListener('blur',clearHeld);document.addEventListener('visibilitychange',()=>{if(document.hidden){stopBody();recognition?.abort();clearHeld();if(session)session.paused=true;if(combat)combat.active=false;if(partner)partner.active=false;if(walkSaved){walkSaved.sessionPaused=true;walkSaved.combatActive=false;walkSaved.partnerActive=false;}speech.stop();}});
+window.addEventListener('blur',clearHeld);document.addEventListener('visibilitychange',()=>{if(document.hidden){stopBody();recognition?.abort();clearHeld();if(session)session.paused=true;if(combat)combat.active=false;if(partner)partner.active=false;if(walkSaved){walkSaved.sessionPaused=true;walkSaved.combatActive=false;walkSaved.partnerActive=false;}speech.stop();stopDirectVoice();}});
 $('leftLimbBtn').addEventListener('click',()=>{if(walkActive){jumpRequested=true;return;}selectedLeg=selectedLeg==='left'?'right':'left';updateLimbLabels();});
 $('rightLimbBtn').addEventListener('click',()=>{if(walkActive){greet();return;}selectedHand=selectedHand==='left'?'right':'left';updateLimbLabels();});
 $('startBtn').addEventListener('click',startPause);$('combatStartBtn').addEventListener('click',startPause);$('partnerStartBtn').addEventListener('click',startPause);$('walkBtn').addEventListener('click',toggleWalk);$('assistBtn').addEventListener('click',assistance);
-$('replayBtn').addEventListener('click',event=>{if(walkActive)return;if(voice)speech.unlockFromGesture(local(session.move.name),event);if(mode==='partner'){if(partner.finished){partner.reset();session.restart();$('achievement').hidden=true;}partner.beginDemo();partner.active=true;}else session.replay();session.paused=false;assistTime=0;});
+$('replayBtn').addEventListener('click',event=>{if(walkActive)return;if(voice){stopDirectVoice();speech.unlockFromGesture(local(session.move.name),event);}if(mode==='partner'){if(partner.finished){partner.reset();session.restart();$('achievement').hidden=true;}partner.beginDemo();partner.active=true;}else session.replay();session.paused=false;poseAssistance.cancel();});
 $('resetBtn').addEventListener('click',()=>{clearHeld();makeSession();status(msg('welcome'));});
 $('course').addEventListener('change',e=>{course=curricula.find(c=>c.id===e.target.value)||curricula[0];makeSession();status(msg('welcome'));});
 $('difficulty').addEventListener('change',e=>{level=e.target.value;makeSession();});
 $('mode').addEventListener('change',e=>{if(walkActive)return;mode=e.target.value;makeSession();status(msg(mode==='spar'?'sparReadyNew':mode==='partner'?'partnerIntro':'welcome'));});
 $('camera').addEventListener('change',e=>scene.setCamera(e.target.value));
 $('language').addEventListener('change',e=>changeLanguage(e.target.value));
-$('voiceSelect').addEventListener('change',event=>{speech.setVoice(event.target.value);voicePreferences.voices[language]=event.target.value;saveVoicePreferences();enableSpeech(event);});
+$('voiceSelect').addEventListener('change',event=>{speech.setVoice(event.target.value);voicePreferences.voices[language]=event.target.value;saveVoicePreferences();refreshDirectVoice();enableSpeech(event);});
 for(const id of ['voiceSource','voiceGender'])$(id)?.addEventListener('change',()=>renderVoiceOptions(speech.getVoices()));
-$('voiceRate')?.addEventListener('input',event=>{speech.setRate(event.target.value);voicePreferences.rate=speech.rate;saveVoicePreferences();$('voiceRateValue').textContent=speech.rate.toFixed(2)+'×';});
-$('voiceReplayBtn')?.addEventListener('click',event=>{if(!speech.lastText){enableSpeech(event);return;}voice=true;speech.setEnabled(true);speech.replayFromGesture(event);$('voiceBtn').textContent=msg('voiceOn');$('voiceBtn').setAttribute('aria-pressed','true');});
-$('voiceBackupBtn')?.addEventListener('click',event=>{voice=true;speech.setEnabled(true);speech.playBackupFromGesture(event,msg('voiceTest'));$('voiceBtn').textContent=msg('voiceOn');$('voiceBtn').setAttribute('aria-pressed','true');});
-$('voiceResetBtn')?.addEventListener('click',event=>{voicePreferences.voices[language]='';saveVoicePreferences();speech.setVoice('');$('voiceSource').value='all';$('voiceGender').value='all';renderVoiceOptions(speech.getVoices());enableSpeech(event);});
+$('voiceRate')?.addEventListener('input',event=>{speech.setRate(event.target.value);voicePreferences.rate=speech.rate;saveVoicePreferences();$('voiceRateValue').textContent=speech.rate.toFixed(2)+'×';directPlayer.playbackRate=speech.rate;});
+$('voiceReplayBtn')?.addEventListener('click',event=>{stopDirectVoice();if(!speech.lastText){enableSpeech(event);return;}voice=true;speech.setEnabled(true);speech.replayFromGesture(event);renderVoiceButton();});
+$('voiceBackupBtn')?.addEventListener('click',event=>{stopDirectVoice();voice=true;speech.setEnabled(true);speech.playBackupFromGesture(event,msg('voiceTest'));renderVoiceButton();});
+$('voiceResetBtn')?.addEventListener('click',event=>{voicePreferences.voices[language]='';saveVoicePreferences();speech.setVoice('');$('voiceSource').value='all';$('voiceGender').value='all';renderVoiceOptions(speech.getVoices());refreshDirectVoice();enableSpeech(event);});
 $('soundSettingsBtn')?.addEventListener('click',()=>openPracticeDetails('soundSettings'));
-$('voiceBtn').addEventListener('click',event=>{if(voice){voice=false;speech.setEnabled(false);}else enableSpeech(event,local(session.move.name));$('voiceBtn').textContent=msg(voice?'voiceOn':'voiceOff');$('voiceBtn').setAttribute('aria-pressed',String(voice));});
+$('voiceBtn').addEventListener('click',event=>{if(!voice||!lastSpeechStatus.hasStarted||['needsGesture','blocked','error','unsupported','voiceMissing','voiceLoading'].includes(lastSpeechStatus.code)){enableSpeech(event,local(session.move.name));}else{stopDirectVoice();voice=false;speech.setEnabled(false);}renderVoiceButton();});
 const resetPlaces=()=>{placePage=0;renderPlaces();};$('placeSearch').addEventListener('input',resetPlaces);$('placeRegion').addEventListener('change',resetPlaces);$('photosOnly').addEventListener('change',resetPlaces);
 $('placesPrev').addEventListener('click',()=>{placePage=Math.max(0,placePage-1);renderPlaces();});$('placesNext').addEventListener('click',()=>{placePage++;renderPlaces();});
 $('cacheScenesBtn').addEventListener('click',async()=>{const button=$('cacheScenesBtn');button.disabled=true;try{const result=await cacheOfflineScenes({onProgress:p=>{$('cacheScenesStatus').textContent=msg('offlineProgress',{n:p.done??p.n??0,total:p.total});}});const failed=Array.isArray(result.failed)?result.failed.length:result.failed||0;$('cacheScenesStatus').textContent=msg(failed?'offlineFailed':'offlineDone',{n:failed});}catch(error){$('cacheScenesStatus').textContent=msg('offlineFailed',{n:error.message||String(error)});}finally{button.disabled=false;}});
@@ -473,7 +501,7 @@ function frame(time){
   else{
     if(!session.paused){
       for(const action of actions){applyAction(player,action,dt,{leg:selectedLeg,hand:selectedHand});if(!['attack','block'].includes(action)){session.markInput();partner.markInput();}}
-      if(assistTime>0){player=interpolatePose(player,session.target,Math.min(1,dt*3.8));assistTime-=dt;partner.markInput();}
+      player=poseAssistance.tick(dt,player,{session,partner,mode,walkActive});
     }
     if(mode==='partner'){
       scene.setCombatState?.({playerAttack:partner.phase==='success'?.8:0,opponentAttack:partner.phase==='demo'?Math.min(1,partner.elapsed/partner.demoDuration):0});
@@ -501,6 +529,6 @@ function frame(time){
 requestAnimationFrame(frame);
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
 // A read-only diagnostic helps report deployment issues without exposing inputs/GPS.
-window.SmartActionDiagnostics=()=>({version:'4.0.0',naturalVoices:new Set(naturalVoiceBanks.map(b=>b.speaker||b.id)).size,speechEngine:lastSpeechStatus.engine,speechSource:lastSpeechStatus.voiceSource,course:course.id,phase:session.phase,paused:session.paused,index:session.index,mode,language,languagePreference,walkActive,combatActive:combat.active,combatFinished:combat.finished,partnerPhase:partner.phase,partnerActive:partner.active,partnerProgress:partner.results.length,speech:lastSpeechStatus.code,places:locations.length,model:lastModelStatus.code,renderer:scene.fallback?'2d':'3d',moves:course.moves.length,bodyCamera:bodyActive,modelWeights:'optional-484220320-bytes',origin:location.protocol});
+window.SmartActionDiagnostics=()=>({version:'4.1.0',assistActive:poseAssistance.active,assistRemaining:poseAssistance.remaining,voiceEnabled:voice,directVoicePlaying,naturalVoices:new Set(naturalVoiceBanks.map(b=>b.speaker||b.id)).size,speechEngine:lastSpeechStatus.engine,speechSource:lastSpeechStatus.voiceSource,course:course.id,phase:session.phase,paused:session.paused,index:session.index,mode,language,languagePreference,walkActive,combatActive:combat.active,combatFinished:combat.finished,partnerPhase:partner.phase,partnerActive:partner.active,partnerProgress:partner.results.length,speech:lastSpeechStatus.code,places:locations.length,model:lastModelStatus.code,renderer:scene.fallback?'2d':'3d',moves:course.moves.length,bodyCamera:bodyActive,modelWeights:'optional-484220320-bytes',origin:location.protocol});
 
 window.SmartActionBooted=true;window.dispatchEvent(new Event("smartaction-ready"));

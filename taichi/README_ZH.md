@@ -1,3 +1,5 @@
+> **v4.1.0 repair / 修正版**：電腦首次啟用聲音、可見音訊播放器與手機動作輔助已修正。完整說明見 [docs/FIX_V41.md](docs/FIX_V41.md)。更新兩站：`bash Upload_Both_Sites.sh --web-only --fresh-login`。
+
 # SmartAction 聰動太極拳遊戲 v4 使用手冊
 
 可下載、可部署到 GitHub Pages 的練拳互動遊戲。預設「衛武營榕園」與鄭曼青太極 37 式；包含 13 類課程、131 個練習節點。完整解壓縮後即可操作，不需先安裝模型或購買 AI 服務。

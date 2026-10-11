@@ -1,5 +1,5 @@
 import {recordedSpeech} from '../data/localization-v3-audio.js';
-/** Speech controller v4. A queued request is never reported as audible playback.
+/** Speech controller v4.1. A queued request is never reported as audible playback.
  * Native voices are device capabilities, not downloadable/gender-identified models.
  * Recorded banks match exact fixed text. Arbitrary replies use actual native TTS.
  */
@@ -52,6 +52,10 @@ export class SpeechController{
   _backup(text,preferredURI=''){const explicit=this._bank(preferredURI);if(this._clip(explicit,text))return explicit;return this._matchingBanks().find(b=>this._clip(b,text))||null;}
   refreshVoices({notify=true}={}){try{this.voices=Array.from(this.synth?.getVoices?.()||[]);}catch{this.voices=[];}if(notify)this.onVoices(this.getVoices());return this.voices;}
   getVoices(){return [...this.voices.map(nativeMeta),...(this.AudioClass?this._matchingBanks().map(b=>this._bankMeta(b)):[])];}
+  getRecordedClip(text=this.lastText){
+    const bank=this._backup(String(text||'').trim(),this.selectedURI);if(!bank)return null;
+    return {path:this._clip(bank,text),voiceURI:bank.voiceURI,voiceName:bank.name||bank.id,lang:bank.actualLang||bank.lang,source:bank.source||bank.name||bank.id};
+  }
   recordedVoice(){return this._bankMeta(this._bank('recorded:'+this.lang)||this._matchingBanks()[0]);}
   currentVoice(){return this._bankMeta(this._bank(this.selectedURI))||nativeMeta(pickVoice(this.voices,this.lang,this.selectedURI));}
   emit(code,error=''){
@@ -62,7 +66,14 @@ export class SpeechController{
   setVoice(uri){uri=uri||'';if(uri===this.selectedURI&&this.active)return this;if(uri!==this.selectedURI)this.stop(false);this.selectedURI=uri;this.nativeFailures.delete(uri);this.retryRecording=null;this._playbackMeta=null;this.engine='';this.fallbackReason='';if(!this.active)this.emit(this.enabled?'needsGesture':'off');return this;}
   setRate(rate){const n=Number(rate);if(Number.isFinite(n))this.rate=Math.max(.5,Math.min(1.5,n));if(this.audio&&!this.audio.paused)this.audio.playbackRate=this.rate;return this;}
   setEnabled(enabled){this.enabled=Boolean(enabled);if(!this.enabled)this.stop(false);if(!this.active)this.emit(this.enabled?'needsGesture':'off');return this;}
-  _activeGesture(event){if(event?.isTrusted===false)return false;const active=globalThis.navigator?.userActivation;return active?active.isActive:Boolean(event?.isTrusted||!globalThis.document);}
+  _activeGesture(event){
+    if(event?.isTrusted===false)return false;
+    // A trusted click/change may arrive after a platform has consumed transient
+    // activation (for example a native voice picker). Let the actual media API
+    // decide whether playback is permitted; an API flag alone cannot prove failure.
+    if(event?.isTrusted===true)return true;
+    return Boolean(globalThis.navigator?.userActivation?.isActive||!globalThis.document);
+  }
   unlockFromGesture(text='',event){return this.enableFromGesture(text,event);}
   enableFromGesture(text='',event){this.enabled=true;if(!this._activeGesture(event)){this.emit('needsGesture');return false;}this.gestureRequested=true;return this.speak(text||this.lastText,{gesture:true,event});}
   replayFromGesture(event){this.enabled=true;return this.speak(this.lastText,{gesture:true,event,force:true,restart:true});}
@@ -84,8 +95,11 @@ export class SpeechController{
     if(this.active&&sameText(this.active.text,text)&&this.active.lang===this.lang&&!preferRecorded&&(!restart||this.active.phase==='queued'))return true;
     if(!gesture&&!this.hasStarted){this.emit('needsGesture');return false;}
     this.refreshVoices();const selected=this._select(text,preferRecorded);this.fallbackReason=selected.reason||'';
-    if(selected.bank&&this.AudioClass)return this._playRecorded(text,selected.bank);
-    if(selected.native&&this.synth&&this.Utterance){if(gesture)this._primeAudio();return this._speakNative(text,selected.native);}
+    // One finite fallback chain per requested sentence. A failed source is never
+    // retried in that chain, even when the same clip has multiple locale aliases.
+    const attempt={text,lang:this.lang,sources:new Set(),recordings:0,native:0};
+    if(selected.bank&&this.AudioClass)return this._playRecorded(text,selected.bank,attempt);
+    if(selected.native&&this.synth&&this.Utterance){if(gesture)this._primeAudio();return this._speakNative(text,selected.native,attempt);}
     this._cancelActive();this.engine='';this._playbackMeta=null;
     if(preferRecorded||this._bank(this.selectedURI)){this.emit('voiceMissing','recorded-text-unavailable');return false;}
     if(!this.synth||!this.Utterance){this.emit('unsupported');return false;}
@@ -93,15 +107,17 @@ export class SpeechController{
   }
   _primeAudio(){
     if(!this.primeAudioOnGesture||!this.AudioClass||this._audioPrimeTried||this.active?.kind==='recorded')return;
-    this._audioPrimeTried=true;if(!this.audio)this.audio=new this.AudioClass();const audio=this.audio;
+    this._audioPrimeTried=true;try{if(!this.audio)this.audio=new this.AudioClass();}catch{return;}const audio=this.audio;
     audio.preload='auto';audio.volume=1;audio.muted=false;audio.loop=false;audio.src=SILENT_WAV;
     audio.onplaying=()=>{if(!this.active||this.active.kind==='system')this._audioPrimeStarted=true;};
     audio.onended=()=>{};audio.onerror=()=>{};
     try{audio.play()?.catch?.(()=>{});}catch{} // No permission claim: the later real clip must confirm its own playback.
   }
-  _speakNative(text,voice){
+  _speakNative(text,voice,attempt={text,lang:this.lang,sources:new Set(),recordings:0,native:0}){
     this._cancelActive();const id=++this.sequence;this.engine='system';this._playbackMeta=nativeMeta(voice);
-    this.active={id,text,lang:this.lang,phase:'queued',kind:'system',voice};const u=new this.Utterance(text);this.utterance=u;
+    attempt.sources.add('system:'+voice.voiceURI);attempt.native++;
+    this.active={id,text,lang:this.lang,phase:'queued',kind:'system',voice,attempt};
+    let u;try{u=new this.Utterance(text);}catch(error){this._nativeFailed(id,String(error?.name||error));return false;}this.utterance=u;
     u.lang=voice.lang||this.lang;u.voice=voice;u.rate=this.rate;u.pitch=1;u.volume=1;
     u.onstart=()=>{if(this.active?.id!==id)return;this._clearTimer();this.active.phase='speaking';this.hasStarted=true;this.retryRecording=null;this.emit('speaking');};
     u.onend=()=>{if(this.active?.id!==id)return;if(this.active.phase!=='speaking'){this._nativeFailed(id,'ended-without-start');return;}this._clearTimer();this.active=null;this.utterance=null;this.emit('ready');};
@@ -112,23 +128,48 @@ export class SpeechController{
   _nativeFailed(id,error){
     const request=this.active;if(!request||request.id!==id)return;
     this.nativeFailures.add(request.voice.voiceURI);this.fallbackReason=error;
-    const backup=this._backup(request.text);this._cancelActive();this.hasStarted=false;
-    if(backup&&this.AudioClass){this.retryRecording={text:request.text,lang:request.lang,uri:backup.voiceURI};this._playRecorded(request.text,backup);return;}
+    const backup=this._nextRecording(request);this._cancelActive();this.hasStarted=false;
+    if(backup&&this.AudioClass){this.retryRecording={text:request.text,lang:request.lang,uri:backup.voiceURI};this._playRecorded(request.text,backup,request.attempt);return;}
     this.emit(['not-allowed','start-timeout','audio-busy','audio-hardware'].includes(error)?'blocked':'error',error);
   }
   _watchdog(id,callback){this._clearTimer();this.timer=setTimeout(()=>{if(this.active?.id===id)callback();},this.startTimeout);this.timer?.unref?.();}
   _clearTimer(){clearTimeout(this.timer);this.timer=null;}
-  _playRecorded(text,bank){
+  _nextRecording(request){
+    if(!this.AudioClass||request.attempt.recordings>=2)return null;
+    const preferred=this._bank(this.selectedURI),matching=this._matchingBanks();
+    // If a natural recording already failed, prefer the independently bundled
+    // fixed-line backup instead of trying every natural voice in turn.
+    const candidates=(request.attempt.recordings?[...matching.filter(b=>b.quality==='mechanical'),preferred,...matching]:[preferred,...matching]).filter(Boolean);
+    return candidates.find(b=>{const path=this._clip(b,request.text);return path&&!request.attempt.sources.has('recorded:'+path);})||null;
+  }
+  _recordedFailed(id,error){
+    const request=this.active;if(!request||request.id!==id)return;
+    this.retryRecording={text:request.text,lang:request.lang,uri:request.bank.voiceURI};
+    if(!this.fallbackReason)this.fallbackReason=error;
+    const native=pickVoice(this.voices,this.lang,this._bank(this.selectedURI)?'':this.selectedURI);
+    // File playback and platform TTS are independent. A missing/blocked MP3
+    // must not disable working desktop speech, but never loop back to a source
+    // already tried for this sentence.
+    const canNative=native&&this.synth&&this.Utterance&&request.attempt.native<1&&!request.attempt.sources.has('system:'+native.voiceURI);
+    const backup=error==='NotAllowedError'?null:this._nextRecording(request);
+    this._cancelActive();this.hasStarted=false;
+    if(canNative){this._speakNative(request.text,native,request.attempt);return;}
+    if(backup){this._playRecorded(request.text,backup,request.attempt);return;}
+    this.emit(['NotAllowedError','audio-start-timeout'].includes(error)?'blocked':'error',error);
+  }
+  _playRecorded(text,bank,attempt={text,lang:this.lang,sources:new Set(),recordings:0,native:0}){
     if(this._destroyed)return false;const path=this._clip(bank,text);if(!path||!this.AudioClass){this.emit('voiceMissing');return false;}
     this._cancelActive();const id=++this.sequence;this.engine='recorded';this._playbackMeta=this._bankMeta(bank);this.audioText=text;
-    this.active={id,text,lang:this.lang,phase:'queued',kind:'recorded',bank};if(!this.audio)this.audio=new this.AudioClass();const audio=this.audio;
+    attempt.sources.add('recorded:'+path);attempt.recordings++;
+    this.active={id,text,lang:this.lang,phase:'queued',kind:'recorded',bank,attempt};
+    try{if(!this.audio)this.audio=new this.AudioClass();}catch(error){this._recordedFailed(id,String(error?.name||error));return false;}const audio=this.audio;
     // Clear one-shot priming listeners before assigning a real source.
     audio.onplaying=null;audio.onended=null;audio.onerror=null;
     audio.preload='auto';audio.volume=1;audio.muted=false;audio.loop=false;audio.playbackRate=this.rate;
     audio.src=globalThis.document?new URL(path,globalThis.document.baseURI).href:path;
     audio.onplaying=()=>{if(this.active?.id!==id)return;this._clearTimer();this.active.phase='speaking';this.hasStarted=true;this.retryRecording=null;this.emit('speaking');};
     audio.onended=()=>{if(this.active?.id!==id)return;if(this.active.phase!=='speaking'){failed('audio-ended-without-playing');return;}this._clearTimer();this.active=null;this.audioText='';this.emit('ready');};
-    const failed=error=>{if(this.active?.id!==id)return;this.retryRecording={text,lang:this.lang,uri:bank.voiceURI};this._cancelActive();this.hasStarted=false;this.emit(['NotAllowedError','audio-start-timeout'].includes(error)?'blocked':'error',error);};
+    const failed=error=>this._recordedFailed(id,error);
     audio.onerror=()=>failed('audio-file-'+String(audio.error?.code||'unavailable'));
     this.emit('queued');this._watchdog(id,()=>failed('audio-start-timeout'));
     try{audio.play()?.catch?.(e=>failed(String(e?.name||e)));return true;}catch(e){failed(String(e?.name||e));return false;}

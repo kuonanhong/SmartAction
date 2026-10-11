@@ -1,6 +1,6 @@
 /* v4: cache the small shell first; optional scenes/audio/models load on demand. */
-const VERSION='smartaction-taichi-v4-20261011';
-const SCENES='smartaction-scenes-v4';
+const VERSION='smartaction-taichi-v41-20261011';
+const SCENES='smartaction-scenes-v41';
 const ROOT=new URL('./',self.location.href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const response=await fetch(new URL('offline-manifest.json',ROOT),{cache:'no-store'});
@@ -36,11 +36,13 @@ self.addEventListener('fetch',event=>{
   event.respondWith((async()=>{
     const cache=await caches.open(VERSION),sceneCache=await caches.open(SCENES);
     const isAsset=url.pathname.includes('/vendor/')||url.pathname.includes('/assets/');
+    const shellAsset=/\/(?:styles\.css|js\/(?:game|bootstrap)\.js)$/.test(url.pathname);
+    const cacheKey=shellAsset?new URL(url.pathname,url.origin).href:event.request;
     if(isAsset){const hit=await cache.match(event.request)||await sceneCache.match(event.request);if(hit)return hit;}
     try{
       const response=await fetch(event.request);
-      if(response.ok && response.status===200){try{await (isAsset?sceneCache:cache).put(event.request,response.clone());}catch{/* Storage limits must not break online play. */}}
+      if(response.ok && response.status===200){try{await (isAsset?sceneCache:cache).put(cacheKey,response.clone());}catch{/* Storage limits must not break online play. */}}
       return response;
-    }catch(error){const cached=await cache.match(event.request)||await sceneCache.match(event.request);if(cached)return cached;throw error;}
+    }catch(error){const cached=await cache.match(cacheKey)||await sceneCache.match(event.request);if(cached)return cached;throw error;}
   })());
 });

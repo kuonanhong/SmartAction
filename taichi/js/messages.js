@@ -1,3 +1,4 @@
+import {fixMessagesV41} from '../data/localization-v41.js';
 import {extraRuntimeV4} from '../data/localization-v4-base.js';
 import {featureMessagesV4} from '../data/localization-v4-features.js';
 import {featureMessages} from '../data/localization-v3-features.js';
@@ -627,3 +628,5 @@ export function getMessage(lang, key, vars = {}) {
   const text = messageDictionary[locale]?.[key] ?? messageDictionary.en[key] ?? key;
   return String(text).replace(/\{([a-zA-Z0-9_]+)\}/g, (whole, name) => Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : whole);
 }
+
+for(const [lang,strings] of Object.entries(fixMessagesV41))Object.assign(messageDictionary[lang],strings);

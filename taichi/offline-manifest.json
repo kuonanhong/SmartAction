@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "4.1.0",
   "files": [
     "assets/icon.svg",
     "assets/photos/weiwuying.jpg",
@@ -1179,6 +1179,7 @@
     "data/localization-v4-base.js",
     "data/localization-v4-coverage.json",
     "data/localization-v4-features.js",
+    "data/localization-v41.js",
     "data/locations.js",
     "data/natural-voices-v4.js",
     "data/natural-voices-v4.json",
@@ -1189,6 +1190,7 @@
     "docs/CURRICULUM_SOURCES.md",
     "docs/DEVICE_TESTS.html",
     "docs/FEATURES_AND_LIMITS.md",
+    "docs/FIX_V41.md",
     "docs/MODEL_GUIDE.md",
     "docs/MODEL_VERIFICATION.md",
     "docs/NATURAL_VOICE_LICENSES.md",
@@ -1200,6 +1202,7 @@
     "docs/UPLOAD_PAT.html",
     "docs/guide.html",
     "js/app.js",
+    "js/assist.js",
     "js/body-scoring.js",
     "js/body-tracker.js",
     "js/body-worker.bundle.js",
@@ -1240,5 +1243,5 @@
     "vendor/wllama/main/package.json",
     "vendor/wllama/runtime-manifest.json"
   ],
-  "optionalBytes": 115073012
+  "optionalBytes": 115091522
 }

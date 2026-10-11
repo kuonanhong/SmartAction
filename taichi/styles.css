@@ -236,3 +236,20 @@ body.practice-focus[data-layout-constrained="true"] #practiceShell{overflow:hidd
 .voice-action-row{display:flex;gap:8px;flex-wrap:wrap}.voice-action-row button{min-height:44px}
 .sound-settings p{margin:0;font-size:.85rem;line-height:1.6}.sound-settings #voiceStatus{overflow-wrap:anywhere}
 @media(max-width:360px){.voice-filter-row{grid-template-columns:1fr}.voice-rate{gap:6px}}
+
+/* v4.1: primary assistance and sound controls never enter a horizontal scroller. */
+#controlDock .quick-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(66px,.6fr);gap:6px;max-width:760px;margin:0 auto 5px;overflow:visible}
+#controlDock .quick-controls>button{display:block;min-height:44px;min-width:0;max-width:none;width:100%;padding:6px;font-size:12px;line-height:1.3;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+#controlDock #assistBtn{background:#e2b35d;color:#183a2d;border:1px solid #b48837;font-weight:700}
+#controlDock #assistBtn.assisting{background:#285f46;color:#fff}
+#controlDock .direct-voice-row{display:flex;align-items:center;gap:8px;max-width:760px;margin:0 auto 3px;min-width:0}
+#controlDock #directVoicePlayer{display:block;flex:1;min-width:0;max-width:500px;width:100%;height:34px}
+#controlDock .direct-voice-meta{display:grid;gap:2px;flex:0 1 140px;font-size:10px;line-height:1.25;min-width:0;overflow-wrap:anywhere}
+#controlDock .direct-voice-meta a{min-height:24px;display:flex;align-items:center;color:#31513d}
+#controlDock .quick-status,#controlDock .assist-status{margin:2px auto 5px;max-width:760px;font-size:11px;line-height:1.4;overflow-wrap:anywhere}
+#controlDock .quick-status{max-height:32px;overflow:auto;color:#59664f}
+#controlDock .assist-status{padding:4px 6px;background:#e4edcf;color:#234931;border-radius:6px}
+@media(max-width:560px){#controlDock .quick-controls>button{font-size:11px}.direct-voice-meta{max-width:110px}}
+@media(orientation:landscape) and (max-height:600px){#controlDock .quick-controls{max-width:900px}#controlDock .quick-controls>button{font-size:10px}#controlDock .direct-voice-row{max-width:900px}#controlDock .quick-status{font-size:10px;max-height:15px}}
+
+#controlDock #voiceBtn{max-width:none;font-size:11px}

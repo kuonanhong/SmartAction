@@ -1,3 +1,5 @@
+> **v4.1.0 repair / 修正版**：電腦首次啟用聲音、可見音訊播放器與手機動作輔助已修正。完整說明見 [docs/FIX_V41.md](docs/FIX_V41.md)。更新兩站：`bash Upload_Both_Sites.sh --web-only --fresh-login`。
+
 # SmartAction Tai Chi Practice Game v4
 
 A downloadable static practice game for GitHub Pages. Defaults: Weiwuying, Kaohsiung; Cheng Man-ching's 37 named sections. Includes 13 curricula, 131 practice nodes, 18 interface/curriculum languages and a photo-backed virtual park walk.

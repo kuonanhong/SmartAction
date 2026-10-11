@@ -28,7 +28,7 @@ def main():
     shell_names={'index.html','styles.css','js/game.js','js/bootstrap.js','manifest.webmanifest','assets/icon.svg','assets/photos/weiwuying.jpg','models/manifest.json'}
     shell=[name for name in static if name in shell_names]
     optional=[name for name in static if name not in shell_names]
-    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'4.0.0','files':shell,'optional':optional,'optionalBytes':sum((ROOT/name).stat().st_size for name in optional)},ensure_ascii=False,indent=2)+'\n')
+    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'4.1.0','files':shell,'optional':optional,'optionalBytes':sum((ROOT/name).stat().st_size for name in optional)},ensure_ascii=False,indent=2)+'\n')
     checksums = {p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in files() if p.name!='PACKAGE_SHA256.json'}
     (ROOT/'PACKAGE_SHA256.json').write_text(json.dumps(checksums,ensure_ascii=False,indent=2)+'\n')
