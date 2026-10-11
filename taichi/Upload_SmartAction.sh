@@ -1,5 +1,5 @@
 #!/bin/bash
-# SmartAction v3.0 — Bash 3.2+, Git, Python 3.8+. Run from any working directory.
+# SmartAction v4.0 — Bash 3.2+, Git, Python 3.8+. Run from any working directory.
 # Credentials are handled by Git; this script never requests, prints or saves a PAT.
 set -euo pipefail
 export GIT_LFS_SKIP_SMUDGE=1
@@ -31,7 +31,7 @@ usage() {
 --with-model 會優先合併旁邊 SmartAction_Qwen3_CPU_Weights/models/ 的有效分片。
 請把此檔放在遊戲 index.html 同一層。可從任何工作目錄執行。
 不需要 Git LFS；模型每兩片一批提交、上傳、核對（最多 64 MiB），重跑會跳過相同檔案。
-v3.0：雙站部署、96 MiB 網站分批、協會首頁太極入口；保留空庫初始化與斷線重試。
+v4.0：雙站部署、96 MiB 網站分批、協會首頁太極入口；保留空庫初始化與斷線重試。
 USAGE
 }
 on_exit() {
@@ -72,13 +72,13 @@ while [ "$#" -gt 0 ]; do
 done
 if [ "$smartaction_both" -eq 1 ]; then
   [ "$smartaction_explicit_target" -eq 0 ] || fail '--both 已固定兩站，不能另加 --site、--repo 或 --folder。'
-  [ -f "$smartaction_source/Upload_Both_Sites.sh" ] || fail '缺少 Upload_Both_Sites.sh；請解壓完整 v3 套件。'
+  [ -f "$smartaction_source/Upload_Both_Sites.sh" ] || fail '缺少 Upload_Both_Sites.sh；請解壓完整 v4 套件。'
   smartaction_both_args=(--with-model)
   if [ "$smartaction_model_mode" = 'web-only' ]; then smartaction_both_args=(--web-only); fi
   if [ "$smartaction_fresh_login" -eq 1 ]; then smartaction_both_args+=(--fresh-login); fi
   exec bash "$smartaction_source/Upload_Both_Sites.sh" "${smartaction_both_args[@]}"
 fi
-printf '%s\n' 'SmartAction uploader v3.0 — 雙站 / 網站與模型分批 / 斷線核對與重試' 
+printf '%s\n' 'SmartAction uploader v4.0 — 雙站 / 網站與模型分批 / 斷線核對與重試' 
 [[ "$smartaction_repo" =~ ^https://github\.com/[A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || fail '只接受 https://github.com/OWNER/REPO.git；網址不可含 Token、密碼、查詢字串或空白。'
 if [ "$smartaction_folder" = '.' ]; then
   case "$smartaction_repo" in https://github.com/*/taichi|https://github.com/*/taichi.git) ;; *) fail '根目錄發布僅允許獨立 taichi 儲存庫，避免覆寫協會首頁。' ;; esac
@@ -103,7 +103,7 @@ import hashlib, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 mode, source_arg, checkout_arg, folder, model_mode, report_arg = sys.argv[1:7]
 source, checkout, report = Path(source_arg).resolve(), Path(checkout_arg).resolve(), Path(report_arg)
-ROOT_FILES = {'index.html','styles.css','service-worker.js','manifest.webmanifest','offline-manifest.json','README.md','README_ZH.md','LICENSE','LICENSE.txt','THIRD_PARTY_NOTICES.md','.gitattributes','.nojekyll','Start_Mac.command','Start_Windows.bat','Start_Linux.sh','Upload_SmartAction.sh','Upload_Both_Sites.sh','Upload_GitHub.command','Upload_GitHub.bat','package.json','PACKAGE_SHA256.json'}
+ROOT_FILES = {'index.html','styles.css','service-worker.js','manifest.webmanifest','offline-manifest.json','README.md','README_ZH.md','LICENSE','LICENSE.txt','THIRD_PARTY_NOTICES.md','.gitattributes','.nojekyll','Start_Mac.command','Start_Windows.bat','Start_Linux.sh','Upload_SmartAction.sh','Upload_Both_Sites.sh','Upload_GitHub.command','Upload_GitHub.bat','package.json','package-lock.json','PACKAGE_SHA256.json'}
 PUBLIC_DIRS = {'assets','data','js','vendor','models','docs','tools','tests','dist'}
 SKIP_DIRS = {'.git','.github','tmp','temp','__pycache__','node_modules'}
 def fail(msg): raise RuntimeError(msg)
@@ -375,7 +375,7 @@ while [ "$smartaction_web_index" -lt "$smartaction_web_count" ]; do
         [ "$(git -C "$smartaction_checkout" hash-object --no-filters "$smartaction_checkout/index.html")" = "$(git -C "$smartaction_checkout" rev-parse :index.html)" ] || fail 'Git 過濾器改變協會首頁內容；停止上傳，未覆寫遠端首頁。' 
       fi
     else
-      printf '%s\n' '未附首頁入口工具；保留原首頁。完整 v3 套件才會加入太極入口。'
+      printf '%s\n' '未附首頁入口工具；保留原首頁。完整 v4 套件才會加入太極入口。'
     fi
   fi
   if [ "$smartaction_web_count" -eq 1 ]; then

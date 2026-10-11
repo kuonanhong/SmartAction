@@ -36,8 +36,8 @@ test('blocked speech clears permission and requires another real tap',()=>{
 test('no-start watchdog does not falsely claim playback and synthetic click is rejected',async()=>{
  const h=harness();h.control.enableFromGesture('你好',{isTrusted:false});assert.equal(h.spoken.length,0);h.control.enableFromGesture('你好',{isTrusted:true});await new Promise(r=>setTimeout(r,60));assert.equal(h.events.at(-1).code,'blocked');assert.equal(h.control.hasStarted,false);h.control.destroy();
 });
-test('all 15 languages have every UI and runtime key, including interpolation variables',()=>{
- const variables=s=>[...s.matchAll(/\{\w+\}/g)].map(x=>x[0]).sort();assert.equal(supportedLanguages.length,15);
+test('all 18 languages have every UI and runtime key, including interpolation variables',()=>{
+ const variables=s=>[...s.matchAll(/\{\w+\}/g)].map(x=>x[0]).sort();assert.equal(supportedLanguages.length,18);
  for(const l of supportedLanguages)for(const dict of [dictionary,messageDictionary]){
   assert.deepEqual(Object.keys(dict[l]).sort(),Object.keys(dict.en).sort(),l);
   for(const k of Object.keys(dict.en)){assert.ok(dict[l][k].trim(),`${l}:${k}`);assert.deepEqual(variables(dict[l][k]),variables(dict.en[k]),`${l}:${k}`);}
@@ -73,11 +73,11 @@ test('recording playback rejection is visible; no fake generative dialogue speec
  c.enableFromGesture('An arbitrary answer that is not recorded',{isTrusted:true});assert.equal(events.at(-1).code,'unsupported');assert.equal(AudioClass.all[0].playCount,1);c.destroy();
 });
 test('explicit recording voice uses the clip even with native voices; default prefers native',()=>{
- const h=harness([voice('zh-TW')]);h.control.AudioClass=fakeAudioClass();h.control.enableFromGesture('預備式・起勢',{isTrusted:true});assert.equal(h.spoken.length,1);h.control.setVoice('recorded:zh-TW');h.control.enableFromGesture('預備式・起勢',{isTrusted:true});assert.equal(h.spoken.length,1);assert.equal(h.control.audio.playCount,1);h.control.destroy();
+ const h=harness([voice('zh-TW')]);h.control.AudioClass=fakeAudioClass();h.control.primeAudioOnGesture=false;h.control.enableFromGesture('預備式・起勢',{isTrusted:true});assert.equal(h.spoken.length,1);h.control.setVoice('recorded:zh-TW');h.control.enableFromGesture('預備式・起勢',{isTrusted:true});assert.equal(h.spoken.length,1);assert.equal(h.control.audio.playCount,1);h.control.destroy();
 });
-test('570 prerecorded MP3s have correct hashes and all 15 languages have 37 forms plus test',()=>{
+test('684 prerecorded MP3s have correct hashes and all 18 languages have 37 forms plus test',()=>{
  const root=path.resolve(import.meta.dirname,'..'),manifest=JSON.parse(fs.readFileSync(path.join(root,'assets/audio/manifest.json')));
- assert.equal(manifest.files.length,570);
+ assert.equal(manifest.files.length,684);
  for(const l of supportedLanguages){assert.equal(manifest.files.filter(r=>r.lang===l).length,38);assert.ok(recordedSpeech[l][getMessage(l,'voiceTest')]);}
  for(const row of manifest.files){const bytes=fs.readFileSync(path.join(root,row.path));assert.equal(bytes.length,row.bytes);assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),row.sha256);assert.ok(row.spokenText);assert.ok(bytes.length>500);}
  assert.ok(manifest.files.filter(r=>r.lang.startsWith('zh')).every(r=>r.voice==='cmn-latn-pinyin'));

@@ -1,0 +1,163 @@
+{
+  "version": 4,
+  "languages": 18,
+  "added": [
+    "ru",
+    "tr",
+    "nl"
+  ],
+  "newVoiceAndUpdateKeys": 19,
+  "notes": [
+    "All 180 UI and 167 runtime keys are directly provided for all 18 languages, with interpolation placeholders preserved.",
+    "Added curriculum cues describe the unchanged game-authored 3D target endpoints and preserve safety limits; not sentence-for-sentence translations of the source prose.",
+    "Identical short words such as Dutch Winter, Start and Opening and proper product names are valid cognates, not paragraph fallback.",
+    "The existing 15-language curriculum and all geometry retain the exact v3 content fingerprint.",
+    "Automated coverage is not native-speaker, pronunciation or martial-instructor certification."
+  ],
+  "rows": [
+    {
+      "locale": "zh-TW",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "zh-CN",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "en",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "ja",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "ko",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "es",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "fr",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "de",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "pt",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "it",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "id",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "vi",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "th",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "ar",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "hi",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "ru",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "tr",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    },
+    {
+      "locale": "nl",
+      "uiKeys": 180,
+      "runtimeKeys": 167,
+      "courses": 13,
+      "moves": 131,
+      "continuations": 24
+    }
+  ]
+}

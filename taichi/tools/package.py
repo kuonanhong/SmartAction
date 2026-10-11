@@ -28,14 +28,14 @@ def main():
     shell_names={'index.html','styles.css','js/game.js','js/bootstrap.js','manifest.webmanifest','assets/icon.svg','assets/photos/weiwuying.jpg','models/manifest.json'}
     shell=[name for name in static if name in shell_names]
     optional=[name for name in static if name not in shell_names]
-    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'3.0.0','files':shell,'optional':optional,'optionalBytes':sum((ROOT/name).stat().st_size for name in optional)},ensure_ascii=False,indent=2)+'\n')
+    (ROOT/'offline-manifest.json').write_text(json.dumps({'version':'4.0.0','files':shell,'optional':optional,'optionalBytes':sum((ROOT/name).stat().st_size for name in optional)},ensure_ascii=False,indent=2)+'\n')
     checksums = {p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in files() if p.name!='PACKAGE_SHA256.json'}
     (ROOT/'PACKAGE_SHA256.json').write_text(json.dumps(checksums,ensure_ascii=False,indent=2)+'\n')
-    destination = ROOT.parent/'SmartAction_Taichi_Game_v3.zip'
+    destination = ROOT.parent/'SmartAction_Taichi_Game_v4.zip'
     with zipfile.ZipFile(destination,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=8) as archive:
         for p in files():
-            archive.write(p,'SmartAction_Taichi_Game_v3/'+p.relative_to(ROOT).as_posix())
+            archive.write(p,'SmartAction_Taichi_Game_v4/'+p.relative_to(ROOT).as_posix())
     print(f'Core package: {destination} | {destination.stat().st_size:,} bytes | {len(files())} files')
     print(f'CPU weights are separate. Shell: {len(shell)} files; optional on demand: {len(optional)}.')
 

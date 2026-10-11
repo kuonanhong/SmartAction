@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Copy public files into an isolated Git checkout; never delete remote files."""
+"""Legacy local staging helper; never delete remote files or push anything.
+
+For v4 deployment use Upload_Both_Sites.sh, whose embedded helper validates and
+pushes website/model batches. This module is retained for local tooling only.
+"""
 import argparse
 import hashlib
 import json
@@ -12,11 +16,11 @@ import sys
 
 ROOT_FILES = {
     'index.html', 'styles.css', 'service-worker.js', 'manifest.webmanifest',
-    'offline-manifest.json', 'README.md', 'LICENSE', 'LICENSE.txt',
+    'offline-manifest.json', 'README.md', 'README_ZH.md', 'LICENSE', 'LICENSE.txt',
     'THIRD_PARTY_NOTICES.md', '.gitattributes', '.nojekyll',
     'Start_Mac.command', 'Start_Windows.bat', 'Start_Linux.sh',
-    'Upload_GitHub.command', 'Upload_GitHub.bat', 'package.json',
-    'PACKAGE_SHA256.json', 'Upload_SmartAction.sh',
+    'Upload_GitHub.command', 'Upload_GitHub.bat', 'package.json', 'package-lock.json',
+    'PACKAGE_SHA256.json', 'Upload_SmartAction.sh', 'Upload_Both_Sites.sh',
 }
 PUBLIC_DIRS = {'assets', 'data', 'js', 'vendor', 'models', 'docs', 'tools', 'tests', 'dist'}
 SKIP_DIRS = {'.git', '.github', 'tmp', 'temp', '__pycache__', 'node_modules'}

@@ -1,6 +1,6 @@
 SmartAction v3 — fixed offline speech recordings
 
-570 local MP3 files: 15 interface languages × (37 Cheng movement names + 1 voice-test phrase).
+684 local MP3 files: 15 interface languages × (37 Cheng movement names + 1 voice-test phrase).
 Generated on 2026-10-11 with eSpeak NG 1.51. Original, game-authored translated text.
 These are mechanical synthesized recordings, not recordings of a teacher or a cloned person.
 Only fixed labels and the test phrase are covered. Qwen-generated conversation requires a

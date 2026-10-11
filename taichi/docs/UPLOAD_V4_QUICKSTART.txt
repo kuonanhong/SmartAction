@@ -1,0 +1,73 @@
+SmartAction 太極遊戲 v4｜Mac 一個指令更新兩站
+
+1. 先解壓完整 SmartAction_Taichi_Game_v4.zip。
+   Upload_Both_Sites.sh、Upload_SmartAction.sh 必須與 index.html 放同一層。
+   保留 assets/、data/、js/、vendor/、models/、tools/ 等全部子資料夾。
+   不要只下載 .sh 而遺漏網站檔案。
+
+2. 在解壓後的遊戲資料夾開啟終端機，執行：
+
+   bash Upload_Both_Sites.sh --fresh-login
+
+   若資料夾放在「下載項目」，也可在任意目錄直接執行：
+
+   bash "$HOME/Downloads/SmartAction_Taichi_Game_v4/Upload_Both_Sites.sh" --fresh-login
+
+   不需 chmod，不需手動 git add/commit/push。
+   需要 Git 和 Python 3.8 以上；已有 Conda 的 Python 3 可使用。
+
+3. 這一行預設包含 Qwen3 模型：
+   - 優先檢查／沿用遊戲 models/ 裡的有效分片。
+   - 若旁邊有 SmartAction_Qwen3_CPU_Weights/models/，會合併有效分片。
+   - 缺少時下載，驗證每片及完整模型 SHA-256。
+   - 依序更新 kuonanhong/SmartAction 的 taichi/，以及 kuonanhong/taichi 根目錄。
+   - 修改或新增的音訊、照片、CSS、JavaScript 與資料也會同步。
+   - 遠端其他檔案保留，不使用 force push；中斷後重跑同一行即可比對續傳。
+
+   只更新網站、保留遠端既有模型時：
+
+   bash Upload_Both_Sites.sh --web-only --fresh-login
+
+4. Token 必須同時授權兩個儲存庫。
+   管理頁：https://github.com/settings/personal-access-tokens
+   申請頁：https://github.com/settings/personal-access-tokens/new
+   Resource owner：kuonanhong
+   Repository access：Only select repositories → 同時選 SmartAction、taichi
+   Repository permissions：Contents = Read and write
+   Metadata：Read-only
+   Git 詢問 Username 時填 kuonanhong；Password 貼 Token，再按 Enter。
+   密碼輸入不顯示字元是正常的。不要貼帳號密碼、不要將 Token 寫進任何檔案。
+   --fresh-login 繞過舊憑證，不修改全域 Keychain，也不會替 Token 增加權限。
+
+5. 看到「兩站 Git 檔案均已上傳並核對」後，分別檢查 Pages。
+   https://github.com/kuonanhong/SmartAction/settings/pages
+   https://github.com/kuonanhong/taichi/settings/pages
+   分支發布：Deploy from a branch → main（或腳本顯示的分支）→ /(root) → Save。
+   原先若使用自訂 Actions，保留原流程，確保輸出包含 taichi/。
+   等兩站 Actions 最後一次 Pages 工作成功：
+   https://github.com/kuonanhong/SmartAction/actions
+   https://github.com/kuonanhong/taichi/actions
+   Git 上傳完成不代表 Pages 已發布完成。
+
+6. 最後開啟：
+   協會首頁：https://kuonanhong.github.io/SmartAction/
+   協會太極：https://kuonanhong.github.io/SmartAction/taichi/
+   獨立太極：https://kuonanhong.github.io/taichi/
+   協會首頁只增加 ☯ 太極入口（./taichi/），其他內容保留；不會重建協會首頁。
+   遊戲的「回協會首頁」連回 SmartAction 首頁。
+
+7. 模型的實際位置：
+   遊戲 index.html 同層的 models/manifest.json
+   models/qwen3-0.6b-q4km.part01 到 part15
+   models/pose/pose_landmarker_lite.task
+   外層 SmartAction_Qwen3_CPU_Weights/ 是安裝來源，不是網頁搜尋的目錄。
+   上傳後分別位於 taichi/models/（SmartAction 庫）與 models/（taichi 庫）。
+   網頁／模型可使用同一份 index.html，不需改成絕對網址。
+
+8. 容量與建置提醒：
+   網站每批最多96 MiB，模型每批最多兩片／64 MiB，15片共8批。
+   約110～150 MB網站通常2批，首次完整更新每站最多2＋8＝10次push。
+   腳本上傳前會印出實際規劃批次，相同批次會跳過。
+   每站分支發布有每小時10次build軟性限制；先前建置仍可能占額度。
+   若限流，等待後重跑最後一次Pages工作，不需反覆上傳相同權重。
+   腳本沒有替您修改GitHub Pages設定，也沒有替您完成真實雲端部署。

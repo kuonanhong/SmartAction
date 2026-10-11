@@ -1,3 +1,4 @@
+import { applyCurriculumLocalesV4 } from './curricula-locales-v4.js';
 import { applyCurriculumLocalesV3 } from './curricula-locales-v3.js';
 /* SmartAction practice-game curriculum.
  * All motion targets and cues below are authored for this game, not motion capture
@@ -804,5 +805,6 @@ function addChineseLocales(value){
 }
 for(const c of curricula) addChineseLocales(c);
 applyCurriculumLocalesV3(curricula);
+applyCurriculumLocalesV4(curricula);
 export const curriculumById = Object.fromEntries(curricula.map(c=>[c.id,c]));
 

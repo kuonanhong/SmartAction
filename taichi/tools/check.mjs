@@ -7,6 +7,9 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {locations} from '../data/locations.js';
 import {dictionary,supportedLanguages} from '../js/i18n.js';
+import {messageDictionary,getMessage} from '../js/messages.js';
+import {curricula} from '../data/curricula.js';
+import {naturalVoiceBanks} from '../data/natural-voices-v4.js';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const modelArg=process.argv.indexOf('--model-dir');
@@ -48,6 +51,17 @@ const dynamicIds=new Set([...app.matchAll(/\.id\s*=\s*['"]([^'"]+)['"]/g)].map(m
 for(const m of app.matchAll(/\$\(['"]([^'"]+)['"]\)/g))expect(idSet.has(m[1])||dynamicIds.has(m[1]),`App depends on absent HTML ID: ${m[1]}`);
 const transKeys=new Set([...html.matchAll(/data-i18n(?:-title|-placeholder)?=['"]([^'"]+)['"]/g)].map(m=>m[1]));
 for(const lang of supportedLanguages)for(const key of transKeys)expect(Object.hasOwn(dictionary[lang],key),`Missing ${lang} translation: ${key}`);
+for(const m of html.matchAll(/data-msg=['"]([^'"]+)['"]/g))for(const lang of supportedLanguages)expect(Object.hasOwn(messageDictionary[lang],m[1]),`Missing runtime translation ${lang}: ${m[1]}`);
+const audioManifest=JSON.parse(await readFile(path.join(root,'assets/audio/manifest.json'),'utf8'));
+const naturalManifest=JSON.parse(await readFile(path.join(root,'data/natural-voices-v4.json'),'utf8'));
+const naturalRecords=naturalManifest.banks.flatMap(b=>b.records);
+expect(naturalVoiceBanks.length===8&&naturalRecords.length===304,'Natural speech must include eight complete 38-clip banks');
+expect(audioManifest.files.length===supportedLanguages.length*38,'Fixed speech must cover every language');
+for(const bank of naturalVoiceBanks){
+  const langs=bank.lang==='zh'?['zh-TW','zh-CN']:['en'];
+  for(const lang of langs){for(const move of curricula.find(c=>c.id==='cheng37').moves)expect(Boolean(bank.clips[move.name[lang]]),`Natural voice missing ${bank.id}/${lang}/${move.id}`);expect(Boolean(bank.clips[getMessage(lang,'voiceTest')]),`Natural voice missing test ${bank.id}/${lang}`);}
+}
+for(const row of [...audioManifest.files,...naturalRecords]){await asset(row.path,htmlPath);const bytes=await readFile(path.join(root,row.path));expect(bytes.length===row.bytes&&digest(bytes)===row.sha256,`Audio size/hash mismatch: ${row.path}`);}
 const actions=new Set([...html.matchAll(/data-action=['"]([^'"]+)['"]/g)].map(m=>m[1]));
 for(const action of ['leg-up','leg-down','leg-left','leg-right','leg-lift','leg-lower','hand-up','hand-down','hand-left','hand-right','hand-forward','hand-back','waist-left','waist-right','crouch','rise','stretch','relax'])expect(actions.has(action),`Missing touch control: ${action}`);
 for(const [id,action]of[['sparStrikeBtn','attack'],['sparBlockBtn','block']]){
@@ -105,7 +119,7 @@ if(await exists(offlinePath)){
   const offline=JSON.parse(await readFile(offlinePath,'utf8')),files=new Set([...(offline.files||[]),...(offline.optional||[])]);
   expect(files.size===(offline.files||[]).length+(offline.optional||[]).length,'Duplicate offline manifest entries');
   for(const file of files)await asset(file,offlinePath);
-  const required=['index.html','styles.css','js/game.js','js/bootstrap.js','js/body-worker.bundle.js','models/pose/pose_landmarker_lite.task','js/app.js','js/coach.js','models/manifest.json',...locations.map(p=>p.photo).filter(Boolean),...runtime.files.filter(f=>/\.(?:js|wasm)$/.test(f.file)).map(f=>`vendor/wllama/${f.file}`)];
+  const required=['index.html','styles.css','js/game.js','js/bootstrap.js','js/body-worker.bundle.js','models/pose/pose_landmarker_lite.task','js/app.js','js/coach.js','models/manifest.json',...locations.map(p=>p.photo).filter(Boolean),...audioManifest.files.map(r=>r.path),...naturalRecords.map(r=>r.path),...runtime.files.filter(f=>/\.(?:js|wasm)$/.test(f.file)).map(f=>`vendor/wllama/${f.file}`)];
   for(const file of required)expect(files.has(file)||files.has(`./${file}`),`Offline cache omits ${file}`);
   expect((offline.files||[]).length<=12,'Core offline installation must stay small; media is opt-in');
   expect(![...files].some(f=>/\.(?:part\d+|gguf)$/.test(f)),'Offline cache should not duplicate large IndexedDB model weights');

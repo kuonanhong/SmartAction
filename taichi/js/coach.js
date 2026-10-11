@@ -1,9 +1,10 @@
+import {addedCoachNames,addedLocaleGuide} from './coach-locales-v4.js';
 /* SmartAction — self-hosted, single-thread CPU language model. MIT. */
 const BASE = typeof document!=='undefined' ? new URL('./',document.baseURI) : new URL('../',import.meta.url);
 const MODEL_BASE = new URL('models/', BASE);
 const hex = bytes => Array.from(new Uint8Array(bytes), n => n.toString(16).padStart(2, '0')).join('');
 const clean = (x, n = 240) => String(x ?? '').replace(/<\|[^>]*\|>/g, '').slice(0, n);
-const names = {'zh-TW':'Traditional Chinese','zh-CN':'Simplified Chinese',en:'English',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',de:'German',pt:'Portuguese',it:'Italian',id:'Indonesian',vi:'Vietnamese',th:'Thai',ar:'Arabic',hi:'Hindi'};
+const names = {...addedCoachNames,'zh-TW':'Traditional Chinese','zh-CN':'Simplified Chinese',en:'English',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',de:'German',pt:'Portuguese',it:'Italian',id:'Indonesian',vi:'Vietnamese',th:'Thai',ar:'Arabic',hi:'Hindi'};
 const messages = {
   'zh-TW': {ready:'離線生成式教練已就緒',loading:'正在驗證並載入 CPU 模型',downloading:'正在下載模型；首次約 484 MB',local:'本機 GGUF 模型',unavailable:'使用課程要領提示；尚未載入生成式模型',error:'模型未載入，仍可使用課程提示',busy:'教練正在回答，請稍候',cancelled:'已取消'},
   en: {ready:'Offline generative coach ready',loading:'Verifying and loading the CPU model',downloading:'Downloading model; first download about 484 MB',local:'Local GGUF model',unavailable:'Course guide mode; generative model not loaded',error:'Model unavailable; course guide still works',busy:'Coach is answering; please wait',cancelled:'Cancelled'}
@@ -42,6 +43,7 @@ function moveFacts(context) {
 }
 function guidedReply(context) {
   const f = moveFacts(context), zh = f.lang.startsWith('zh');
+  const added=addedLocaleGuide(f);if(added!==null)return added;
   const extraPain = {
     it:/\b(?:dolor\w*|male|ferit\w*|capogir\w*|vertigin\w*)\b/i,
     id:/\b(?:sakit|nyeri|pusing|cedera|luka)\b/i,

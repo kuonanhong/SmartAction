@@ -3,7 +3,7 @@
   "engine": "eSpeak NG 1.51",
   "pronunciation": "Mandarin pinyin and Japanese kana input avoids unsupported Hanzi reading; all languages are mechanical synthesis, not instructor narration or native-speaker validation",
   "type": "offline synthesized recordings, not human narration",
-  "scope": "37 default Cheng forms and one test phrase for each of 15 languages",
+  "scope": "37 default Cheng forms and one test phrase for each of 18 languages",
   "engineSource": "https://github.com/espeak-ng/espeak-ng",
   "sourceText": "Original game-authored translated short movement labels and test phrase",
   "files": [
@@ -5706,6 +5706,1146 @@
       "bytes": 24991,
       "sha256": "65b1805b101647e9e59347a438298eda170f2c91cc34c36811a9c448bec08595",
       "voice": "hi"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-01-opening",
+      "text": "Подготовка и начало",
+      "spokenText": "Подготовка и начало",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-01-opening.mp3",
+      "bytes": 10258,
+      "sha256": "865c6e6d5d5e7128e82417e7408a7a55bd77ce0d2919ccfbf6969791b84d76c8"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-02-ward-left",
+      "text": "Отражение влево",
+      "spokenText": "Отражение влево",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-02-ward-left.mp3",
+      "bytes": 9788,
+      "sha256": "4b948bc8f75a0986c7e1087cd59c30b3b03892be05ff22d036452b8f182bda8b"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-03-ward-right",
+      "text": "Отражение вправо",
+      "spokenText": "Отражение вправо",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-03-ward-right.mp3",
+      "bytes": 10571,
+      "sha256": "d7b0782c1c5342d1285b9ef36f787e822935b884640c4aed52ece5fba44790d5"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-04-rollback",
+      "text": "Откатывание назад",
+      "spokenText": "Откатывание назад",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-04-rollback.mp3",
+      "bytes": 10885,
+      "sha256": "ccf6c2d71e5789a03865c13becefc79deae6fa40aea79feb477d1b73a9cba7f0"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-05-press",
+      "text": "Сдавливание",
+      "spokenText": "Сдавливание",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-05-press.mp3",
+      "bytes": 8534,
+      "sha256": "f1761207a80f2fa08ee0763dfd1c973b814209cd77347c41b90e37b991711137"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-06-push",
+      "text": "Толчок",
+      "spokenText": "Толчок",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-06-push.mp3",
+      "bytes": 6653,
+      "sha256": "3eb7c7d4764f9a1786588ebad93b4ec66de0fbf2e6145d3b80b72b6dfa2a306e"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-07-single-whip",
+      "text": "Одиночный кнут",
+      "spokenText": "Одиночный кнут",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-07-single-whip.mp3",
+      "bytes": 9317,
+      "sha256": "bf6eb83261dd3eb31c96277f6c9f97efbf8d324837ac147baa9862f628bea493"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-08-raise-hands",
+      "text": "Поднять руки",
+      "spokenText": "Поднять руки",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-08-raise-hands.mp3",
+      "bytes": 8534,
+      "sha256": "c56e25cd2001d05f47b2ac4ca1253c5faaf97305fa40106c6112ef4b1af76e8e"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-09-shoulder",
+      "text": "Выравнивание плеча",
+      "spokenText": "Выравнивание плеча",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-09-shoulder.mp3",
+      "bytes": 11198,
+      "sha256": "d73cd7060af20c1d9cd574fbbf208097dbc254f8a21786bb4b73ef4ede1e4f61"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-10-white-crane",
+      "text": "Белый журавль расправляет крылья",
+      "spokenText": "Белый журавль расправляет крылья",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-10-white-crane.mp3",
+      "bytes": 15900,
+      "sha256": "f094453a7cba2f707a3f86f4bac19dc28d31be361203e210e3fa4d4ce0ba8117"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-11-brush-left",
+      "text": "Обмахнуть левое колено и толкнуть",
+      "spokenText": "Обмахнуть левое колено и толкнуть",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-11-brush-left.mp3",
+      "bytes": 14490,
+      "sha256": "8708c3cd10c20aabd9b301f0ebc70b24a9fab0cbb00444781d81bb546257dd5e"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-12-lute",
+      "text": "Игра на лютне",
+      "spokenText": "Игра на лютне",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-12-lute.mp3",
+      "bytes": 8690,
+      "sha256": "e432b036836d84f61311494f0389bd85b2daafbab408f4f188ad34829a8313c8"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-13-parry-punch",
+      "text": "Шаг, отведение и удар кулаком",
+      "spokenText": "Шаг, отведение и удар кулаком",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-13-parry-punch.mp3",
+      "bytes": 16527,
+      "sha256": "34658f2f913c496016b0374149752e7c8f870252f5e11e4dd830c1add640bcba"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-14-apparent-close",
+      "text": "Закрыть и защитить",
+      "spokenText": "Закрыть и защитить",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-14-apparent-close.mp3",
+      "bytes": 10101,
+      "sha256": "af25e486f020177cfebe0df4e8c82e4df50400e06cbd53eb55548a4a73f33bdd"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-15-cross-hands",
+      "text": "Скрещённые руки",
+      "spokenText": "Скрещённые руки",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-15-cross-hands.mp3",
+      "bytes": 10258,
+      "sha256": "3035c79e4cb9d99f28bfb4734378c56112a7e96c00e2d37598ab1b5400afecb2"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-16-embrace-tiger",
+      "text": "Обнять тигра и вернуться в горы",
+      "spokenText": "Обнять тигра и вернуться в горы",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-16-embrace-tiger.mp3",
+      "bytes": 13863,
+      "sha256": "d24b949513dc630aa211ef47395d823d2947b17e15bb88c980cb0a26051f26c5"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-17-fist-under-elbow",
+      "text": "Кулак под локтем",
+      "spokenText": "Кулак под локтем",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-17-fist-under-elbow.mp3",
+      "bytes": 10101,
+      "sha256": "ee129e224c92e4036e260154073b4074cc3fc3c393931d78a94da11aa90ff1cc"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-18-repulse-right",
+      "text": "Отогнать обезьяну справа",
+      "spokenText": "Отогнать обезьяну справа",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-18-repulse-right.mp3",
+      "bytes": 12922,
+      "sha256": "cf426ff4cc3f357dac2b3ce9db81cea13200ba8f212884ed2c260a5aefb75f94"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-19-repulse-left",
+      "text": "Отогнать обезьяну слева",
+      "spokenText": "Отогнать обезьяну слева",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-19-repulse-left.mp3",
+      "bytes": 12452,
+      "sha256": "6511020ef2a59d3e579795d08a3c5e5fccfd435b3f878320a7dd455eb74e2619"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-20-diagonal-flying",
+      "text": "Косой полёт",
+      "spokenText": "Косой полёт",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-20-diagonal-flying.mp3",
+      "bytes": 8377,
+      "sha256": "8dcfd3b378e24356a599b9a0317ac94ce70f2b58a5fde7ae3ce764a15651b110"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-21-cloud-left",
+      "text": "Облачные руки влево",
+      "spokenText": "Облачные руки влево",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-21-cloud-left.mp3",
+      "bytes": 10728,
+      "sha256": "cee0356e9e93ea9250ddbdc9847eba046f10215c24684913f337ad638c2fcb8d"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-22-cloud-right",
+      "text": "Облачные руки вправо",
+      "spokenText": "Облачные руки вправо",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-22-cloud-right.mp3",
+      "bytes": 11512,
+      "sha256": "be3287b6b028ce8c68af832f9ce352e5fa5f4ad28e4e8b64d8e301f27fbdc069"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-23-low-single-whip",
+      "text": "Низкий одиночный кнут, неглубоко",
+      "spokenText": "Низкий одиночный кнут, неглубоко",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-23-low-single-whip.mp3",
+      "bytes": 16684,
+      "sha256": "1986d84a237baa24bf7200d47d0f0dd7a74c84c9841790993f95805a3b8deaca"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-24-rooster-left",
+      "text": "Правый золотой петух, низкое колено",
+      "spokenText": "Правый золотой петух, низкое колено",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-24-rooster-left.mp3",
+      "bytes": 17781,
+      "sha256": "2fa851010c71506b4a5821c0125df935e26069ee6ea32bf5709a21cd177ba136"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-25-rooster-right",
+      "text": "Левый золотой петух, низкое колено",
+      "spokenText": "Левый золотой петух, низкое колено",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-25-rooster-right.mp3",
+      "bytes": 17311,
+      "sha256": "6e66ff03590941f21e64dca5ade9337b6ca81dcd626584d6932ee060bb5880d0"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-26-separate-right",
+      "text": "Невысоко отвести правую стопу",
+      "spokenText": "Невысоко отвести правую стопу",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-26-separate-right.mp3",
+      "bytes": 14960,
+      "sha256": "9c47e3a92bb696d9f2871966dafcf8245bdb462153745e3f7132d73eebe07909"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-27-separate-left",
+      "text": "Невысоко отвести левую стопу",
+      "spokenText": "Невысоко отвести левую стопу",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-27-separate-left.mp3",
+      "bytes": 14333,
+      "sha256": "20b199b03c7c36bba8cfdf60c7e12a8e25e129363f9cf6316fd897b4f11a1861"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-28-turn-heel",
+      "text": "Поворот и низкий удар пяткой",
+      "spokenText": "Поворот и низкий удар пяткой",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-28-turn-heel.mp3",
+      "bytes": 13863,
+      "sha256": "d2d696df7f6672eb22671192048fee2b905180f6555830c0a223755decf5087f"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-29-plant-punch",
+      "text": "Шаг и удар кулаком вниз",
+      "spokenText": "Шаг и удар кулаком вниз",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-29-plant-punch.mp3",
+      "bytes": 12139,
+      "sha256": "04e6f9142904be74988eaa346aa9c641aaced17decaac9bb9b3634f545cd5a73"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-30-shuttle",
+      "text": "Дева ткет челноком 1",
+      "spokenText": "Дева ткет челноком 1",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-30-shuttle.mp3",
+      "bytes": 12922,
+      "sha256": "482935ba8035f95791690df5fe0f348461b2992dd41e61c392ce7e5737c06dcd"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-31-shuttle-2",
+      "text": "Дева ткет челноком 2",
+      "spokenText": "Дева ткет челноком 2",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-31-shuttle-2.mp3",
+      "bytes": 13392,
+      "sha256": "90f1358b6bf86decc6c5a6bada63cb54420264680c9eeeca97c46370c90dd391"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-32-shuttle-3",
+      "text": "Дева ткет челноком 3",
+      "spokenText": "Дева ткет челноком 3",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-32-shuttle-3.mp3",
+      "bytes": 12766,
+      "sha256": "8eec70330688448254cd34ca57b53142d4aa51964605b745cb2bb62f2926dab7"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-33-shuttle-4",
+      "text": "Дева ткет челноком 4",
+      "spokenText": "Дева ткет челноком 4",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-33-shuttle-4.mp3",
+      "bytes": 14333,
+      "sha256": "3bbd7620d7a38bff105622162410dbfb322a62c0abad455b80f7b0d3e2e9066e"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-34-seven-stars",
+      "text": "Шаг к семи звёздам",
+      "spokenText": "Шаг к семи звёздам",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-34-seven-stars.mp3",
+      "bytes": 12766,
+      "sha256": "04997acfa72fea6b8a21a0c61cfeebb0253c5314730c5d1a4664192635bdd5d5"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-35-ride-tiger",
+      "text": "Отступить и оседлать тигра",
+      "spokenText": "Отступить и оседлать тигра",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-35-ride-tiger.mp3",
+      "bytes": 12139,
+      "sha256": "38f40eb4dee78e8256c763c46d84a1c6db8eff41dcda62d5e66826e2dc76e5da"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-36-lotus-turn",
+      "text": "Поворот и низкий взмах лотоса",
+      "spokenText": "Поворот и низкий взмах лотоса",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-36-lotus-turn.mp3",
+      "bytes": 14490,
+      "sha256": "e08f28fe3461a396cb150b559a19b574ee2f7a4c7ecba2a94fa8eee8dde87355"
+    },
+    {
+      "lang": "ru",
+      "id": "cheng37-37-bow-tiger",
+      "text": "Натянуть лук и прицелиться в тигра",
+      "spokenText": "Натянуть лук и прицелиться в тигра",
+      "voice": "ru",
+      "path": "assets/audio/ru/cheng37-37-bow-tiger.mp3",
+      "bytes": 15430,
+      "sha256": "d72157498bd010075719ef2fc4729d00237d5b77f32fb94869928067645e3bb8"
+    },
+    {
+      "lang": "ru",
+      "id": "voice-test",
+      "text": "Расслабьте плечи. Приготовьтесь к занятию.",
+      "spokenText": "Расслабьте плечи. Приготовьтесь к занятию.",
+      "voice": "ru",
+      "path": "assets/audio/ru/voice-test.mp3",
+      "bytes": 22797,
+      "sha256": "8c5ad8adfeb7b61cbf78ee0eb8c48a1c1a6c0b1f4711272df7a12c77a0920eb6"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-01-opening",
+      "text": "Hazırlık ve açılış",
+      "spokenText": "Hazırlık ve açılış",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-01-opening.mp3",
+      "bytes": 13706,
+      "sha256": "3b4aaf35045b5d132451bebb2c5caf6944f2500fa3a2ed0907ca28e8e4ec9e7b"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-02-ward-left",
+      "text": "Sola savuşturma",
+      "spokenText": "Sola savuşturma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-02-ward-left.mp3",
+      "bytes": 12139,
+      "sha256": "f902c4ed014921fe3b1b93faed496c3ac57172196d9e715283f035c3220c4fc5"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-03-ward-right",
+      "text": "Sağa savuşturma",
+      "spokenText": "Sağa savuşturma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-03-ward-right.mp3",
+      "bytes": 11668,
+      "sha256": "1a730d2e3129feeeb223ff04762c073d03cbe38b1047926cd7f693257ac353c5"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-04-rollback",
+      "text": "Geri yönlendirme",
+      "spokenText": "Geri yönlendirme",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-04-rollback.mp3",
+      "bytes": 11512,
+      "sha256": "75a54e94bb362bd9fc26189f6f4c94be89d90593a3a1440a6a1777b61f33f1fd"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-05-press",
+      "text": "Bastırma",
+      "spokenText": "Bastırma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-05-press.mp3",
+      "bytes": 7907,
+      "sha256": "b1cff50c865f7c5b3cbd08f8cef3d86cfa4eff850b9597c155889dfac4d3a06d"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-06-push",
+      "text": "İtme",
+      "spokenText": "İtme",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-06-push.mp3",
+      "bytes": 6183,
+      "sha256": "09b3a2c3ef57375fc3ef820da79f74c7bf9274960178bb831f9e7f42b76c5e69"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-07-single-whip",
+      "text": "Tek kırbaç",
+      "spokenText": "Tek kırbaç",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-07-single-whip.mp3",
+      "bytes": 9631,
+      "sha256": "247b5284fe95c3d75ce8a5bd4fa7d98f9c735ca7a6bcd06a70c92065c862cc11"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-08-raise-hands",
+      "text": "Elleri kaldırma",
+      "spokenText": "Elleri kaldırma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-08-raise-hands.mp3",
+      "bytes": 11512,
+      "sha256": "a4ff9f2ef6f718e20ff98c735a32369f67d95ce07bc6e8674cf0c3b7e5d87168"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-09-shoulder",
+      "text": "Omuz hizalama",
+      "spokenText": "Omuz hizalama",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-09-shoulder.mp3",
+      "bytes": 11041,
+      "sha256": "6926a118073415b794f95432c7dbfb8ab7c09f17110017bcb2641135f8b4465f"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-10-white-crane",
+      "text": "Beyaz turna kanat açar",
+      "spokenText": "Beyaz turna kanat açar",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-10-white-crane.mp3",
+      "bytes": 14803,
+      "sha256": "98438ad7ab7c311e0798f782febf6f32ca3e7c17afc25f4beb2956b7577a22ea"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-11-brush-left",
+      "text": "Sol dizi sıyırıp itme",
+      "spokenText": "Sol dizi sıyırıp itme",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-11-brush-left.mp3",
+      "bytes": 14490,
+      "sha256": "48ff387e094229e37121c3a9a9d064e37ce206c9c292ffe2da1d87766ca11079"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-12-lute",
+      "text": "Lavta çalma",
+      "spokenText": "Lavta çalma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-12-lute.mp3",
+      "bytes": 9944,
+      "sha256": "4191315e3930a9a7f9cdb7394caa046dc6feb22002c110b1cb57787dee474f3b"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-13-parry-punch",
+      "text": "Adım, savuşturma ve yumruk",
+      "spokenText": "Adım, savuşturma ve yumruk",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-13-parry-punch.mp3",
+      "bytes": 19035,
+      "sha256": "5374ad6c0b96d3cee17a54956e80e993982047cf358593a8ad22245ba073fd8b"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-14-apparent-close",
+      "text": "Kapatma ve koruma",
+      "spokenText": "Kapatma ve koruma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-14-apparent-close.mp3",
+      "bytes": 13236,
+      "sha256": "e05f8445343fdff2a669bf688c0fd12a782edcf909a5d9ed32868bb7ac1f9ec5"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-15-cross-hands",
+      "text": "Elleri çaprazlama",
+      "spokenText": "Elleri çaprazlama",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-15-cross-hands.mp3",
+      "bytes": 13079,
+      "sha256": "c343f6605c643a4566ce955b76360608a43cf133a9b557b60840d042bb6f82fe"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-16-embrace-tiger",
+      "text": "Kaplanı kucaklayıp dağa dönüş",
+      "spokenText": "Kaplanı kucaklayıp dağa dönüş",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-16-embrace-tiger.mp3",
+      "bytes": 17624,
+      "sha256": "ede278b946b9b3698053c24d032b0ca2d998b05417e53baae8173a9d92f8e993"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-17-fist-under-elbow",
+      "text": "Dirsek altında yumruk",
+      "spokenText": "Dirsek altında yumruk",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-17-fist-under-elbow.mp3",
+      "bytes": 14019,
+      "sha256": "1b01b7c0f53a454b128a02b3c3f15ad414091ae2a0ade33219cdcf7a9853e901"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-18-repulse-right",
+      "text": "Maymunu sağdan uzaklaştırma",
+      "spokenText": "Maymunu sağdan uzaklaştırma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-18-repulse-right.mp3",
+      "bytes": 16841,
+      "sha256": "ae7d6d66f7b04948ee7df94700d07b9869f06d1824cb6f4eaff322f02a951f26"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-19-repulse-left",
+      "text": "Maymunu soldan uzaklaştırma",
+      "spokenText": "Maymunu soldan uzaklaştırma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-19-repulse-left.mp3",
+      "bytes": 16684,
+      "sha256": "c3a58a1fb07dd343f591250bf3311b8dda7e0d09b89a58f6ba3a31890991a0d9"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-20-diagonal-flying",
+      "text": "Çapraz uçuş",
+      "spokenText": "Çapraz uçuş",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-20-diagonal-flying.mp3",
+      "bytes": 10258,
+      "sha256": "35c4e9786fb5ad9e3a2d5ee7b4654feedbe1c937be8417873d1288271f14b51b"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-21-cloud-left",
+      "text": "Bulut elleri sola",
+      "spokenText": "Bulut elleri sola",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-21-cloud-left.mp3",
+      "bytes": 12609,
+      "sha256": "81eda3fa116cb730df92f391e382f85f06f1f32c51e318b0a4e33d27fd3e2384"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-22-cloud-right",
+      "text": "Bulut elleri sağa",
+      "spokenText": "Bulut elleri sağa",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-22-cloud-right.mp3",
+      "bytes": 12609,
+      "sha256": "2b38ddf54546c29f608f4edeb1f660ee12d48a716adadb50394dc61da0feb83e"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-23-low-single-whip",
+      "text": "Alçak tek kırbaç, hafif çömelme",
+      "spokenText": "Alçak tek kırbaç, hafif çömelme",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-23-low-single-whip.mp3",
+      "bytes": 22170,
+      "sha256": "2fa9d9a6427b741d456e6dc0f5bcb792e16553a2b9c3f78d076a71abcab3ef4a"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-24-rooster-left",
+      "text": "Sağ altın horoz, alçak diz",
+      "spokenText": "Sağ altın horoz, alçak diz",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-24-rooster-left.mp3",
+      "bytes": 19348,
+      "sha256": "a2bd56579e6f77a07c681cde57dbf7b81cfcb54d1aa017f9956139efeab870e8"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-25-rooster-right",
+      "text": "Sol altın horoz, alçak diz",
+      "spokenText": "Sol altın horoz, alçak diz",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-25-rooster-right.mp3",
+      "bytes": 19348,
+      "sha256": "605c3380f4166976fc7545dc89df8b90b410ff9cd3f45a14947da000f30ee142"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-26-separate-right",
+      "text": "Sağ ayağı alçaktan açma",
+      "spokenText": "Sağ ayağı alçaktan açma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-26-separate-right.mp3",
+      "bytes": 16057,
+      "sha256": "0798ea47cf54a562e2360664517744e2f3b9e4e030b4029c157d14fa3378f350"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-27-separate-left",
+      "text": "Sol ayağı alçaktan açma",
+      "spokenText": "Sol ayağı alçaktan açma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-27-separate-left.mp3",
+      "bytes": 16057,
+      "sha256": "d430729fd472943bff3709eb92e523170d6b437377d3342cb6fdc1390aacf18b"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-28-turn-heel",
+      "text": "Dönüş ve alçak topuk vuruşu",
+      "spokenText": "Dönüş ve alçak topuk vuruşu",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-28-turn-heel.mp3",
+      "bytes": 17938,
+      "sha256": "73d82e578487ee1b3d2ed96ac55bb4e2171bd4a204f4a6631087fc2f4ad9a2c0"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-29-plant-punch",
+      "text": "Adım ve aşağı yumruk",
+      "spokenText": "Adım ve aşağı yumruk",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-29-plant-punch.mp3",
+      "bytes": 14646,
+      "sha256": "626f3a907cba54916c4c7e3ee9cdf328c2dab07a66f00e71699d48e987c0d89f"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-30-shuttle",
+      "text": "Genç kadın mekik dokur 1",
+      "spokenText": "Genç kadın mekik dokur 1",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-30-shuttle.mp3",
+      "bytes": 17154,
+      "sha256": "f0889685846718f99792eadf152d76ad8bca8d5f7520dde69227790c4e0aaec4"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-31-shuttle-2",
+      "text": "Genç kadın mekik dokur 2",
+      "spokenText": "Genç kadın mekik dokur 2",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-31-shuttle-2.mp3",
+      "bytes": 17624,
+      "sha256": "6f33c20d2f80e79b9f84077b47d7d08bb41427ddc20888f28aff7997a2b602d6"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-32-shuttle-3",
+      "text": "Genç kadın mekik dokur 3",
+      "spokenText": "Genç kadın mekik dokur 3",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-32-shuttle-3.mp3",
+      "bytes": 16997,
+      "sha256": "32863f88cdfb8c7cca92f6d419395d5998fe94715293b16b29cd250dcf1037e4"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-33-shuttle-4",
+      "text": "Genç kadın mekik dokur 4",
+      "spokenText": "Genç kadın mekik dokur 4",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-33-shuttle-4.mp3",
+      "bytes": 17624,
+      "sha256": "9ca772b2ae68291b5204bb0edbe5507596c427fbca6e53d027c3df7f0a83b940"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-34-seven-stars",
+      "text": "Yedi yıldıza adım",
+      "spokenText": "Yedi yıldıza adım",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-34-seven-stars.mp3",
+      "bytes": 12609,
+      "sha256": "a9996e3e4792b5266e4d4ce138ba276383672afb62dddb8c76adae88579b0199"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-35-ride-tiger",
+      "text": "Geri adım ve kaplana binme",
+      "spokenText": "Geri adım ve kaplana binme",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-35-ride-tiger.mp3",
+      "bytes": 16997,
+      "sha256": "5e48fbc512248c46c2a2f6a6e99bef414e5648d53c0296ebd16efd35ed600855"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-36-lotus-turn",
+      "text": "Dönüş ve alçak lotus süpürüşü",
+      "spokenText": "Dönüş ve alçak lotus süpürüşü",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-36-lotus-turn.mp3",
+      "bytes": 18721,
+      "sha256": "24b86880c173ec5c16fc2122266f10be4be70bd1c1eceb3845f91ade7b233641"
+    },
+    {
+      "lang": "tr",
+      "id": "cheng37-37-bow-tiger",
+      "text": "Yayı gerip kaplana nişan alma",
+      "spokenText": "Yayı gerip kaplana nişan alma",
+      "voice": "tr",
+      "path": "assets/audio/tr/cheng37-37-bow-tiger.mp3",
+      "bytes": 18095,
+      "sha256": "81e1e32de084f12621c7a20bcfee0e3b89dc99570f608a7d8db23eb74026dd42"
+    },
+    {
+      "lang": "tr",
+      "id": "voice-test",
+      "text": "Omuzlarınızı gevşetin. Çalışmaya hazırlanın.",
+      "spokenText": "Omuzlarınızı gevşetin. Çalışmaya hazırlanın.",
+      "voice": "tr",
+      "path": "assets/audio/tr/voice-test.mp3",
+      "bytes": 28596,
+      "sha256": "1997fa63adc9fbe6e1a21d62fb9eb8920ea95fb0ca453a759b9a9f843a3a008d"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-01-opening",
+      "text": "Voorbereiding en opening",
+      "spokenText": "Voorbereiding en opening",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-01-opening.mp3",
+      "bytes": 13706,
+      "sha256": "4b4bfe5cbaebea8bdc53c360e05585ad20ddb1c02fc957c75bfa26343bd44ead"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-02-ward-left",
+      "text": "Links afweren",
+      "spokenText": "Links afweren",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-02-ward-left.mp3",
+      "bytes": 10571,
+      "sha256": "798db69605aec86749fb577fe63bc4ee9baf8776f2849985c7d25b08626ae838"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-03-ward-right",
+      "text": "Rechts afweren",
+      "spokenText": "Rechts afweren",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-03-ward-right.mp3",
+      "bytes": 10728,
+      "sha256": "549ccf5167f09b1185c24504689d83015140085e741eff1390f3c6ade965231a"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-04-rollback",
+      "text": "Naar achteren afleiden",
+      "spokenText": "Naar achteren afleiden",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-04-rollback.mp3",
+      "bytes": 12609,
+      "sha256": "32de76ee3383332f993f1d67ac56da0acd9e368b6624fa5b2c8c0b8ec3a1ac8f"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-05-press",
+      "text": "Drukken",
+      "spokenText": "Drukken",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-05-press.mp3",
+      "bytes": 6496,
+      "sha256": "4a5408333290b72a2e27112a169b0fa5f0a5240ee2d5e01a66b3ab509533822f"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-06-push",
+      "text": "Duwen",
+      "spokenText": "Duwen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-06-push.mp3",
+      "bytes": 5869,
+      "sha256": "8fad428e2faa3515b5812e6eebf74edf77420c31bcddb3c5750ac6b5d0fbad02"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-07-single-whip",
+      "text": "Enkele zweep",
+      "spokenText": "Enkele zweep",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-07-single-whip.mp3",
+      "bytes": 9161,
+      "sha256": "64657438ffa1a192120ae99c18bff4dd406c5200955d0ccef5970f87460ca998"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-08-raise-hands",
+      "text": "Handen heffen",
+      "spokenText": "Handen heffen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-08-raise-hands.mp3",
+      "bytes": 9161,
+      "sha256": "1117318e83ba8383017fdc30918015b1ad1ae7041c586eb772832f33941a8093"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-09-shoulder",
+      "text": "Schouder uitlijnen",
+      "spokenText": "Schouder uitlijnen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-09-shoulder.mp3",
+      "bytes": 10885,
+      "sha256": "df89c55afa030403883360c04c597cf0b9a0f7b7813bb2c0d99b2d8ec07af365"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-10-white-crane",
+      "text": "Witte kraanvogel spreidt zijn vleugels",
+      "spokenText": "Witte kraanvogel spreidt zijn vleugels",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-10-white-crane.mp3",
+      "bytes": 19035,
+      "sha256": "98ed23bac50882dc2d95708629a3e13aeb51beb33b382ec855bd6c142069d19f"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-11-brush-left",
+      "text": "Linkerknie strijken en duwen",
+      "spokenText": "Linkerknie strijken en duwen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-11-brush-left.mp3",
+      "bytes": 15900,
+      "sha256": "ed11dd4d2632d4d4ea87fc56f5f0deb1abf5c376e8af26abcde65bf19470d22c"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-12-lute",
+      "text": "De luit bespelen",
+      "spokenText": "De luit bespelen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-12-lute.mp3",
+      "bytes": 9944,
+      "sha256": "46ba8fbb0689ab7de7eed667c9f2aa8f5e9963ca850abd1392cd9c8211f5b571"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-13-parry-punch",
+      "text": "Stappen, afweren en stoten",
+      "spokenText": "Stappen, afweren en stoten",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-13-parry-punch.mp3",
+      "bytes": 15587,
+      "sha256": "e4d5515c2e89eb395b035ded0e68cbb0b7c2f7da31c3450c5fd6d381d7ce66c2"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-14-apparent-close",
+      "text": "Sluiten en beschermen",
+      "spokenText": "Sluiten en beschermen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-14-apparent-close.mp3",
+      "bytes": 11982,
+      "sha256": "8c39debe99584d27aef99f4ef6e3e6d9378a49f9791e09500c0e4629d7b4d763"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-15-cross-hands",
+      "text": "Handen kruisen",
+      "spokenText": "Handen kruisen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-15-cross-hands.mp3",
+      "bytes": 10258,
+      "sha256": "2b3e15fdfd8e29cdac936a75638bacf18d3cda558e4530bd42197b229c61c8e1"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-16-embrace-tiger",
+      "text": "De tijger omarmen en terugkeren naar de berg",
+      "spokenText": "De tijger omarmen en terugkeren naar de berg",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-16-embrace-tiger.mp3",
+      "bytes": 22013,
+      "sha256": "b61c22d21543b4e0a2d7ef8513c7e36f103b64ce3d709e03db8a5a3e9df96a57"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-17-fist-under-elbow",
+      "text": "Vuist onder de elleboog",
+      "spokenText": "Vuist onder de elleboog",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-17-fist-under-elbow.mp3",
+      "bytes": 12922,
+      "sha256": "cb7ee9b156b2d24ff10868f864c402005b72593553e8ab0c8c751897b23c7f46"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-18-repulse-right",
+      "text": "Aap rechts verdrijven",
+      "spokenText": "Aap rechts verdrijven",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-18-repulse-right.mp3",
+      "bytes": 12766,
+      "sha256": "cc1ecb7fdcf9456c2cc599c91d20f7cd5787e7dd98aa8229c735924ed5d31cfa"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-19-repulse-left",
+      "text": "Aap links verdrijven",
+      "spokenText": "Aap links verdrijven",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-19-repulse-left.mp3",
+      "bytes": 12766,
+      "sha256": "816550190cb93696a174e16007f8c9389408801540667c3a9638a0867a0ebdce"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-20-diagonal-flying",
+      "text": "Diagonaal vliegen",
+      "spokenText": "Diagonaal vliegen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-20-diagonal-flying.mp3",
+      "bytes": 10258,
+      "sha256": "ea00096b21364f46227fd3a7b87a54f83b86bed4683a4e01856b09bd970ddf37"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-21-cloud-left",
+      "text": "Wolkenhanden links",
+      "spokenText": "Wolkenhanden links",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-21-cloud-left.mp3",
+      "bytes": 11982,
+      "sha256": "44a1b38e968857ca164b566955f4d0a3fec4f756a0408f26bcacddcf84797bf3"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-22-cloud-right",
+      "text": "Wolkenhanden rechts",
+      "spokenText": "Wolkenhanden rechts",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-22-cloud-right.mp3",
+      "bytes": 12139,
+      "sha256": "164aea5ddce10880bea502929bdf2dd5e7539ba66e19881cf49f277c4d2dbf5f"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-23-low-single-whip",
+      "text": "Lage enkele zweep, licht gebogen",
+      "spokenText": "Lage enkele zweep, licht gebogen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-23-low-single-whip.mp3",
+      "bytes": 19192,
+      "sha256": "2e85e6cd957ae488043e49bfa9a0ff4be3a6ddd06de9435aab247120f8a0f7cc"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-24-rooster-left",
+      "text": "Rechter gouden haan, lage knie",
+      "spokenText": "Rechter gouden haan, lage knie",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-24-rooster-left.mp3",
+      "bytes": 18095,
+      "sha256": "6ec35323bc45189742e115008445d045cdfd1166d9c5e8656edbe35df70a3eeb"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-25-rooster-right",
+      "text": "Linker gouden haan, lage knie",
+      "spokenText": "Linker gouden haan, lage knie",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-25-rooster-right.mp3",
+      "bytes": 17938,
+      "sha256": "e9be766eee0dc211a349b0a1a1d5047f15c5d83fcf580f2141d8a1fc0e3b2335"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-26-separate-right",
+      "text": "Rechtervoet laag openen",
+      "spokenText": "Rechtervoet laag openen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-26-separate-right.mp3",
+      "bytes": 12922,
+      "sha256": "ee04d958e41216a7d980da549ae7b7929d67843a4333289409c5cd9741eb43e0"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-27-separate-left",
+      "text": "Linkervoet laag openen",
+      "spokenText": "Linkervoet laag openen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-27-separate-left.mp3",
+      "bytes": 12766,
+      "sha256": "317a7006e4f015f9bc256d22af495c454ea5d9437b5457df622b83d27f3c3b9f"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-28-turn-heel",
+      "text": "Draaien en lage hieltrap",
+      "spokenText": "Draaien en lage hieltrap",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-28-turn-heel.mp3",
+      "bytes": 12766,
+      "sha256": "27637741ce05f04126b890417a0e409db3d1526520d3adb41a2c3eb1740f8298"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-29-plant-punch",
+      "text": "Stap en neerwaartse stoot",
+      "spokenText": "Stap en neerwaartse stoot",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-29-plant-punch.mp3",
+      "bytes": 13549,
+      "sha256": "442c6a85d59a1a3672641c193742b6acf317b164d16c8eff4523dc7b4f3bf26c"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-30-shuttle",
+      "text": "De dame weeft 1",
+      "spokenText": "De dame weeft 1",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-30-shuttle.mp3",
+      "bytes": 10885,
+      "sha256": "79c01695986dcb3d51fc9fc155c05d5e6934d1bef183bf7aeaad17d2cd809c2c"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-31-shuttle-2",
+      "text": "De dame weeft 2",
+      "spokenText": "De dame weeft 2",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-31-shuttle-2.mp3",
+      "bytes": 11512,
+      "sha256": "2e99a35c6ef0ffb8a403be2fdf2627037eeda63ecb398ea619333b34159f0af6"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-32-shuttle-3",
+      "text": "De dame weeft 3",
+      "spokenText": "De dame weeft 3",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-32-shuttle-3.mp3",
+      "bytes": 11041,
+      "sha256": "c4ff94881f07e1b04d7ca2f86f28bb3c87ebf7d6f274deb359471a1ff834fcf3"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-33-shuttle-4",
+      "text": "De dame weeft 4",
+      "spokenText": "De dame weeft 4",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-33-shuttle-4.mp3",
+      "bytes": 10885,
+      "sha256": "8513148dbcd9e075e5bef594e2327396c7d1aaf16ad593dc506ebbbc2d04f034"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-34-seven-stars",
+      "text": "Naar de zeven sterren stappen",
+      "spokenText": "Naar de zeven sterren stappen",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-34-seven-stars.mp3",
+      "bytes": 14490,
+      "sha256": "a035f4326f4c1766c5253c97ab436d45346d9ded1f0463f4e2ae193cbccc8d02"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-35-ride-tiger",
+      "text": "Terugstappen en de tijger berijden",
+      "spokenText": "Terugstappen en de tijger berijden",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-35-ride-tiger.mp3",
+      "bytes": 16997,
+      "sha256": "03192e17e83ac150808ac5c6fdd914261cba462d7f69e2b6817d475488515afd"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-36-lotus-turn",
+      "text": "Draaien en lage lotusveeg",
+      "spokenText": "Draaien en lage lotusveeg",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-36-lotus-turn.mp3",
+      "bytes": 13863,
+      "sha256": "6f5350a87da1f6c879d43938537dc1f6717875f1a89c4983c4ae9b34d7be0091"
+    },
+    {
+      "lang": "nl",
+      "id": "cheng37-37-bow-tiger",
+      "text": "Boog spannen en op de tijger richten",
+      "spokenText": "Boog spannen en op de tijger richten",
+      "voice": "nl",
+      "path": "assets/audio/nl/cheng37-37-bow-tiger.mp3",
+      "bytes": 17468,
+      "sha256": "65329024bcb5b5ad2e56e2284b62b55d541a0f7cab054024145a5eef9a5346c3"
+    },
+    {
+      "lang": "nl",
+      "id": "voice-test",
+      "text": "Ontspan je schouders. Maak je klaar om te oefenen.",
+      "spokenText": "Ontspan je schouders. Maak je klaar om te oefenen.",
+      "voice": "nl",
+      "path": "assets/audio/nl/voice-test.mp3",
+      "bytes": 25775,
+      "sha256": "2ac0674a9b6bb4f23258f61e0efa7dc1d2537151bc79d6e115765886eb814c44"
     }
   ],
   "licenseNote": "Generated project text and audio: project MIT license. eSpeak NG engine GPL-3.0-or-later is not distributed; see assets/audio/README.txt.",

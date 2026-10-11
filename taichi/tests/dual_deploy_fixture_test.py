@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""v3 integration coverage: two isolated bare remotes, no GitHub writes."""
+"""v4 integration coverage: two isolated bare remotes, no GitHub writes."""
 import importlib.util
 import json
 from pathlib import Path
@@ -94,6 +94,29 @@ class DualDeploymentFixture(DeploymentFixture):
         self.run_command('git','-C',str(self.seed),'push','origin','main')
         result=self.deploy('--web-only');self.assertIn('未建立假的協會首頁',result.stdout)
         self.assertNotEqual(self.run_command('git','--git-dir',str(self.remote),'cat-file','-e','main:index.html',check=False).returncode,0)
+    def test_v4_public_audio_layout_and_lockfile_both_targets(self):
+        expected={
+            'js/layout.js':'export const layout="v4";\n',
+            'data/audio/manifest.json':'{"voice":"fixture"}\n',
+            'assets/audio-natural/zh-TW/opening.mp3':'fixture natural voice bytes',
+            'assets/audio/zh-Hant/voice-test.mp3':'fixture fallback voice bytes',
+            'styles.css':'body{color:#123}\n',
+            'README_ZH.md':'v4 fixture documentation\n',
+            'package-lock.json':'{"lockfileVersion":3}\n',
+            'docs/UPLOAD_V4_QUICKSTART.txt':'v4 quickstart fixture\n',
+        }
+        for rel,content in expected.items():
+            target=self.source/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(content)
+        helper_spec=importlib.util.spec_from_file_location('legacy_prepare',PROJECT/'tools/prepare_deploy.py')
+        helper=importlib.util.module_from_spec(helper_spec);helper_spec.loader.exec_module(helper)
+        discovered={str(path.relative_to(self.source)) for path in helper.public_files(self.source)}
+        self.assertTrue(set(expected)<=discovered)
+        result=self.deploy_both('--web-only')
+        self.assertIn('SmartAction dual uploader v4.0',result.stdout)
+        for rel,content in expected.items():
+            self.assertEqual(self.show('taichi/'+rel),content)
+            self.assertEqual(self.show2(rel),content)
+
     def test_conflicting_dual_options_rejected(self):
         before=self.head();result=self.deploy_both('--with-model','--web-only',check=False)
         self.assertNotEqual(result.returncode,0);self.assertEqual(before,self.head())

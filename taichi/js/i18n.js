@@ -1,7 +1,8 @@
+import {extraUIV4} from '../data/localization-v4-base.js';
 import {extraUI} from '../data/localization-v3-base.js';
 /** Complete local UI dictionaries. Locale comes from browser preferences, never IP location. */
-export const supportedLanguages = ["zh-TW", "zh-CN", "en", "ja", "ko", "es", "fr", "de", "pt", "it", "id", "vi", "th", "ar", "hi"];
-export const languageNames = {'zh-TW':'繁體中文','zh-CN':'简体中文',en:'English',ja:'日本語',ko:'한국어',es:'Español',fr:'Français',de:'Deutsch',pt:'Português',it:'Italiano',id:'Bahasa Indonesia',vi:'Tiếng Việt',th:'ไทย',ar:'العربية',hi:'हिन्दी'};
+export const supportedLanguages = ["zh-TW", "zh-CN", "en", "ja", "ko", "es", "fr", "de", "pt", "it", "id", "vi", "th", "ar", "hi", "ru", "tr", "nl"];
+export const languageNames = {'zh-TW':'繁體中文','zh-CN':'简体中文',en:'English',ja:'日本語',ko:'한국어',es:'Español',fr:'Français',de:'Deutsch',pt:'Português',it:'Italiano',id:'Bahasa Indonesia',vi:'Tiếng Việt',th:'ไทย',ar:'العربية',hi:'हिन्दी',ru:'Русский',tr:'Türkçe',nl:'Nederlands'};
 const messages = {
   "zh-TW": {
     "brand": "聰動 · 榕園太極",
@@ -1634,12 +1635,16 @@ const messages = {
   }
 };
 
-Object.assign(messages, extraUI);
+Object.assign(messages, extraUI, extraUIV4);
 
 export function normalizeLanguage(value) {
   const tag = String(value || '').replace(/_/g, '-').toLowerCase();
-  if (tag.startsWith('zh')) return /(?:cn|sg|hans)/.test(tag) ? 'zh-CN' : 'zh-TW';
-  const base = tag.split('-')[0];
+  const parts=tag.split('-'),base=parts[0];
+  if (base==='zh') {
+    if(parts.includes('hant'))return 'zh-TW';
+    if(parts.includes('hans'))return 'zh-CN';
+    return parts.some(p=>p==='cn'||p==='sg')?'zh-CN':'zh-TW';
+  }
   return supportedLanguages.includes(base) ? base : null;
 }
 export function detectLanguage() {

@@ -1,3 +1,5 @@
+import {extraRuntimeV4} from '../data/localization-v4-base.js';
+import {featureMessagesV4} from '../data/localization-v4-features.js';
 import {featureMessages} from '../data/localization-v3-features.js';
 import {extraRuntime} from '../data/localization-v3-base.js';
 /** Runtime status strings: every supported locale is complete. */
@@ -616,8 +618,9 @@ export const messageDictionary = {
     "readyInput": "Use um controle para concluir a postura; o professor espera"
   }
 };
-Object.assign(messageDictionary, extraRuntime);
+Object.assign(messageDictionary, extraRuntime, extraRuntimeV4);
 for (const [lang, pack] of Object.entries(featureMessages)) Object.assign(messageDictionary[lang], pack);
+for (const [lang, pack] of Object.entries(featureMessagesV4)) Object.assign(messageDictionary[lang], pack);
 
 export function getMessage(lang, key, vars = {}) {
   const locale = messageDictionary[lang] ? lang : normalizeLanguage(lang) || 'en';

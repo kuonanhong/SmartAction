@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import {Coach} from '../js/coach.js';
 
 const locales = [
+  {lang:'ru',tag:'ru-RU',name:'Russian',guide:'Памятка к занятию',pain:'Болит колено',stop:'остановите упражнение'},
+  {lang:'tr',tag:'tr-TR',name:'Turkish',guide:'Ders rehberi',pain:'Dizimde ağrı var',stop:'egzersizi durdurun'},
+  {lang:'nl',tag:'nl-NL',name:'Dutch',guide:'Leswijzer',pain:'Mijn knie doet pijn',stop:'Stop bij pijn'},
   {lang:'it',tag:'it-IT',name:'Italian',guide:'Guida del corso',pain:'Ho dolore al ginocchio',stop:'interrompi la pratica'},
   {lang:'id',tag:'id-ID',name:'Indonesian',guide:'Panduan latihan',pain:'Lutut saya nyeri dan saya pusing',stop:'Hentikan latihan'},
   {lang:'vi',tag:'vi-VN',name:'Vietnamese',guide:'Hướng dẫn bài tập',pain:'Tôi bị đau đầu gối và chóng mặt',stop:'hãy dừng buổi tập'},

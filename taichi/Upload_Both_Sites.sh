@@ -1,5 +1,5 @@
 #!/bin/bash
-# SmartAction v3.0 dual-site deployment. Bash 3.2+, Git, Python 3.8+.
+# SmartAction v4.0 dual-site deployment. Bash 3.2+, Git, Python 3.8+.
 set -euo pipefail
 smartaction_dual_source="$(cd "$(dirname "$0")" && pwd)"
 smartaction_dual_mode='--with-model'
@@ -8,7 +8,7 @@ smartaction_dual_auth=''
 smartaction_dual_stage='尚未開始'
 usage() {
   cat <<'HELP'
-SmartAction 雙站上傳 v3.0
+SmartAction 雙站上傳 v4.0
   bash Upload_Both_Sites.sh --fresh-login
     一行：補齊/驗證 Qwen3 權重，更新以下兩站，再核對各站提交：
     1. https://kuonanhong.github.io/SmartAction/taichi/
@@ -50,7 +50,7 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 [ -f "$smartaction_dual_source/Upload_SmartAction.sh" ] && [ -f "$smartaction_dual_source/index.html" ] && [ -f "$smartaction_dual_source/tools/patch_smartaction_home.py" ] || {
-  printf '%s\n' '找不到完整 v3 套件；請把 Upload_Both_Sites.sh 放在解壓後 index.html 同一層，保留 tools/。' >&2;exit 1;
+  printf '%s\n' '找不到完整 v4 套件；請把 Upload_Both_Sites.sh 放在解壓後 index.html 同一層，保留 tools/。' >&2;exit 1;
 }
 command -v git >/dev/null 2>&1 || { printf '%s\n' '需要 Git。' >&2;exit 1; }
 smartaction_dual_args=("$smartaction_dual_mode")
@@ -67,7 +67,7 @@ if [ "$smartaction_dual_fresh" -eq 1 ]; then
 else
   unset SMARTACTION_SHARED_AUTH_DIR
 fi
-printf '%s\n' 'SmartAction dual uploader v3.0 — 本地更新 → 兩個 GitHub 儲存庫'
+printf '%s\n' 'SmartAction dual uploader v4.0 — 本地更新 → 兩個 GitHub 儲存庫'
 smartaction_dual_stage='SmartAction/taichi/'
 printf '\n%s\n' '【1/2】SmartAction：太極遊戲與協會首頁入口'
 bash "$smartaction_dual_source/Upload_SmartAction.sh" --site smartaction "${smartaction_dual_args[@]}"

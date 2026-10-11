@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate 570 fixed speech clips from assets/audio/manifest.json.
+"""Regenerate 684 fixed speech clips from assets/audio/manifest.json.
 Requires espeak-ng 1.51+ and ffmpeg on PATH (both available on macOS/Linux).
 For other installs pass --espeak /path/to/espeak-ng --ffmpeg /path/to/ffmpeg.
 No cloud TTS request or model download is made. Run from any directory.

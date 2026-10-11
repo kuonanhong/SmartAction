@@ -39,3 +39,200 @@ body.practice-focus{overflow:hidden}.practice-focus .masthead,.practice-focus .s
 .controls-area,.dpad,.scene-stage,.combat-vitals,.combat-actions{direction:ltr}.walking .control-title{gap:5px}.walking .limb-switch{white-space:normal;line-height:1.25}.voice-tools [data-state="voiceMissing"],.voice-tools [data-state="unsupported"]{color:#963b27}
 
 .voice-picker{display:flex;align-items:center;gap:8px;font-size:11px;min-width:0;max-width:100%}.voice-picker select{max-width:230px;min-width:0;min-height:42px;font-size:12px}.practice-focus .voice-picker{display:none}@media(max-width:560px){.voice-picker{width:100%}.voice-picker select{flex:1;max-width:100%}}
+
+/* v4 — a single practice shell keeps the scene and both control pads together.
+   All controller placement uses normal grid flow; nothing covers the canvas. */
+:root{--practice-viewport-height:100dvh;--practice-shell-height:min(790px,calc(100dvh - 120px));--pad-target:44px}
+.practice-panel{display:block;min-width:0}
+#practiceShell{display:grid;grid-template-rows:auto minmax(80px,1fr) auto;width:100%;height:var(--practice-shell-height);min-height:420px;min-width:0;border:1px solid #d3ddcb;border-radius:16px;background:#f7f8ef;overflow:hidden}
+#practiceShell .practice-topbar{padding:7px 10px;min-width:0;background:#f5f6ec;border-bottom:1px solid #d7decd}
+#practiceShell .practice-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0;min-width:0;flex:none;order:initial}
+#practiceShell .toolbar-main{display:flex;flex:1;flex-wrap:nowrap;gap:5px;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+#practiceShell .toolbar-main>button{flex:0 0 auto;min-height:44px;min-width:60px;padding:6px 10px;white-space:normal;font-size:11px;line-height:1.2}
+#practiceShell .toolbar-main #startBtn{min-width:77px;flex-basis:auto}
+#practiceShell .toolbar-minor{display:flex;align-items:center;flex:none;gap:4px}
+#practiceShell .toolbar-minor>button{min-width:44px;min-height:44px;max-width:80px;padding:5px 7px;font-size:11px;line-height:1.2;white-space:normal}
+#practiceShell .toolbar-minor #focusBtn{min-width:60px;max-width:77px}
+#practiceShell #voiceBtn{min-width:44px;max-width:54px;font-size:9px}
+#practiceShell #resetBtn{font-size:20px}
+#practiceShell #soundSettingsBtn{font-size:17px;letter-spacing:-2px}
+#practiceShell .practice-caption{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:37px;margin-top:4px;min-width:0}
+#practiceShell .move-card-heading{display:flex;align-items:center;gap:8px;flex:1;min-width:0;overflow:hidden}
+#practiceShell .move-card-heading>div{min-width:0;overflow:hidden}
+#practiceShell .move-card-heading .eyebrow{display:none}
+#practiceShell .move-card-heading h2{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:18px;font-weight:550;line-height:1.4}
+#practiceShell .move-count{flex:none;white-space:nowrap;font-size:11px;color:#6a755b}
+#practiceShell .walk-toggle-row{margin:0;flex:none;gap:0;order:initial}
+#practiceShell .walk-toggle-row>button{min-height:36px;min-width:80px;font-size:11px;padding:6px 9px}
+#practiceShell #walkSaveNotice{display:none}
+#practiceShell #sceneStage{height:auto;min-height:80px;min-width:0;flex:none;order:initial;border:0;border-radius:0;overflow:hidden}
+#practiceShell .scene-camera select{min-height:44px}
+#controlDock{padding:8px 10px max(8px,env(safe-area-inset-bottom));background:#f5f7ee;border-top:1px solid #ced9c1;min-width:0;position:relative}
+#controlDock .controls-area{display:grid;grid-template-columns:142px minmax(180px,1fr) 142px;gap:8px;align-items:start;max-width:760px;width:100%;margin:0 auto;padding:0;order:initial;min-width:0}
+#controlDock .control-unit{position:static;display:grid;grid-template-columns:repeat(3,var(--pad-target));grid-template-rows:repeat(3,var(--pad-target)) 16px;gap:3px;justify-content:center;align-content:start;align-items:stretch;min-width:0;width:auto;max-width:none;margin:0;order:initial;grid-row:1;grid-column:auto}
+#controlDock .leg-unit{grid-column:1}
+#controlDock .hand-unit{grid-column:3}
+#controlDock .control-title,#controlDock .dpad{display:contents}
+#controlDock .control-title>b{grid-column:1/4;grid-row:4;text-align:center;align-self:center;font-size:10px;letter-spacing:.04em;line-height:16px}
+#controlDock .limb-switch{grid-column:2;grid-row:2;min-width:44px;min-height:44px;width:44px;height:44px;margin:0;padding:3px;border-radius:10px;font-size:9px;line-height:1.2;white-space:normal;overflow-wrap:anywhere;touch-action:none;background:#e3ead7;border-color:#b9c8aa}
+#controlDock .dpad-center,#controlDock .control-caption,#controlDock .limb-switch kbd{display:none}
+#controlDock .direction{min-width:44px;min-height:44px;width:44px;height:44px;box-sizing:border-box;line-height:1;font-size:21px;padding:4px;border-radius:10px;touch-action:none}
+#controlDock .direction kbd{display:none}
+#controlDock .control-center-rail{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:5px;min-width:0;max-height:158px;overflow:auto;overscroll-behavior:contain;padding:0 5px 2px;scrollbar-width:thin;scrollbar-color:#adbda3 #e6ecde;outline-offset:2px}
+#controlDock .body-controls{display:grid;grid-template-columns:58px 1fr;grid-template-rows:auto auto;align-items:center;gap:3px 6px;width:100%;max-width:none;padding:0;margin:0;grid-column:auto;grid-row:auto;align-self:stretch;direction:ltr}
+#controlDock .score-orbit{grid-column:1;grid-row:1;width:58px;height:39px;min-width:58px;margin:0;background:none;justify-content:center}
+#controlDock .score-orbit strong{font-size:27px;line-height:1;letter-spacing:-1px}
+#controlDock .score-orbit>span{font-size:8px;letter-spacing:0;margin-top:2px;text-align:center;line-height:1.1}
+#controlDock .part-scores{grid-column:2;grid-row:1;display:flex;justify-content:center;gap:6px;margin:0;flex-wrap:wrap}
+#controlDock .part-scores>span,#controlDock .part-scores b{font-size:10px;line-height:1.3;gap:3px}
+#controlDock .body-buttons{grid-column:1/3;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:4px;min-width:0;max-width:none;width:100%;margin:0}
+#controlDock .body-buttons button,#controlDock .hand-depth button,#controlDock .advanced-control-buttons button{min-width:44px;min-height:44px;padding:5px;font-size:11px;line-height:1.2;touch-action:none;white-space:normal}
+#controlDock .body-buttons kbd,#controlDock .hand-depth kbd,#controlDock .advanced-control-buttons kbd{display:none}
+#controlDock .hand-depth{display:flex;width:100%;max-width:none;gap:4px;margin:0;flex:none}
+#controlDock .hand-depth button{flex:1}
+#controlDock .advanced-controls{max-width:none;margin:0;font-size:11px;text-align:start;order:initial}
+#controlDock .advanced-controls>summary{min-height:28px;display:flex;align-items:center;padding:3px 4px;cursor:pointer}
+#controlDock .advanced-control-buttons{grid-template-columns:repeat(4,minmax(44px,1fr));gap:4px;margin:0}
+#controlDock .practice-footnote{margin:4px 0 0;min-height:18px;max-height:24px;overflow:auto;align-items:center;gap:8px;font-size:10px;line-height:1.4;order:initial}
+#controlDock .practice-footnote>span{max-width:none;flex:1}
+#controlDock .practice-footnote .text-button{display:none}
+#controlDock .combat-panel,#controlDock .partner-panel,#controlDock .walk-panel{margin:0;padding:6px;border-radius:8px;font-size:11px;line-height:1.4;order:initial;flex:none;min-width:0}
+#controlDock .combat-panel{order:-3}
+#controlDock .partner-panel{order:-2}
+#controlDock .combat-panel>.subtle,#controlDock .partner-panel>.subtle,#controlDock .partner-panel>h3,#controlDock .walk-panel>h3{display:none}
+#controlDock .combat-vitals{display:flex;gap:7px}
+#controlDock .combat-vitals label>span{display:none}
+#controlDock .combat-cue{font-size:12px;line-height:1.3;padding:3px 0}
+#controlDock #combatClock,#controlDock #partnerSummary{font-size:10px;margin:2px 0}
+#controlDock .combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:3px}
+#controlDock .combat-actions button,#controlDock .round-start,#controlDock #partnerStartBtn{min-width:44px;min-height:44px;font-size:12px;padding:5px;line-height:1.2;margin-top:0;touch-action:none}
+#controlDock .round-start{margin-top:4px;width:100%}
+#controlDock #partnerCue{font-size:11px;line-height:1.3;padding:3px 0}
+#controlDock .partner-panel progress{height:8px}
+#controlDock #partnerStartBtn{margin-top:4px;width:100%}
+#controlDock .walk-panel small{font-size:10px;line-height:1.4}
+#controlDock .walk-links a{font-size:11px}
+#controlDock .achievement{margin:0;padding:5px 7px;line-height:1.35;font-size:11px;order:-4}
+.practice-extras{display:grid;gap:8px;margin-top:12px;min-width:0}
+.practice-detail{min-width:0;border:1px solid #d2ddc7;border-radius:11px;background:#f8f9f2;overflow:hidden}
+.practice-detail>summary{padding:11px 14px;font-size:13px;min-height:44px;line-height:1.6;cursor:pointer;color:#284e3c;font-weight:550}
+.practice-detail .voice-tools{margin:0;border:0;border-top:1px solid #d9e1d0;border-radius:0;max-height:42dvh;overflow:auto;align-content:start}
+.practice-detail .move-card{margin:0;border:0;border-top:1px solid #d9e1d0;border-radius:0;padding:13px;max-height:48dvh;overflow:auto}
+.practice-detail .pose-details{margin:0 12px 12px}
+body.practice-focus{overflow:hidden}
+body.practice-focus .studio{display:block;width:100%;max-width:none;height:var(--practice-viewport-height);padding:max(4px,env(safe-area-inset-top)) max(4px,env(safe-area-inset-right)) 0 max(4px,env(safe-area-inset-left));margin:0;box-sizing:border-box}
+body.practice-focus .practice-panel{display:block;width:100%;height:100%;margin:0;padding:0}
+body.practice-focus #practiceShell{height:100%;min-height:0;border-radius:10px}
+body.practice-focus .practice-extras{display:none}
+body.practice-focus #practiceShell .move-card-heading{display:flex}
+body.practice-focus #practiceShell .move-card-heading h2{display:block;font-size:16px}
+body.practice-focus #controlDock .part-scores{display:flex}
+body.practice-focus #controlDock .body-buttons button{min-height:44px}
+body.practice-focus #controlDock .walk-panel #residentStatus,body.practice-focus #controlDock .walk-panel small{display:block}
+body.walking #controlDock .body-controls{display:block;align-self:stretch}
+body.walking #controlDock .body-buttons{grid-template-columns:repeat(4,minmax(44px,1fr));max-width:none}
+body.walking #controlDock .walk-panel{order:-1;max-height:78px;overflow:auto}
+body.walking #practiceShell .move-card-heading{visibility:hidden}
+@media(max-width:860px){
+  .practice-panel{display:block}
+  #practiceShell{height:var(--practice-shell-height,calc(100dvh - 16px));min-height:390px}
+  .practice-extras{grid-template-columns:1fr}
+  #practiceShell .scene-heading{top:12px;left:12px;right:12px}
+  #practiceShell .scene-heading h2{font-size:19px}
+  #practiceShell .scene-camera{top:52px;right:10px}
+}
+@media(max-width:560px) and (orientation:portrait){
+  #practiceShell{min-height:390px;border-radius:12px}
+  #practiceShell .practice-topbar{padding:5px 6px}
+  #practiceShell .practice-toolbar{gap:4px}
+  #practiceShell .toolbar-main{gap:4px}
+  #practiceShell .toolbar-main>button{padding:5px 7px;font-size:10px;min-width:58px}
+  #practiceShell .toolbar-minor{gap:3px}
+  #practiceShell .toolbar-minor>button{padding:4px;min-width:44px;max-width:68px}
+  #practiceShell .toolbar-minor #focusBtn{min-width:52px;max-width:62px;font-size:10px}
+  #practiceShell .practice-caption{min-height:35px;gap:5px}
+  #practiceShell .move-card-heading h2{font-size:16px}
+  #practiceShell .move-count{font-size:10px}
+  #practiceShell .walk-toggle-row>button{min-width:76px;min-height:35px;font-size:10px}
+  #controlDock{padding:6px 5px max(5px,env(safe-area-inset-bottom))}
+  #controlDock .controls-area{grid-template-columns:1fr 1fr;gap:4px 6px;max-width:560px}
+  #controlDock .leg-unit{grid-column:1;grid-row:1}
+  #controlDock .hand-unit{grid-column:2;grid-row:1}
+  #controlDock .control-center-rail{grid-column:1/3;grid-row:2;display:flex;flex-direction:row;align-items:center;gap:8px;max-height:58px;min-height:48px;overflow-x:auto;overflow-y:auto;padding:2px 0;scroll-snap-type:x proximity}
+  #controlDock .body-controls{display:flex;flex:0 0 auto;flex-direction:row;align-items:center;gap:8px;width:auto;min-width:0}
+  #controlDock .body-buttons{order:-1;grid-template-columns:repeat(4,44px);width:auto;gap:4px;flex:none}
+  #controlDock .score-orbit{flex:none;width:44px;min-width:44px;height:44px}
+  #controlDock .score-orbit>span{display:none}
+  #controlDock .part-scores{flex:none;display:flex;flex-direction:column;gap:0;align-items:start}
+  #controlDock .part-scores>span,#controlDock .part-scores b{font-size:9px;line-height:1.3}
+  #controlDock .hand-depth{width:104px;flex:0 0 104px}
+  #controlDock .advanced-controls{flex:0 0 auto;min-width:112px;max-width:220px;font-size:10px}
+  #controlDock .advanced-controls[open]{min-width:200px}
+  #controlDock .advanced-controls summary{min-height:44px;font-size:10px;padding:4px}
+  #controlDock .advanced-controls[open] summary{min-height:16px;padding:0}
+  #controlDock .advanced-control-buttons{grid-template-columns:repeat(4,44px);gap:3px}
+  #controlDock .practice-footnote{font-size:9px;max-height:24px;margin-top:2px}
+  #controlDock .combat-panel,#controlDock .partner-panel{flex:0 0 260px;max-height:54px;overflow:auto;scroll-snap-align:start;display:grid;grid-template-columns:minmax(90px,1fr) 96px;gap:2px 6px;padding:3px}
+  #controlDock .combat-panel .combat-vitals,#controlDock .combat-panel #combatBeat,#controlDock .combat-panel #combatClock,#controlDock .combat-panel .round-start,#controlDock .partner-panel #partnerSummary,#controlDock .partner-panel progress{display:none}
+  #controlDock .combat-panel .combat-cue,#controlDock #partnerCue{grid-column:1;grid-row:1;font-size:10px;margin:0;padding:0;align-self:center}
+  #controlDock .combat-panel .combat-actions{grid-column:2;grid-row:1;margin:0;grid-template-columns:44px 44px;gap:4px}
+  #controlDock .combat-actions button{font-size:10px;min-height:44px;padding:3px}
+  #controlDock #partnerStartBtn{grid-column:2;grid-row:1;font-size:10px;margin:0;align-self:center}
+  #controlDock .walk-panel{flex:0 0 210px;max-height:54px;overflow:auto;font-size:10px;scroll-snap-align:start}
+  #controlDock .walk-panel #walkCoordinates{font-size:10px;margin:0}
+  #controlDock .achievement{flex:0 0 180px;max-height:54px;overflow:auto}
+  body.walking #controlDock .body-controls{display:flex;width:auto}
+  body.walking #controlDock .body-buttons{grid-template-columns:repeat(4,44px)}
+  body.walking #controlDock .walk-panel{order:1;max-height:54px}
+}
+@media(orientation:landscape) and (max-height:600px){
+  #practiceShell{min-height:280px}
+  #practiceShell .practice-topbar{display:grid;grid-template-columns:minmax(270px,1fr) minmax(160px,.65fr);align-items:center;gap:8px;padding:3px 6px}
+  #practiceShell .practice-toolbar{gap:3px}
+  #practiceShell .toolbar-main>button{min-width:55px;font-size:10px;padding:4px 6px}
+  #practiceShell .toolbar-minor{gap:3px}
+  #practiceShell .toolbar-minor>button{min-width:44px;max-width:55px;padding:3px;font-size:9px}
+  #practiceShell .toolbar-minor #focusBtn{min-width:49px;max-width:55px;font-size:9px}
+  #practiceShell .practice-caption{margin:0;min-height:44px;gap:5px}
+  #practiceShell .move-card-heading{display:block}
+  #practiceShell .move-card-heading h2{font-size:13px;line-height:1.3}
+  #practiceShell .move-count{font-size:9px}
+  #practiceShell .walk-toggle-row>button{min-height:44px;min-width:64px;max-width:76px;padding:4px;font-size:10px}
+  #practiceShell #sceneStage{min-height:64px}
+  #practiceShell .scene-heading{top:6px;left:9px;right:auto;max-width:45%}
+  #practiceShell .scene-heading h2{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #practiceShell .scene-kicker,#practiceShell .scene-weather{display:none}
+  #practiceShell .scene-camera{top:4px;right:6px}
+  #practiceShell .scene-camera select{min-height:36px;padding:4px;max-width:135px;font-size:10px}
+  #practiceShell .scene-bottom{bottom:4px;left:8px;right:8px}
+  #practiceShell .phase-pill{font-size:8px;padding:3px 6px}
+  #practiceShell .photo-credit{font-size:7px;max-height:18px;overflow:hidden}
+  #controlDock{padding:4px 7px max(3px,env(safe-area-inset-bottom))}
+  #controlDock .controls-area{max-width:900px;grid-template-columns:142px minmax(180px,1fr) 142px;gap:8px}
+  #controlDock .control-center-rail{max-height:156px;padding:0 4px;gap:4px}
+  #controlDock .practice-footnote{max-height:15px;min-height:12px;font-size:9px;margin-top:1px}
+  #controlDock .control-title>b{font-size:9px;line-height:14px}
+}
+@media(orientation:landscape) and (max-height:350px){
+  #controlDock .control-unit{grid-template-rows:repeat(3,44px);height:138px}
+  #controlDock .control-title>b{display:none}
+  #controlDock .control-center-rail{max-height:138px}
+  #controlDock .practice-footnote{display:none}
+  #practiceShell .practice-topbar{padding-top:2px;padding-bottom:2px}
+}
+@media(min-width:861px){#practiceShell .scene-camera{top:16px}#practiceShell .scene-heading{top:16px;left:18px}.practice-extras{grid-template-columns:1fr 1fr}}
+#practiceShell #sceneStage{min-height:var(--practice-scene-min-height,80px)}
+body.practice-focus[data-layout-constrained="true"]{overflow:auto}
+body.practice-focus[data-layout-constrained="true"] .studio{height:auto;min-height:var(--practice-viewport-height)}
+body.practice-focus[data-layout-constrained="true"] #practiceShell{overflow:hidden}
+
+/* v4 voice options: one full-width menu, reachable 44px controls. */
+.sound-settings .voice-tools{display:grid;gap:12px;min-width:0;padding:14px}
+.voice-filter-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.voice-filter-row label,.sound-settings .voice-picker{display:grid;gap:6px;min-width:0}
+.sound-settings select{min-height:44px;width:100%;max-width:100%;min-width:0}
+.voice-rate{display:grid;grid-template-columns:auto minmax(80px,1fr) 4.5em;align-items:center;gap:10px;min-height:44px}
+.voice-rate input{min-width:0;width:100%;min-height:44px}
+.voice-action-row{display:flex;gap:8px;flex-wrap:wrap}.voice-action-row button{min-height:44px}
+.sound-settings p{margin:0;font-size:.85rem;line-height:1.6}.sound-settings #voiceStatus{overflow-wrap:anywhere}
+@media(max-width:360px){.voice-filter-row{grid-template-columns:1fr}.voice-rate{gap:6px}}

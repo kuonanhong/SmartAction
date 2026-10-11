@@ -1,6 +1,6 @@
-/* v3: cache the small shell first; optional scenes/audio/models load on demand. */
-const VERSION='smartaction-taichi-v3-20261011';
-const SCENES='smartaction-scenes-v3';
+/* v4: cache the small shell first; optional scenes/audio/models load on demand. */
+const VERSION='smartaction-taichi-v4-20261011';
+const SCENES='smartaction-scenes-v4';
 const ROOT=new URL('./',self.location.href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const response=await fetch(new URL('offline-manifest.json',ROOT),{cache:'no-store'});

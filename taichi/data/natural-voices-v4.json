@@ -1,0 +1,5249 @@
+{
+  "version": 4,
+  "model": "hexgrad/Kokoro-82M",
+  "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "modelLicense": "Apache-2.0",
+  "releaseTag": "model-files-v1.1",
+  "modelVersion": "v1.0",
+  "releaseURL": "https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.1",
+  "sourceFiles": {
+    "kokoro-v1.0.onnx": {
+      "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/kokoro-v1.0.onnx",
+      "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a"
+    },
+    "voices-v1.0.bin": {
+      "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/voices-v1.0.bin",
+      "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+    }
+  },
+  "precision": "float32",
+  "output": "MPEG Audio Layer III; mono 24000 Hz, 64 kbit/s",
+  "disclosure": "AI-generated fixed-line speech, not human recordings. Mandarin voices are zh-CN, not Taiwan-accent voice models.",
+  "dependencies": {
+    "kokoro-onnx": "0.4.9",
+    "onnxruntime": "1.31.0",
+    "misaki": "0.9.4",
+    "numpy": "2.5.4",
+    "soundfile": "0.14.0",
+    "pypinyin": "0.55.0",
+    "espeakng-loader": "0.2.4"
+  },
+  "banks": [
+    {
+      "id": "kokoro:zf_xiaobei",
+      "name": "Xiaobei",
+      "lang": "zh",
+      "actualLang": "zh-CN",
+      "gender": "female",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "zf_xiaobei",
+      "synthetic": true,
+      "priority": 20,
+      "testText": "請放鬆肩膀，準備開始練習。",
+      "clips": {
+        "預備式・起勢": "assets/audio-natural/zf_xiaobei/01.mp3",
+        "预备式・起势": "assets/audio-natural/zf_xiaobei/01.mp3",
+        "攬雀尾・左掤": "assets/audio-natural/zf_xiaobei/02.mp3",
+        "揽雀尾・左掤": "assets/audio-natural/zf_xiaobei/02.mp3",
+        "攬雀尾・右掤": "assets/audio-natural/zf_xiaobei/03.mp3",
+        "揽雀尾・右掤": "assets/audio-natural/zf_xiaobei/03.mp3",
+        "攬雀尾・捋": "assets/audio-natural/zf_xiaobei/04.mp3",
+        "揽雀尾・捋": "assets/audio-natural/zf_xiaobei/04.mp3",
+        "攬雀尾・擠": "assets/audio-natural/zf_xiaobei/05.mp3",
+        "揽雀尾・挤": "assets/audio-natural/zf_xiaobei/05.mp3",
+        "攬雀尾・按": "assets/audio-natural/zf_xiaobei/06.mp3",
+        "揽雀尾・按": "assets/audio-natural/zf_xiaobei/06.mp3",
+        "單鞭": "assets/audio-natural/zf_xiaobei/07.mp3",
+        "单鞭": "assets/audio-natural/zf_xiaobei/07.mp3",
+        "提手": "assets/audio-natural/zf_xiaobei/08.mp3",
+        "靠": "assets/audio-natural/zf_xiaobei/09.mp3",
+        "白鶴亮翅": "assets/audio-natural/zf_xiaobei/10.mp3",
+        "白鹤亮翅": "assets/audio-natural/zf_xiaobei/10.mp3",
+        "左摟膝拗步": "assets/audio-natural/zf_xiaobei/11.mp3",
+        "左搂膝拗步": "assets/audio-natural/zf_xiaobei/11.mp3",
+        "手揮琵琶": "assets/audio-natural/zf_xiaobei/12.mp3",
+        "手挥琵琶": "assets/audio-natural/zf_xiaobei/12.mp3",
+        "進步搬攔捶": "assets/audio-natural/zf_xiaobei/13.mp3",
+        "进步搬拦捶": "assets/audio-natural/zf_xiaobei/13.mp3",
+        "如封似閉": "assets/audio-natural/zf_xiaobei/14.mp3",
+        "如封似闭": "assets/audio-natural/zf_xiaobei/14.mp3",
+        "十字手": "assets/audio-natural/zf_xiaobei/15.mp3",
+        "抱虎歸山": "assets/audio-natural/zf_xiaobei/16.mp3",
+        "抱虎归山": "assets/audio-natural/zf_xiaobei/16.mp3",
+        "肘底看捶": "assets/audio-natural/zf_xiaobei/17.mp3",
+        "右倒攆猴": "assets/audio-natural/zf_xiaobei/18.mp3",
+        "右倒撵猴": "assets/audio-natural/zf_xiaobei/18.mp3",
+        "左倒攆猴": "assets/audio-natural/zf_xiaobei/19.mp3",
+        "左倒撵猴": "assets/audio-natural/zf_xiaobei/19.mp3",
+        "斜飛勢": "assets/audio-natural/zf_xiaobei/20.mp3",
+        "斜飞势": "assets/audio-natural/zf_xiaobei/20.mp3",
+        "左雲手": "assets/audio-natural/zf_xiaobei/21.mp3",
+        "左云手": "assets/audio-natural/zf_xiaobei/21.mp3",
+        "右雲手": "assets/audio-natural/zf_xiaobei/22.mp3",
+        "右云手": "assets/audio-natural/zf_xiaobei/22.mp3",
+        "單鞭下勢": "assets/audio-natural/zf_xiaobei/23.mp3",
+        "单鞭下势": "assets/audio-natural/zf_xiaobei/23.mp3",
+        "右金雞獨立": "assets/audio-natural/zf_xiaobei/24.mp3",
+        "右金鸡独立": "assets/audio-natural/zf_xiaobei/24.mp3",
+        "左金雞獨立": "assets/audio-natural/zf_xiaobei/25.mp3",
+        "左金鸡独立": "assets/audio-natural/zf_xiaobei/25.mp3",
+        "右分腳": "assets/audio-natural/zf_xiaobei/26.mp3",
+        "右分脚": "assets/audio-natural/zf_xiaobei/26.mp3",
+        "左分腳": "assets/audio-natural/zf_xiaobei/27.mp3",
+        "左分脚": "assets/audio-natural/zf_xiaobei/27.mp3",
+        "轉身蹬腳": "assets/audio-natural/zf_xiaobei/28.mp3",
+        "转身蹬脚": "assets/audio-natural/zf_xiaobei/28.mp3",
+        "進步栽捶": "assets/audio-natural/zf_xiaobei/29.mp3",
+        "进步栽捶": "assets/audio-natural/zf_xiaobei/29.mp3",
+        "玉女穿梭一": "assets/audio-natural/zf_xiaobei/30.mp3",
+        "玉女穿梭二": "assets/audio-natural/zf_xiaobei/31.mp3",
+        "玉女穿梭三": "assets/audio-natural/zf_xiaobei/32.mp3",
+        "玉女穿梭四": "assets/audio-natural/zf_xiaobei/33.mp3",
+        "上步七星": "assets/audio-natural/zf_xiaobei/34.mp3",
+        "退步跨虎": "assets/audio-natural/zf_xiaobei/35.mp3",
+        "轉身擺蓮": "assets/audio-natural/zf_xiaobei/36.mp3",
+        "转身摆莲": "assets/audio-natural/zf_xiaobei/36.mp3",
+        "彎躬射虎": "assets/audio-natural/zf_xiaobei/37.mp3",
+        "弯躬射虎": "assets/audio-natural/zf_xiaobei/37.mp3",
+        "請放鬆肩膀，準備開始練習。": "assets/audio-natural/zf_xiaobei/test.mp3",
+        "请放松肩膀，准备开始练习。": "assets/audio-natural/zf_xiaobei/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/zf_xiaobei/01.mp3",
+          "aliases": [
+            "預備式・起勢",
+            "预备式・起势"
+          ],
+          "spokenText": "下一式，预备式，起势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘pei↘ ʂɨ↘, ʨʰi↓ʂɨ↘.",
+          "sha256": "53ccf661abf899a56d0fbc0945ff104980ced3a8694b313135d2a4e76b18cd7c",
+          "bytes": 29037,
+          "durationSeconds": 3.55,
+          "decodedRMS": 0.0579888,
+          "decodedPeak": 0.4013292,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/zf_xiaobei/02.mp3",
+          "aliases": [
+            "攬雀尾・左掤",
+            "揽雀尾・左掤"
+          ],
+          "spokenText": "下一式，揽雀尾，左掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʦwo↓ pʰə↗ŋ.",
+          "sha256": "4ea70759be92c0e132bac78bdf445ec0e98d3118c55f0eef85ec7b2726402881",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0563554,
+          "decodedPeak": 0.3272091,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/zf_xiaobei/03.mp3",
+          "aliases": [
+            "攬雀尾・右掤",
+            "揽雀尾・右掤"
+          ],
+          "spokenText": "下一式，揽雀尾，右掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, jou↘ pʰə↗ŋ.",
+          "sha256": "c2ba5799d18a1e7fd3046d3a507146b3e4432f32eade2913f6e22b5e8379d16f",
+          "bytes": 29229,
+          "durationSeconds": 3.575,
+          "decodedRMS": 0.0559329,
+          "decodedPeak": 0.335367,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/zf_xiaobei/04.mp3",
+          "aliases": [
+            "攬雀尾・捋",
+            "揽雀尾・捋"
+          ],
+          "spokenText": "下一式，揽雀尾，捋。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ly↓.",
+          "sha256": "fa43cd05158eb97d063262450bb150dd66c59c632eaf93634fefa76ecdc8067d",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0551129,
+          "decodedPeak": 0.3201399,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/zf_xiaobei/05.mp3",
+          "aliases": [
+            "攬雀尾・擠",
+            "揽雀尾・挤"
+          ],
+          "spokenText": "下一式，揽雀尾，挤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʨi↓.",
+          "sha256": "03d362d4747bbfbd11206c2877aed3693329eefbd8aeb3d5db39f6852de888ce",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0557266,
+          "decodedPeak": 0.3524398,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/zf_xiaobei/06.mp3",
+          "aliases": [
+            "攬雀尾・按",
+            "揽雀尾・按"
+          ],
+          "spokenText": "下一式，揽雀尾，按。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, a↘n.",
+          "sha256": "eb54299e3eb5ee2ec9a19e49bd15dd166f8af8b101265cbd79a2c91da8c9b957",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0544532,
+          "decodedPeak": 0.2609406,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/zf_xiaobei/07.mp3",
+          "aliases": [
+            "單鞭",
+            "单鞭"
+          ],
+          "spokenText": "下一式，单鞭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n.",
+          "sha256": "4ee0f553619d22a7b007cea64827c04b5d69bcf3ee78ab95e5ff797fb0ec6b2c",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0548044,
+          "decodedPeak": 0.2972577,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/zf_xiaobei/08.mp3",
+          "aliases": [
+            "提手"
+          ],
+          "spokenText": "下一式，提手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰi↗ʂou↓.",
+          "sha256": "fb62e4e4b82fd74f52c2b5ac8593825d10270707ce9c527b82d8452cdcd66f25",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.0533093,
+          "decodedPeak": 0.3007714,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/zf_xiaobei/09.mp3",
+          "aliases": [
+            "靠"
+          ],
+          "spokenText": "下一式，靠。",
+          "phonemes": "ɕja↘i→ʂɨ↘, kʰau↘.",
+          "sha256": "c4c3c1a12dc3b05da03bc7fb99e69325781393c12a687f541c796db3be211503",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0527523,
+          "decodedPeak": 0.2486992,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/zf_xiaobei/10.mp3",
+          "aliases": [
+            "白鶴亮翅",
+            "白鹤亮翅"
+          ],
+          "spokenText": "下一式，白鹤亮翅。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pai↗xɤ↘ lja↘ŋ ꭧʰɨ↘.",
+          "sha256": "5a3ab52f5a5956bdd0ac654ca297c50d77b9fc2a639a7c2e7417a85f504c2b61",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.056233,
+          "decodedPeak": 0.2959312,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/zf_xiaobei/11.mp3",
+          "aliases": [
+            "左摟膝拗步",
+            "左搂膝拗步"
+          ],
+          "spokenText": "下一式，左搂膝拗步。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ lou↓ ɕi→ au↘pu↘.",
+          "sha256": "734e14bfc24e1a03b3465fd8ee2adcd05eaf4634cab5624c05817aa9313b2368",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0562475,
+          "decodedPeak": 0.2758253,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/zf_xiaobei/12.mp3",
+          "aliases": [
+            "手揮琵琶",
+            "手挥琵琶"
+          ],
+          "spokenText": "下一式，手挥琵琶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂou↓xwei→ pʰi↗pʰa↗.",
+          "sha256": "bbb6187486952674f4121f63e16fb81eaf3c81a03e0b57c2e3631ba660b5b3a2",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0563836,
+          "decodedPeak": 0.3329267,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/zf_xiaobei/13.mp3",
+          "aliases": [
+            "進步搬攔捶",
+            "进步搬拦捶"
+          ],
+          "spokenText": "下一式，进步搬拦捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ pa→nla↗n ꭧʰwei↗.",
+          "sha256": "94919fbec61eab45555bbc5d682bf8e63962f4d929384a07dfd4ae5c8f07f925",
+          "bytes": 30381,
+          "durationSeconds": 3.7,
+          "decodedRMS": 0.0584753,
+          "decodedPeak": 0.3785158,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/zf_xiaobei/14.mp3",
+          "aliases": [
+            "如封似閉",
+            "如封似闭"
+          ],
+          "spokenText": "下一式，如封似闭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɻu↗fə→ŋ ʂɨ↘pi↘.",
+          "sha256": "6d7085e80010c5500631a4fd980c11e52c7dfeac0c7aa3d0c8df3e4c80dc1d1c",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0567441,
+          "decodedPeak": 0.3674724,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/zf_xiaobei/15.mp3",
+          "aliases": [
+            "十字手"
+          ],
+          "spokenText": "下一式，十字手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂɨ↗ʦɨ↘ ʂou↓.",
+          "sha256": "3db147cd694fae9b759846a611d6483faf90cb7a8e02da2ea1d0fb399afe4b4c",
+          "bytes": 25965,
+          "durationSeconds": 3.15,
+          "decodedRMS": 0.0545579,
+          "decodedPeak": 0.3350598,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/zf_xiaobei/16.mp3",
+          "aliases": [
+            "抱虎歸山",
+            "抱虎归山"
+          ],
+          "spokenText": "下一式，抱虎归山。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pau↘xu↓ kwei→ʂa→n.",
+          "sha256": "02ee9de2b635ecab7cdacd81581484e6c018e17899250e2c590b04929991d66d",
+          "bytes": 27309,
+          "durationSeconds": 3.325,
+          "decodedRMS": 0.0606116,
+          "decodedPeak": 0.4440304,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/zf_xiaobei/17.mp3",
+          "aliases": [
+            "肘底看捶"
+          ],
+          "spokenText": "下一式，肘底看捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧou↓ti↓ kʰa↘n ꭧʰwei↗.",
+          "sha256": "5ddfc450784a5daf9680761bfb6880e3334f72fbbf0cd479bb7bcb4179a8c8fb",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0582064,
+          "decodedPeak": 0.3746265,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/zf_xiaobei/18.mp3",
+          "aliases": [
+            "右倒攆猴",
+            "右倒撵猴"
+          ],
+          "spokenText": "下一式，右倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ tau↘ njɛ↓n xou↗.",
+          "sha256": "f8a0ba745c5c897e8d1d98ea843753226d028745ff61977f247535443b301c91",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0583188,
+          "decodedPeak": 0.3352181,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/zf_xiaobei/19.mp3",
+          "aliases": [
+            "左倒攆猴",
+            "左倒撵猴"
+          ],
+          "spokenText": "下一式，左倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓tau↘ njɛ↓n xou↗.",
+          "sha256": "ad45b6eaa4e5ab771b56834773361f5b640c18719d2228e2cd0fa733f2470652",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0581158,
+          "decodedPeak": 0.2803613,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/zf_xiaobei/20.mp3",
+          "aliases": [
+            "斜飛勢",
+            "斜飞势"
+          ],
+          "spokenText": "下一式，斜飞势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɕje↗ fei→ʂɨ↘.",
+          "sha256": "20cff64346461b94094c8a2bf4cdd67e81071516d8e954ea19dfb0fe3912068e",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0556672,
+          "decodedPeak": 0.3610404,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/zf_xiaobei/21.mp3",
+          "aliases": [
+            "左雲手",
+            "左云手"
+          ],
+          "spokenText": "下一式，左云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓y↗n ʂou↓.",
+          "sha256": "387f2ac6bd1235b9d9ff1d57738adf249bbacb3b66ae61259d8b697bf1a66c8e",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0545178,
+          "decodedPeak": 0.3135901,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/zf_xiaobei/22.mp3",
+          "aliases": [
+            "右雲手",
+            "右云手"
+          ],
+          "spokenText": "下一式，右云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘y↗n ʂou↓.",
+          "sha256": "17860b63f80539105dc4244822cbafabc3d5469b482c6516f6bff564d609eb8e",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0544305,
+          "decodedPeak": 0.3172091,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/zf_xiaobei/23.mp3",
+          "aliases": [
+            "單鞭下勢",
+            "单鞭下势"
+          ],
+          "spokenText": "下一式，单鞭下势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n ɕja↘ʂɨ↘.",
+          "sha256": "9e3e35c917df050e7ad0594c635fbb557570c761214f0ff53c2fc6c54960523f",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0590595,
+          "decodedPeak": 0.3800317,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/zf_xiaobei/24.mp3",
+          "aliases": [
+            "右金雞獨立",
+            "右金鸡独立"
+          ],
+          "spokenText": "下一式，右金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ ʨi→nʨi→tu↗li↘.",
+          "sha256": "182aa4fb3068fe862e9057013fc45b7d736d2c53a8896ed97f529ce0765e18fe",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0581685,
+          "decodedPeak": 0.3775169,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/zf_xiaobei/25.mp3",
+          "aliases": [
+            "左金雞獨立",
+            "左金鸡独立"
+          ],
+          "spokenText": "下一式，左金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ ʨi→nʨi→tu↗li↘.",
+          "sha256": "8be15795908218f445476524d82203f8193d5b0c80fddd795e3386510f20f6d6",
+          "bytes": 29805,
+          "durationSeconds": 3.62596,
+          "decodedRMS": 0.0596844,
+          "decodedPeak": 0.3859926,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/zf_xiaobei/26.mp3",
+          "aliases": [
+            "右分腳",
+            "右分脚"
+          ],
+          "spokenText": "下一式，右分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘fə→n ʨjau↓.",
+          "sha256": "e4c0856d51eae7fbf327505c11d281af8138bd2d958652f270842a1d9d593df1",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0548402,
+          "decodedPeak": 0.29262,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/zf_xiaobei/27.mp3",
+          "aliases": [
+            "左分腳",
+            "左分脚"
+          ],
+          "spokenText": "下一式，左分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓fə→n ʨjau↓.",
+          "sha256": "331c9294f6297a6f39000e953f9ee940a678474e8c3a9b8df5615293e666493d",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0565152,
+          "decodedPeak": 0.2908579,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/zf_xiaobei/28.mp3",
+          "aliases": [
+            "轉身蹬腳",
+            "转身蹬脚"
+          ],
+          "spokenText": "下一式，转身蹬脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n tə→ŋʨjau↓.",
+          "sha256": "631ab143ba8973dda8308237291e591f3800c94d19e76cc749ede74697cc33ac",
+          "bytes": 29037,
+          "durationSeconds": 3.55,
+          "decodedRMS": 0.0574184,
+          "decodedPeak": 0.3226113,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/zf_xiaobei/29.mp3",
+          "aliases": [
+            "進步栽捶",
+            "进步栽捶"
+          ],
+          "spokenText": "下一式，进步栽捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ ʦai→ ꭧʰwei↗.",
+          "sha256": "fa22ad489baa9e630085d7ef60bb8c3f4e5a001f3ecf9d7077095ace8bdf892d",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0582439,
+          "decodedPeak": 0.365392,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/zf_xiaobei/30.mp3",
+          "aliases": [
+            "玉女穿梭一"
+          ],
+          "spokenText": "下一式，玉女穿梭一。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ i→.",
+          "sha256": "984f6ca94ae0d6d2c6a8ef9efe383d7d34ddd2acc9731b87c9b266137dd0af20",
+          "bytes": 29229,
+          "durationSeconds": 3.575,
+          "decodedRMS": 0.0573351,
+          "decodedPeak": 0.3965237,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/zf_xiaobei/31.mp3",
+          "aliases": [
+            "玉女穿梭二"
+          ],
+          "spokenText": "下一式，玉女穿梭二。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ ɚ↘.",
+          "sha256": "29852aa9dbb74738f1449b7a20f573fda56acddf352b33b846b46a8388f54cfe",
+          "bytes": 28845,
+          "durationSeconds": 3.525,
+          "decodedRMS": 0.0569317,
+          "decodedPeak": 0.3057861,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/zf_xiaobei/32.mp3",
+          "aliases": [
+            "玉女穿梭三"
+          ],
+          "spokenText": "下一式，玉女穿梭三。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sa→n.",
+          "sha256": "0f1685d4e105b38096be3cb8ed18ad96201a1b5f2d72cf06ecad8c95e32ec15e",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0573437,
+          "decodedPeak": 0.3616095,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/zf_xiaobei/33.mp3",
+          "aliases": [
+            "玉女穿梭四"
+          ],
+          "spokenText": "下一式，玉女穿梭四。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sɨ↘.",
+          "sha256": "c00feb5ec53c08e326fda295293f66fdcbaad9a20ab9f716620208a91ed94e8a",
+          "bytes": 30189,
+          "durationSeconds": 3.675,
+          "decodedRMS": 0.0577599,
+          "decodedPeak": 0.3636538,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/zf_xiaobei/34.mp3",
+          "aliases": [
+            "上步七星"
+          ],
+          "spokenText": "下一式，上步七星。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂa↘ŋpu↘ ʨʰi→ɕi→ŋ.",
+          "sha256": "3266c8554c9efa87df80dbc1833a2f0abb02cdce2c5dc7ec81724b07977c3cd8",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0571041,
+          "decodedPeak": 0.3324264,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/zf_xiaobei/35.mp3",
+          "aliases": [
+            "退步跨虎"
+          ],
+          "spokenText": "下一式，退步跨虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰwei↘pu↘ kʰwa↘xu↓.",
+          "sha256": "d5fd2488ac7753b931fe00ea90c5a3e2164d558d4cf7b3f74fcff551e574848e",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0565122,
+          "decodedPeak": 0.3124361,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/zf_xiaobei/36.mp3",
+          "aliases": [
+            "轉身擺蓮",
+            "转身摆莲"
+          ],
+          "spokenText": "下一式，转身摆莲。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n pai↓ljɛ↗n.",
+          "sha256": "563062ad5b8a2eb444af6f4e2f78ace4719b497e7f77a4c3df74ba80da0620d0",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0568635,
+          "decodedPeak": 0.3324525,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/zf_xiaobei/37.mp3",
+          "aliases": [
+            "彎躬射虎",
+            "弯躬射虎"
+          ],
+          "spokenText": "下一式，弯躬射虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, wa→nkʊ→ŋ ʂɤ↘xu↓.",
+          "sha256": "8c74015b8cb2dd64fa41fc8e193ee8e7fe572500cf3304e6c1ac8b010c65058f",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.057602,
+          "decodedPeak": 0.3397859,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/zf_xiaobei/test.mp3",
+          "aliases": [
+            "請放鬆肩膀，準備開始練習。",
+            "请放松肩膀，准备开始练习。"
+          ],
+          "spokenText": "请放松肩膀，准备开始练习。",
+          "phonemes": "ʨʰi↓ŋ fa↘ŋsʊ→ŋ ʨjɛ→npa↓ŋ, ꭧwə↓npei↘ kʰai→ʂɨ↓ ljɛ↘nɕi↗.",
+          "sha256": "71bdf978826c0887080b105509bc9841e9e53e0aebfc20f861b4d2f4d1a0e119",
+          "bytes": 38253,
+          "durationSeconds": 4.7,
+          "decodedRMS": 0.0635013,
+          "decodedPeak": 0.4232253,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:zf_xiaoyi",
+      "name": "Xiaoyi",
+      "lang": "zh",
+      "actualLang": "zh-CN",
+      "gender": "female",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "zf_xiaoyi",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "請放鬆肩膀，準備開始練習。",
+      "clips": {
+        "預備式・起勢": "assets/audio-natural/zf_xiaoyi/01.mp3",
+        "预备式・起势": "assets/audio-natural/zf_xiaoyi/01.mp3",
+        "攬雀尾・左掤": "assets/audio-natural/zf_xiaoyi/02.mp3",
+        "揽雀尾・左掤": "assets/audio-natural/zf_xiaoyi/02.mp3",
+        "攬雀尾・右掤": "assets/audio-natural/zf_xiaoyi/03.mp3",
+        "揽雀尾・右掤": "assets/audio-natural/zf_xiaoyi/03.mp3",
+        "攬雀尾・捋": "assets/audio-natural/zf_xiaoyi/04.mp3",
+        "揽雀尾・捋": "assets/audio-natural/zf_xiaoyi/04.mp3",
+        "攬雀尾・擠": "assets/audio-natural/zf_xiaoyi/05.mp3",
+        "揽雀尾・挤": "assets/audio-natural/zf_xiaoyi/05.mp3",
+        "攬雀尾・按": "assets/audio-natural/zf_xiaoyi/06.mp3",
+        "揽雀尾・按": "assets/audio-natural/zf_xiaoyi/06.mp3",
+        "單鞭": "assets/audio-natural/zf_xiaoyi/07.mp3",
+        "单鞭": "assets/audio-natural/zf_xiaoyi/07.mp3",
+        "提手": "assets/audio-natural/zf_xiaoyi/08.mp3",
+        "靠": "assets/audio-natural/zf_xiaoyi/09.mp3",
+        "白鶴亮翅": "assets/audio-natural/zf_xiaoyi/10.mp3",
+        "白鹤亮翅": "assets/audio-natural/zf_xiaoyi/10.mp3",
+        "左摟膝拗步": "assets/audio-natural/zf_xiaoyi/11.mp3",
+        "左搂膝拗步": "assets/audio-natural/zf_xiaoyi/11.mp3",
+        "手揮琵琶": "assets/audio-natural/zf_xiaoyi/12.mp3",
+        "手挥琵琶": "assets/audio-natural/zf_xiaoyi/12.mp3",
+        "進步搬攔捶": "assets/audio-natural/zf_xiaoyi/13.mp3",
+        "进步搬拦捶": "assets/audio-natural/zf_xiaoyi/13.mp3",
+        "如封似閉": "assets/audio-natural/zf_xiaoyi/14.mp3",
+        "如封似闭": "assets/audio-natural/zf_xiaoyi/14.mp3",
+        "十字手": "assets/audio-natural/zf_xiaoyi/15.mp3",
+        "抱虎歸山": "assets/audio-natural/zf_xiaoyi/16.mp3",
+        "抱虎归山": "assets/audio-natural/zf_xiaoyi/16.mp3",
+        "肘底看捶": "assets/audio-natural/zf_xiaoyi/17.mp3",
+        "右倒攆猴": "assets/audio-natural/zf_xiaoyi/18.mp3",
+        "右倒撵猴": "assets/audio-natural/zf_xiaoyi/18.mp3",
+        "左倒攆猴": "assets/audio-natural/zf_xiaoyi/19.mp3",
+        "左倒撵猴": "assets/audio-natural/zf_xiaoyi/19.mp3",
+        "斜飛勢": "assets/audio-natural/zf_xiaoyi/20.mp3",
+        "斜飞势": "assets/audio-natural/zf_xiaoyi/20.mp3",
+        "左雲手": "assets/audio-natural/zf_xiaoyi/21.mp3",
+        "左云手": "assets/audio-natural/zf_xiaoyi/21.mp3",
+        "右雲手": "assets/audio-natural/zf_xiaoyi/22.mp3",
+        "右云手": "assets/audio-natural/zf_xiaoyi/22.mp3",
+        "單鞭下勢": "assets/audio-natural/zf_xiaoyi/23.mp3",
+        "单鞭下势": "assets/audio-natural/zf_xiaoyi/23.mp3",
+        "右金雞獨立": "assets/audio-natural/zf_xiaoyi/24.mp3",
+        "右金鸡独立": "assets/audio-natural/zf_xiaoyi/24.mp3",
+        "左金雞獨立": "assets/audio-natural/zf_xiaoyi/25.mp3",
+        "左金鸡独立": "assets/audio-natural/zf_xiaoyi/25.mp3",
+        "右分腳": "assets/audio-natural/zf_xiaoyi/26.mp3",
+        "右分脚": "assets/audio-natural/zf_xiaoyi/26.mp3",
+        "左分腳": "assets/audio-natural/zf_xiaoyi/27.mp3",
+        "左分脚": "assets/audio-natural/zf_xiaoyi/27.mp3",
+        "轉身蹬腳": "assets/audio-natural/zf_xiaoyi/28.mp3",
+        "转身蹬脚": "assets/audio-natural/zf_xiaoyi/28.mp3",
+        "進步栽捶": "assets/audio-natural/zf_xiaoyi/29.mp3",
+        "进步栽捶": "assets/audio-natural/zf_xiaoyi/29.mp3",
+        "玉女穿梭一": "assets/audio-natural/zf_xiaoyi/30.mp3",
+        "玉女穿梭二": "assets/audio-natural/zf_xiaoyi/31.mp3",
+        "玉女穿梭三": "assets/audio-natural/zf_xiaoyi/32.mp3",
+        "玉女穿梭四": "assets/audio-natural/zf_xiaoyi/33.mp3",
+        "上步七星": "assets/audio-natural/zf_xiaoyi/34.mp3",
+        "退步跨虎": "assets/audio-natural/zf_xiaoyi/35.mp3",
+        "轉身擺蓮": "assets/audio-natural/zf_xiaoyi/36.mp3",
+        "转身摆莲": "assets/audio-natural/zf_xiaoyi/36.mp3",
+        "彎躬射虎": "assets/audio-natural/zf_xiaoyi/37.mp3",
+        "弯躬射虎": "assets/audio-natural/zf_xiaoyi/37.mp3",
+        "請放鬆肩膀，準備開始練習。": "assets/audio-natural/zf_xiaoyi/test.mp3",
+        "请放松肩膀，准备开始练习。": "assets/audio-natural/zf_xiaoyi/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/zf_xiaoyi/01.mp3",
+          "aliases": [
+            "預備式・起勢",
+            "预备式・起势"
+          ],
+          "spokenText": "下一式，预备式，起势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘pei↘ ʂɨ↘, ʨʰi↓ʂɨ↘.",
+          "sha256": "bf98bee6bb2eadd032b7fdeba914ee40b4b97396a9bbb7b2755242e30a8eeab8",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.0668914,
+          "decodedPeak": 0.3821922,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/zf_xiaoyi/02.mp3",
+          "aliases": [
+            "攬雀尾・左掤",
+            "揽雀尾・左掤"
+          ],
+          "spokenText": "下一式，揽雀尾，左掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʦwo↓ pʰə↗ŋ.",
+          "sha256": "1b415010a14589bced676a922d869d6e1dee1c9cd4e723e85dc2473cb13a1a30",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.067107,
+          "decodedPeak": 0.3450547,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/zf_xiaoyi/03.mp3",
+          "aliases": [
+            "攬雀尾・右掤",
+            "揽雀尾・右掤"
+          ],
+          "spokenText": "下一式，揽雀尾，右掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, jou↘ pʰə↗ŋ.",
+          "sha256": "7b10b065b0787c1dc47d960eb4fff270e72dc164013f21850113c6c90c80f91c",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0675866,
+          "decodedPeak": 0.3293011,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/zf_xiaoyi/04.mp3",
+          "aliases": [
+            "攬雀尾・捋",
+            "揽雀尾・捋"
+          ],
+          "spokenText": "下一式，揽雀尾，捋。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ly↓.",
+          "sha256": "c1091bcc5d58f32456c9d6ef7f5dc5ce1d1dee7915ae4f036dbafd69171b99ec",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0656907,
+          "decodedPeak": 0.2960215,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/zf_xiaoyi/05.mp3",
+          "aliases": [
+            "攬雀尾・擠",
+            "揽雀尾・挤"
+          ],
+          "spokenText": "下一式，揽雀尾，挤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʨi↓.",
+          "sha256": "26bb7c2b4b1d857da8af182f6d8765d154d6029da77fc3dbb48bf383ab80184c",
+          "bytes": 24045,
+          "durationSeconds": 2.925,
+          "decodedRMS": 0.0658339,
+          "decodedPeak": 0.3095979,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/zf_xiaoyi/06.mp3",
+          "aliases": [
+            "攬雀尾・按",
+            "揽雀尾・按"
+          ],
+          "spokenText": "下一式，揽雀尾，按。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, a↘n.",
+          "sha256": "f4d0cfdf1fedd8c937e98a451255498eaebd9b69ec2218366b126dcb506d751f",
+          "bytes": 23853,
+          "durationSeconds": 2.9,
+          "decodedRMS": 0.0657163,
+          "decodedPeak": 0.3354621,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/zf_xiaoyi/07.mp3",
+          "aliases": [
+            "單鞭",
+            "单鞭"
+          ],
+          "spokenText": "下一式，单鞭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n.",
+          "sha256": "497871f785afd52e44c749fe2120df0a44d456730524b84d084f6740be2b988e",
+          "bytes": 21741,
+          "durationSeconds": 2.625,
+          "decodedRMS": 0.06454,
+          "decodedPeak": 0.3224223,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/zf_xiaoyi/08.mp3",
+          "aliases": [
+            "提手"
+          ],
+          "spokenText": "下一式，提手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰi↗ʂou↓.",
+          "sha256": "c20380e8b5aec1c7330a9e80f75d96d7941db4d7e62d3f27e5ef9c6d5e79fc4c",
+          "bytes": 21549,
+          "durationSeconds": 2.6,
+          "decodedRMS": 0.0633794,
+          "decodedPeak": 0.3313866,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/zf_xiaoyi/09.mp3",
+          "aliases": [
+            "靠"
+          ],
+          "spokenText": "下一式，靠。",
+          "phonemes": "ɕja↘i→ʂɨ↘, kʰau↘.",
+          "sha256": "88994e4d593e49121820730346372812f12e3227d90189bbe5fc4789ae085cd9",
+          "bytes": 19629,
+          "durationSeconds": 2.375,
+          "decodedRMS": 0.0623998,
+          "decodedPeak": 0.3496022,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/zf_xiaoyi/10.mp3",
+          "aliases": [
+            "白鶴亮翅",
+            "白鹤亮翅"
+          ],
+          "spokenText": "下一式，白鹤亮翅。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pai↗xɤ↘ lja↘ŋ ꭧʰɨ↘.",
+          "sha256": "169327bcdd89c214739ee7c356616ac9dc9e20c6e7485dfe74378e88984f1335",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0655903,
+          "decodedPeak": 0.3419883,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/zf_xiaoyi/11.mp3",
+          "aliases": [
+            "左摟膝拗步",
+            "左搂膝拗步"
+          ],
+          "spokenText": "下一式，左搂膝拗步。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ lou↓ ɕi→ au↘pu↘.",
+          "sha256": "4161d5123ed4e1dea93db342e89b97252c6c2e2ab0521f37d30eb2bf15167d4e",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0666685,
+          "decodedPeak": 0.3273453,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/zf_xiaoyi/12.mp3",
+          "aliases": [
+            "手揮琵琶",
+            "手挥琵琶"
+          ],
+          "spokenText": "下一式，手挥琵琶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂou↓xwei→ pʰi↗pʰa↗.",
+          "sha256": "a4a5b0469299b33c72ab5673fd6d1d5a0d4635320eeb5e73797db418f3760364",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0658769,
+          "decodedPeak": 0.3759914,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/zf_xiaoyi/13.mp3",
+          "aliases": [
+            "進步搬攔捶",
+            "进步搬拦捶"
+          ],
+          "spokenText": "下一式，进步搬拦捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ pa→nla↗n ꭧʰwei↗.",
+          "sha256": "823ecfc55fe7e90e8d05e6d3653ff663d0907d82a7edf980122dd22860edad3a",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0673587,
+          "decodedPeak": 0.3652177,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/zf_xiaoyi/14.mp3",
+          "aliases": [
+            "如封似閉",
+            "如封似闭"
+          ],
+          "spokenText": "下一式，如封似闭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɻu↗fə→ŋ ʂɨ↘pi↘.",
+          "sha256": "6d9802f842741fd83ff79b605a15bec598c4c7640fef4f37bb4da23b1e2e5905",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0654786,
+          "decodedPeak": 0.3761554,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/zf_xiaoyi/15.mp3",
+          "aliases": [
+            "十字手"
+          ],
+          "spokenText": "下一式，十字手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂɨ↗ʦɨ↘ ʂou↓.",
+          "sha256": "b2bccd145c5131fed34df5d636c4b84fd1993407cd4ac61870dae5ed6291335e",
+          "bytes": 22893,
+          "durationSeconds": 2.775,
+          "decodedRMS": 0.0638412,
+          "decodedPeak": 0.3395898,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/zf_xiaoyi/16.mp3",
+          "aliases": [
+            "抱虎歸山",
+            "抱虎归山"
+          ],
+          "spokenText": "下一式，抱虎归山。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pau↘xu↓ kwei→ʂa→n.",
+          "sha256": "4091d8c7b8ffd1e44d8299fab4b553f846a94d4d22a37ca9daf921f9d87d12a9",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0663937,
+          "decodedPeak": 0.4192273,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/zf_xiaoyi/17.mp3",
+          "aliases": [
+            "肘底看捶"
+          ],
+          "spokenText": "下一式，肘底看捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧou↓ti↓ kʰa↘n ꭧʰwei↗.",
+          "sha256": "0b064acbfdd349ea5b8854c64f7ca526cd1e1bfe850edd243a7b9a2c062f7c48",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0661881,
+          "decodedPeak": 0.3398547,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/zf_xiaoyi/18.mp3",
+          "aliases": [
+            "右倒攆猴",
+            "右倒撵猴"
+          ],
+          "spokenText": "下一式，右倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ tau↘ njɛ↓n xou↗.",
+          "sha256": "0e86ac73899abe3439164d3ce41685659c921b618b6ff1b0631b97ffa65388f0",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0675317,
+          "decodedPeak": 0.338681,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/zf_xiaoyi/19.mp3",
+          "aliases": [
+            "左倒攆猴",
+            "左倒撵猴"
+          ],
+          "spokenText": "下一式，左倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓tau↘ njɛ↓n xou↗.",
+          "sha256": "6d0d7c2c9d5d3db067f83a3e78857c8fdcbabfb8a85441e4b4a629edfa7f12cf",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0677631,
+          "decodedPeak": 0.3287186,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/zf_xiaoyi/20.mp3",
+          "aliases": [
+            "斜飛勢",
+            "斜飞势"
+          ],
+          "spokenText": "下一式，斜飞势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɕje↗ fei→ʂɨ↘.",
+          "sha256": "40496844f2b38ef0a7099c0c71bbc72cbe1aebba4b3bdb6b44873b38127fc708",
+          "bytes": 23853,
+          "durationSeconds": 2.9,
+          "decodedRMS": 0.0655889,
+          "decodedPeak": 0.3772469,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/zf_xiaoyi/21.mp3",
+          "aliases": [
+            "左雲手",
+            "左云手"
+          ],
+          "spokenText": "下一式，左云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓y↗n ʂou↓.",
+          "sha256": "b5ff209b6afbd8a00162ced0fb7c2b4491062c27817cc4d946d1cb04b68670b3",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0643819,
+          "decodedPeak": 0.337451,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/zf_xiaoyi/22.mp3",
+          "aliases": [
+            "右雲手",
+            "右云手"
+          ],
+          "spokenText": "下一式，右云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘y↗n ʂou↓.",
+          "sha256": "a13c8e540d79fb3e601eed0dfce6ac298fcd58060379273f24736de9568ed57c",
+          "bytes": 23277,
+          "durationSeconds": 2.825,
+          "decodedRMS": 0.0644915,
+          "decodedPeak": 0.3083341,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/zf_xiaoyi/23.mp3",
+          "aliases": [
+            "單鞭下勢",
+            "单鞭下势"
+          ],
+          "spokenText": "下一式，单鞭下势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n ɕja↘ʂɨ↘.",
+          "sha256": "99f6d206ccdbdf4fc0793de2b6b881cbae499514aad65ec6e72c884eb23c8847",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0655546,
+          "decodedPeak": 0.3160771,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/zf_xiaoyi/24.mp3",
+          "aliases": [
+            "右金雞獨立",
+            "右金鸡独立"
+          ],
+          "spokenText": "下一式，右金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ ʨi→nʨi→tu↗li↘.",
+          "sha256": "47b437c120420b803d37640a2152157d3bb189887b65a0fd3aa6d68ba0eeeae7",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0679616,
+          "decodedPeak": 0.3698139,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/zf_xiaoyi/25.mp3",
+          "aliases": [
+            "左金雞獨立",
+            "左金鸡独立"
+          ],
+          "spokenText": "下一式，左金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ ʨi→nʨi→tu↗li↘.",
+          "sha256": "958459435c3b822080e116a1e489e47fee64ad0982c63e447ccac7b5c272a4ab",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.0681336,
+          "decodedPeak": 0.3871677,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/zf_xiaoyi/26.mp3",
+          "aliases": [
+            "右分腳",
+            "右分脚"
+          ],
+          "spokenText": "下一式，右分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘fə→n ʨjau↓.",
+          "sha256": "d761a84b8996b945706fb25ef7d9e5de7c71297333aa0b5c5a4aa8a7d5588a2e",
+          "bytes": 23277,
+          "durationSeconds": 2.825,
+          "decodedRMS": 0.0653877,
+          "decodedPeak": 0.3188886,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/zf_xiaoyi/27.mp3",
+          "aliases": [
+            "左分腳",
+            "左分脚"
+          ],
+          "spokenText": "下一式，左分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓fə→n ʨjau↓.",
+          "sha256": "5867c26045b1ddaf9cee8747f098271bf02d7c0c000e0ca821a709507fe71911",
+          "bytes": 24045,
+          "durationSeconds": 2.925,
+          "decodedRMS": 0.0660323,
+          "decodedPeak": 0.3321294,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/zf_xiaoyi/28.mp3",
+          "aliases": [
+            "轉身蹬腳",
+            "转身蹬脚"
+          ],
+          "spokenText": "下一式，转身蹬脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n tə→ŋʨjau↓.",
+          "sha256": "af49dbd3c0804da67de8bcd368229f80375e0d924bc1300e578851c4bdb5b777",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0653872,
+          "decodedPeak": 0.3466052,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/zf_xiaoyi/29.mp3",
+          "aliases": [
+            "進步栽捶",
+            "进步栽捶"
+          ],
+          "spokenText": "下一式，进步栽捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ ʦai→ ꭧʰwei↗.",
+          "sha256": "5c46bd9415f28a9dbed2f2366871bf8929f0ef4ed20809dcb5e9a3f8c407f185",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0678884,
+          "decodedPeak": 0.379808,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/zf_xiaoyi/30.mp3",
+          "aliases": [
+            "玉女穿梭一"
+          ],
+          "spokenText": "下一式，玉女穿梭一。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ i→.",
+          "sha256": "1f913482ee9aecb14f1bcdbc51e40be55a38867bcd9b5c33d38a83482bbbd91e",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0682066,
+          "decodedPeak": 0.3736019,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/zf_xiaoyi/31.mp3",
+          "aliases": [
+            "玉女穿梭二"
+          ],
+          "spokenText": "下一式，玉女穿梭二。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ ɚ↘.",
+          "sha256": "949abc8f4eca347ec035401211168246ba48846173d76a2879c0c575d82db82f",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0676857,
+          "decodedPeak": 0.3686079,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/zf_xiaoyi/32.mp3",
+          "aliases": [
+            "玉女穿梭三"
+          ],
+          "spokenText": "下一式，玉女穿梭三。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sa→n.",
+          "sha256": "7a402c2c9ed0b4b0055f1a79bc9c4fb35a986d2e5d05f82158d9c7137dfc6ccd",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.068119,
+          "decodedPeak": 0.3643878,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/zf_xiaoyi/33.mp3",
+          "aliases": [
+            "玉女穿梭四"
+          ],
+          "spokenText": "下一式，玉女穿梭四。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sɨ↘.",
+          "sha256": "8c944a911ea1e5bb49a47f4b43c3b0dacda988417429914273959bba3ded415c",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0678593,
+          "decodedPeak": 0.3782777,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/zf_xiaoyi/34.mp3",
+          "aliases": [
+            "上步七星"
+          ],
+          "spokenText": "下一式，上步七星。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂa↘ŋpu↘ ʨʰi→ɕi→ŋ.",
+          "sha256": "7cd8e94bfb23a602016a159334ac4f9854f82864692d35f7bb8bc4a0fca7bbba",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0656714,
+          "decodedPeak": 0.3793714,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/zf_xiaoyi/35.mp3",
+          "aliases": [
+            "退步跨虎"
+          ],
+          "spokenText": "下一式，退步跨虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰwei↘pu↘ kʰwa↘xu↓.",
+          "sha256": "0e26434dec5b94d3bc37a673395d8869abd3e262f6f2bcc581aafda713751e72",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0663861,
+          "decodedPeak": 0.3368663,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/zf_xiaoyi/36.mp3",
+          "aliases": [
+            "轉身擺蓮",
+            "转身摆莲"
+          ],
+          "spokenText": "下一式，转身摆莲。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n pai↓ljɛ↗n.",
+          "sha256": "a5b68ad60c498c9313ad7f8076d187a99ab87b4f6669c3b87bd2bd46b23c8a08",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0650103,
+          "decodedPeak": 0.3128922,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/zf_xiaoyi/37.mp3",
+          "aliases": [
+            "彎躬射虎",
+            "弯躬射虎"
+          ],
+          "spokenText": "下一式，弯躬射虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, wa→nkʊ→ŋ ʂɤ↘xu↓.",
+          "sha256": "33ef08371ee051f8fa9adb76e4b4257ba49e6cc8beda18081d1f46399e07c27f",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0656934,
+          "decodedPeak": 0.3142676,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/zf_xiaoyi/test.mp3",
+          "aliases": [
+            "請放鬆肩膀，準備開始練習。",
+            "请放松肩膀，准备开始练习。"
+          ],
+          "spokenText": "请放松肩膀，准备开始练习。",
+          "phonemes": "ʨʰi↓ŋ fa↘ŋsʊ→ŋ ʨjɛ→npa↓ŋ, ꭧwə↓npei↘ kʰai→ʂɨ↓ ljɛ↘nɕi↗.",
+          "sha256": "48b2f212384fe1d588d1039abff64030fe6e78de51433b34bb662af53bfb277e",
+          "bytes": 33453,
+          "durationSeconds": 4.1,
+          "decodedRMS": 0.069621,
+          "decodedPeak": 0.4532996,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:zm_yunxi",
+      "name": "Yunxi",
+      "lang": "zh",
+      "actualLang": "zh-CN",
+      "gender": "male",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "zm_yunxi",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "請放鬆肩膀，準備開始練習。",
+      "clips": {
+        "預備式・起勢": "assets/audio-natural/zm_yunxi/01.mp3",
+        "预备式・起势": "assets/audio-natural/zm_yunxi/01.mp3",
+        "攬雀尾・左掤": "assets/audio-natural/zm_yunxi/02.mp3",
+        "揽雀尾・左掤": "assets/audio-natural/zm_yunxi/02.mp3",
+        "攬雀尾・右掤": "assets/audio-natural/zm_yunxi/03.mp3",
+        "揽雀尾・右掤": "assets/audio-natural/zm_yunxi/03.mp3",
+        "攬雀尾・捋": "assets/audio-natural/zm_yunxi/04.mp3",
+        "揽雀尾・捋": "assets/audio-natural/zm_yunxi/04.mp3",
+        "攬雀尾・擠": "assets/audio-natural/zm_yunxi/05.mp3",
+        "揽雀尾・挤": "assets/audio-natural/zm_yunxi/05.mp3",
+        "攬雀尾・按": "assets/audio-natural/zm_yunxi/06.mp3",
+        "揽雀尾・按": "assets/audio-natural/zm_yunxi/06.mp3",
+        "單鞭": "assets/audio-natural/zm_yunxi/07.mp3",
+        "单鞭": "assets/audio-natural/zm_yunxi/07.mp3",
+        "提手": "assets/audio-natural/zm_yunxi/08.mp3",
+        "靠": "assets/audio-natural/zm_yunxi/09.mp3",
+        "白鶴亮翅": "assets/audio-natural/zm_yunxi/10.mp3",
+        "白鹤亮翅": "assets/audio-natural/zm_yunxi/10.mp3",
+        "左摟膝拗步": "assets/audio-natural/zm_yunxi/11.mp3",
+        "左搂膝拗步": "assets/audio-natural/zm_yunxi/11.mp3",
+        "手揮琵琶": "assets/audio-natural/zm_yunxi/12.mp3",
+        "手挥琵琶": "assets/audio-natural/zm_yunxi/12.mp3",
+        "進步搬攔捶": "assets/audio-natural/zm_yunxi/13.mp3",
+        "进步搬拦捶": "assets/audio-natural/zm_yunxi/13.mp3",
+        "如封似閉": "assets/audio-natural/zm_yunxi/14.mp3",
+        "如封似闭": "assets/audio-natural/zm_yunxi/14.mp3",
+        "十字手": "assets/audio-natural/zm_yunxi/15.mp3",
+        "抱虎歸山": "assets/audio-natural/zm_yunxi/16.mp3",
+        "抱虎归山": "assets/audio-natural/zm_yunxi/16.mp3",
+        "肘底看捶": "assets/audio-natural/zm_yunxi/17.mp3",
+        "右倒攆猴": "assets/audio-natural/zm_yunxi/18.mp3",
+        "右倒撵猴": "assets/audio-natural/zm_yunxi/18.mp3",
+        "左倒攆猴": "assets/audio-natural/zm_yunxi/19.mp3",
+        "左倒撵猴": "assets/audio-natural/zm_yunxi/19.mp3",
+        "斜飛勢": "assets/audio-natural/zm_yunxi/20.mp3",
+        "斜飞势": "assets/audio-natural/zm_yunxi/20.mp3",
+        "左雲手": "assets/audio-natural/zm_yunxi/21.mp3",
+        "左云手": "assets/audio-natural/zm_yunxi/21.mp3",
+        "右雲手": "assets/audio-natural/zm_yunxi/22.mp3",
+        "右云手": "assets/audio-natural/zm_yunxi/22.mp3",
+        "單鞭下勢": "assets/audio-natural/zm_yunxi/23.mp3",
+        "单鞭下势": "assets/audio-natural/zm_yunxi/23.mp3",
+        "右金雞獨立": "assets/audio-natural/zm_yunxi/24.mp3",
+        "右金鸡独立": "assets/audio-natural/zm_yunxi/24.mp3",
+        "左金雞獨立": "assets/audio-natural/zm_yunxi/25.mp3",
+        "左金鸡独立": "assets/audio-natural/zm_yunxi/25.mp3",
+        "右分腳": "assets/audio-natural/zm_yunxi/26.mp3",
+        "右分脚": "assets/audio-natural/zm_yunxi/26.mp3",
+        "左分腳": "assets/audio-natural/zm_yunxi/27.mp3",
+        "左分脚": "assets/audio-natural/zm_yunxi/27.mp3",
+        "轉身蹬腳": "assets/audio-natural/zm_yunxi/28.mp3",
+        "转身蹬脚": "assets/audio-natural/zm_yunxi/28.mp3",
+        "進步栽捶": "assets/audio-natural/zm_yunxi/29.mp3",
+        "进步栽捶": "assets/audio-natural/zm_yunxi/29.mp3",
+        "玉女穿梭一": "assets/audio-natural/zm_yunxi/30.mp3",
+        "玉女穿梭二": "assets/audio-natural/zm_yunxi/31.mp3",
+        "玉女穿梭三": "assets/audio-natural/zm_yunxi/32.mp3",
+        "玉女穿梭四": "assets/audio-natural/zm_yunxi/33.mp3",
+        "上步七星": "assets/audio-natural/zm_yunxi/34.mp3",
+        "退步跨虎": "assets/audio-natural/zm_yunxi/35.mp3",
+        "轉身擺蓮": "assets/audio-natural/zm_yunxi/36.mp3",
+        "转身摆莲": "assets/audio-natural/zm_yunxi/36.mp3",
+        "彎躬射虎": "assets/audio-natural/zm_yunxi/37.mp3",
+        "弯躬射虎": "assets/audio-natural/zm_yunxi/37.mp3",
+        "請放鬆肩膀，準備開始練習。": "assets/audio-natural/zm_yunxi/test.mp3",
+        "请放松肩膀，准备开始练习。": "assets/audio-natural/zm_yunxi/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/zm_yunxi/01.mp3",
+          "aliases": [
+            "預備式・起勢",
+            "预备式・起势"
+          ],
+          "spokenText": "下一式，预备式，起势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘pei↘ ʂɨ↘, ʨʰi↓ʂɨ↘.",
+          "sha256": "2777e2555c67b4455ae85811da32df7264a08c81f3aee8b839ac0ebde2ebf501",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0528012,
+          "decodedPeak": 0.597648,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/zm_yunxi/02.mp3",
+          "aliases": [
+            "攬雀尾・左掤",
+            "揽雀尾・左掤"
+          ],
+          "spokenText": "下一式，揽雀尾，左掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʦwo↓ pʰə↗ŋ.",
+          "sha256": "d6f3e7cfc576b39121c97f3f6dacf7903185bfb0c18fe09dea0e793133913770",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0507046,
+          "decodedPeak": 0.5470814,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/zm_yunxi/03.mp3",
+          "aliases": [
+            "攬雀尾・右掤",
+            "揽雀尾・右掤"
+          ],
+          "spokenText": "下一式，揽雀尾，右掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, jou↘ pʰə↗ŋ.",
+          "sha256": "ff2e6b36fe8a6e8b85125b096f4fa657fc2e5b615b9ca8f7ad78e098c4719388",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0515765,
+          "decodedPeak": 0.5339249,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/zm_yunxi/04.mp3",
+          "aliases": [
+            "攬雀尾・捋",
+            "揽雀尾・捋"
+          ],
+          "spokenText": "下一式，揽雀尾，捋。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ly↓.",
+          "sha256": "7ea92e13fec05ea848421853db55c4202ef931620a584168276100ec2c2f6c31",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0499561,
+          "decodedPeak": 0.5268545,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/zm_yunxi/05.mp3",
+          "aliases": [
+            "攬雀尾・擠",
+            "揽雀尾・挤"
+          ],
+          "spokenText": "下一式，揽雀尾，挤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʨi↓.",
+          "sha256": "53ea262e9c4c3c9a171489158460feb207ef672e0f543c4a5368e38ff3eebdb0",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0508906,
+          "decodedPeak": 0.5623847,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/zm_yunxi/06.mp3",
+          "aliases": [
+            "攬雀尾・按",
+            "揽雀尾・按"
+          ],
+          "spokenText": "下一式，揽雀尾，按。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, a↘n.",
+          "sha256": "381ab58522c425a759b753bc51d4cdbae60d84038a61fcaf7ff09872b662cfd9",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0510306,
+          "decodedPeak": 0.4987582,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/zm_yunxi/07.mp3",
+          "aliases": [
+            "單鞭",
+            "单鞭"
+          ],
+          "spokenText": "下一式，单鞭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n.",
+          "sha256": "7ed84d2ef17e0dc077f58c3e7bd6d49f53f985ce20f179265c1a3a2ae458b268",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0476936,
+          "decodedPeak": 0.5158925,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/zm_yunxi/08.mp3",
+          "aliases": [
+            "提手"
+          ],
+          "spokenText": "下一式，提手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰi↗ʂou↓.",
+          "sha256": "9ef545de7ff4cc43d92db380d2a338426538fded099e1ad4beefe521988c9aa7",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0494891,
+          "decodedPeak": 0.5381808,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/zm_yunxi/09.mp3",
+          "aliases": [
+            "靠"
+          ],
+          "spokenText": "下一式，靠。",
+          "phonemes": "ɕja↘i→ʂɨ↘, kʰau↘.",
+          "sha256": "55b77d6fa9f2b515c85a27aeb111f78a18a0f22b5058c3e4cdc2ae8a4adc8241",
+          "bytes": 20397,
+          "durationSeconds": 2.45,
+          "decodedRMS": 0.0480114,
+          "decodedPeak": 0.4418135,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/zm_yunxi/10.mp3",
+          "aliases": [
+            "白鶴亮翅",
+            "白鹤亮翅"
+          ],
+          "spokenText": "下一式，白鹤亮翅。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pai↗xɤ↘ lja↘ŋ ꭧʰɨ↘.",
+          "sha256": "a39dfd613c661cef2da411d59f6d66620fb288d86f7f5d02312720ef59732682",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0510104,
+          "decodedPeak": 0.5344256,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/zm_yunxi/11.mp3",
+          "aliases": [
+            "左摟膝拗步",
+            "左搂膝拗步"
+          ],
+          "spokenText": "下一式，左搂膝拗步。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ lou↓ ɕi→ au↘pu↘.",
+          "sha256": "60703490c6f2d4b3173dce48ee924014319b52a23ea0762461bfa5765b73036c",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0520432,
+          "decodedPeak": 0.5285867,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/zm_yunxi/12.mp3",
+          "aliases": [
+            "手揮琵琶",
+            "手挥琵琶"
+          ],
+          "spokenText": "下一式，手挥琵琶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂou↓xwei→ pʰi↗pʰa↗.",
+          "sha256": "0e3d63db3cbaa67e12da34d221bd5c8ab8f74969670747dc438b9f5678d9c997",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0527489,
+          "decodedPeak": 0.5228181,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/zm_yunxi/13.mp3",
+          "aliases": [
+            "進步搬攔捶",
+            "进步搬拦捶"
+          ],
+          "spokenText": "下一式，进步搬拦捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ pa→nla↗n ꭧʰwei↗.",
+          "sha256": "b541f07b923484fb14f2738a3afb2454ada719e25a96a544c04868b62fa00330",
+          "bytes": 26733,
+          "durationSeconds": 3.25,
+          "decodedRMS": 0.0515722,
+          "decodedPeak": 0.5580098,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/zm_yunxi/14.mp3",
+          "aliases": [
+            "如封似閉",
+            "如封似闭"
+          ],
+          "spokenText": "下一式，如封似闭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɻu↗fə→ŋ ʂɨ↘pi↘.",
+          "sha256": "e32ed438850ff3a4626f05759c064fd87c386711327dbf88009c253eb8db303d",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0499847,
+          "decodedPeak": 0.5793964,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/zm_yunxi/15.mp3",
+          "aliases": [
+            "十字手"
+          ],
+          "spokenText": "下一式，十字手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂɨ↗ʦɨ↘ ʂou↓.",
+          "sha256": "edd89506e50fb677f196ff83a9a6c372d17758791f28dc963c55914a55bffc43",
+          "bytes": 22893,
+          "durationSeconds": 2.775,
+          "decodedRMS": 0.0501486,
+          "decodedPeak": 0.5420009,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/zm_yunxi/16.mp3",
+          "aliases": [
+            "抱虎歸山",
+            "抱虎归山"
+          ],
+          "spokenText": "下一式，抱虎归山。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pau↘xu↓ kwei→ʂa→n.",
+          "sha256": "ee0b3c3253463a37a1fa3e3696cff946a53f0ba6013d2bf4e28104ea06b82bc8",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0530283,
+          "decodedPeak": 0.5283818,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/zm_yunxi/17.mp3",
+          "aliases": [
+            "肘底看捶"
+          ],
+          "spokenText": "下一式，肘底看捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧou↓ti↓ kʰa↘n ꭧʰwei↗.",
+          "sha256": "be0761b71f953c2111b6ff5a9374f471b8039b016a0141321701240321105993",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0523776,
+          "decodedPeak": 0.5337625,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/zm_yunxi/18.mp3",
+          "aliases": [
+            "右倒攆猴",
+            "右倒撵猴"
+          ],
+          "spokenText": "下一式，右倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ tau↘ njɛ↓n xou↗.",
+          "sha256": "b63c2144cc4f5b00870f82df0a69d75518b2882e4399434cd767a080727cb308",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0515459,
+          "decodedPeak": 0.492686,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/zm_yunxi/19.mp3",
+          "aliases": [
+            "左倒攆猴",
+            "左倒撵猴"
+          ],
+          "spokenText": "下一式，左倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓tau↘ njɛ↓n xou↗.",
+          "sha256": "cb88a84dea9961c0a9f67244bad6f537dfa6d754a7e12a9f2b701fcf77e08008",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0514125,
+          "decodedPeak": 0.519238,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/zm_yunxi/20.mp3",
+          "aliases": [
+            "斜飛勢",
+            "斜飞势"
+          ],
+          "spokenText": "下一式，斜飞势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɕje↗ fei→ʂɨ↘.",
+          "sha256": "b4a2ab098b2c6d2091a66e8b13eba8c4f0099281e96d495d6d8bfbbd08489e68",
+          "bytes": 23853,
+          "durationSeconds": 2.9,
+          "decodedRMS": 0.0510296,
+          "decodedPeak": 0.5774993,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/zm_yunxi/21.mp3",
+          "aliases": [
+            "左雲手",
+            "左云手"
+          ],
+          "spokenText": "下一式，左云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓y↗n ʂou↓.",
+          "sha256": "e97ed582dd7f17a009bd6ae5615c1f8dfb2e2f019ce1163be5ece369f5319811",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.049961,
+          "decodedPeak": 0.5454858,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/zm_yunxi/22.mp3",
+          "aliases": [
+            "右雲手",
+            "右云手"
+          ],
+          "spokenText": "下一式，右云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘y↗n ʂou↓.",
+          "sha256": "fa93b3e079b6a7f36887d16dd1e78d98dfeeecd630b8f5a0605a2107ea6c8946",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0508392,
+          "decodedPeak": 0.5375946,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/zm_yunxi/23.mp3",
+          "aliases": [
+            "單鞭下勢",
+            "单鞭下势"
+          ],
+          "spokenText": "下一式，单鞭下势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n ɕja↘ʂɨ↘.",
+          "sha256": "829d5017cc65692fe5bc4d88d92315e2b178e7e6670ab5a55e88c0b5785d2c08",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0501837,
+          "decodedPeak": 0.5073885,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/zm_yunxi/24.mp3",
+          "aliases": [
+            "右金雞獨立",
+            "右金鸡独立"
+          ],
+          "spokenText": "下一式，右金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ ʨi→nʨi→tu↗li↘.",
+          "sha256": "41bc04bb7b24f56c886dc3ceab676ad25e350458cfcb716e7c51d7ce6da44de5",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.050994,
+          "decodedPeak": 0.614046,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/zm_yunxi/25.mp3",
+          "aliases": [
+            "左金雞獨立",
+            "左金鸡独立"
+          ],
+          "spokenText": "下一式，左金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ ʨi→nʨi→tu↗li↘.",
+          "sha256": "490cfb96c9114068d708b71b459cc9d5a871c95d5d222363715aa8eff2ec160e",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0516401,
+          "decodedPeak": 0.6078299,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/zm_yunxi/26.mp3",
+          "aliases": [
+            "右分腳",
+            "右分脚"
+          ],
+          "spokenText": "下一式，右分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘fə→n ʨjau↓.",
+          "sha256": "d46429e8fc19080252954b93195b9a6eb43bc265beddb044cd5f36c32b357a00",
+          "bytes": 23469,
+          "durationSeconds": 2.85,
+          "decodedRMS": 0.0518013,
+          "decodedPeak": 0.542441,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/zm_yunxi/27.mp3",
+          "aliases": [
+            "左分腳",
+            "左分脚"
+          ],
+          "spokenText": "下一式，左分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓fə→n ʨjau↓.",
+          "sha256": "6fb96e78ef347663a8eafe2f33b80b25f0fb9be6549bb82324de28d0851723cc",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0515739,
+          "decodedPeak": 0.5594327,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/zm_yunxi/28.mp3",
+          "aliases": [
+            "轉身蹬腳",
+            "转身蹬脚"
+          ],
+          "spokenText": "下一式，转身蹬脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n tə→ŋʨjau↓.",
+          "sha256": "d0b2403e645eadcec3a2715be2f9f06c95e9e17e760a1cc26b45de8a9c28b14e",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0521711,
+          "decodedPeak": 0.5657349,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/zm_yunxi/29.mp3",
+          "aliases": [
+            "進步栽捶",
+            "进步栽捶"
+          ],
+          "spokenText": "下一式，进步栽捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ ʦai→ ꭧʰwei↗.",
+          "sha256": "945d68b0ce3a47bb36b0dc32bbc24f86d438786121d67a21bb958964a67b93b0",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0518181,
+          "decodedPeak": 0.5737196,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/zm_yunxi/30.mp3",
+          "aliases": [
+            "玉女穿梭一"
+          ],
+          "spokenText": "下一式，玉女穿梭一。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ i→.",
+          "sha256": "d660e174fb1490314bfb41e3a4c329ab1e5731e7ad7bca602b791639a10e2e61",
+          "bytes": 25965,
+          "durationSeconds": 3.15,
+          "decodedRMS": 0.051725,
+          "decodedPeak": 0.5789134,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/zm_yunxi/31.mp3",
+          "aliases": [
+            "玉女穿梭二"
+          ],
+          "spokenText": "下一式，玉女穿梭二。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ ɚ↘.",
+          "sha256": "9d7f0633b5dd736d4a5e19066eacb6d165ad268f732e646c33c342bb1e5f6f2d",
+          "bytes": 25965,
+          "durationSeconds": 3.15,
+          "decodedRMS": 0.051211,
+          "decodedPeak": 0.5292922,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/zm_yunxi/32.mp3",
+          "aliases": [
+            "玉女穿梭三"
+          ],
+          "spokenText": "下一式，玉女穿梭三。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sa→n.",
+          "sha256": "5f94c62fe6b4ed5e0a75aaebbd0fc700471c4829f146eec4495782cef58eb7ab",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0520017,
+          "decodedPeak": 0.5653691,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/zm_yunxi/33.mp3",
+          "aliases": [
+            "玉女穿梭四"
+          ],
+          "spokenText": "下一式，玉女穿梭四。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sɨ↘.",
+          "sha256": "1d1e98cece2b6ad6d550003267b9cedb85f98e50bdc6cbf40097ba9ddffd1861",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.0520518,
+          "decodedPeak": 0.5954425,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/zm_yunxi/34.mp3",
+          "aliases": [
+            "上步七星"
+          ],
+          "spokenText": "下一式，上步七星。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂa↘ŋpu↘ ʨʰi→ɕi→ŋ.",
+          "sha256": "2baca2bfb41568c76e76a64459db404dc74c7a2aa02182b580adfcedcd4010c9",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0509512,
+          "decodedPeak": 0.5072728,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/zm_yunxi/35.mp3",
+          "aliases": [
+            "退步跨虎"
+          ],
+          "spokenText": "下一式，退步跨虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰwei↘pu↘ kʰwa↘xu↓.",
+          "sha256": "a0135a118c418e1a2c0d90e4ef70281b667f7cc70268e00b841b6ca4c44175b0",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0532062,
+          "decodedPeak": 0.4874582,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/zm_yunxi/36.mp3",
+          "aliases": [
+            "轉身擺蓮",
+            "转身摆莲"
+          ],
+          "spokenText": "下一式，转身摆莲。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n pai↓ljɛ↗n.",
+          "sha256": "6522da5ef4a8ab8a7925721da80e0b5e09ce485dcff10b8fc2d60d2874b9a561",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0516018,
+          "decodedPeak": 0.5487439,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/zm_yunxi/37.mp3",
+          "aliases": [
+            "彎躬射虎",
+            "弯躬射虎"
+          ],
+          "spokenText": "下一式，弯躬射虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, wa→nkʊ→ŋ ʂɤ↘xu↓.",
+          "sha256": "25989d7829e878b602f7d4b0e997da6b235f4fc7a3f50da3f93af4ec2e6c20a9",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0495572,
+          "decodedPeak": 0.5123087,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/zm_yunxi/test.mp3",
+          "aliases": [
+            "請放鬆肩膀，準備開始練習。",
+            "请放松肩膀，准备开始练习。"
+          ],
+          "spokenText": "请放松肩膀，准备开始练习。",
+          "phonemes": "ʨʰi↓ŋ fa↘ŋsʊ→ŋ ʨjɛ→npa↓ŋ, ꭧwə↓npei↘ kʰai→ʂɨ↓ ljɛ↘nɕi↗.",
+          "sha256": "6fabb232c3cdb1b3a63320d80b273b0d6cb472c7c4ff4eb6a99fe43e8e814378",
+          "bytes": 32109,
+          "durationSeconds": 3.925,
+          "decodedRMS": 0.0541584,
+          "decodedPeak": 0.6968464,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:zm_yunjian",
+      "name": "Yunjian",
+      "lang": "zh",
+      "actualLang": "zh-CN",
+      "gender": "male",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "zm_yunjian",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "請放鬆肩膀，準備開始練習。",
+      "clips": {
+        "預備式・起勢": "assets/audio-natural/zm_yunjian/01.mp3",
+        "预备式・起势": "assets/audio-natural/zm_yunjian/01.mp3",
+        "攬雀尾・左掤": "assets/audio-natural/zm_yunjian/02.mp3",
+        "揽雀尾・左掤": "assets/audio-natural/zm_yunjian/02.mp3",
+        "攬雀尾・右掤": "assets/audio-natural/zm_yunjian/03.mp3",
+        "揽雀尾・右掤": "assets/audio-natural/zm_yunjian/03.mp3",
+        "攬雀尾・捋": "assets/audio-natural/zm_yunjian/04.mp3",
+        "揽雀尾・捋": "assets/audio-natural/zm_yunjian/04.mp3",
+        "攬雀尾・擠": "assets/audio-natural/zm_yunjian/05.mp3",
+        "揽雀尾・挤": "assets/audio-natural/zm_yunjian/05.mp3",
+        "攬雀尾・按": "assets/audio-natural/zm_yunjian/06.mp3",
+        "揽雀尾・按": "assets/audio-natural/zm_yunjian/06.mp3",
+        "單鞭": "assets/audio-natural/zm_yunjian/07.mp3",
+        "单鞭": "assets/audio-natural/zm_yunjian/07.mp3",
+        "提手": "assets/audio-natural/zm_yunjian/08.mp3",
+        "靠": "assets/audio-natural/zm_yunjian/09.mp3",
+        "白鶴亮翅": "assets/audio-natural/zm_yunjian/10.mp3",
+        "白鹤亮翅": "assets/audio-natural/zm_yunjian/10.mp3",
+        "左摟膝拗步": "assets/audio-natural/zm_yunjian/11.mp3",
+        "左搂膝拗步": "assets/audio-natural/zm_yunjian/11.mp3",
+        "手揮琵琶": "assets/audio-natural/zm_yunjian/12.mp3",
+        "手挥琵琶": "assets/audio-natural/zm_yunjian/12.mp3",
+        "進步搬攔捶": "assets/audio-natural/zm_yunjian/13.mp3",
+        "进步搬拦捶": "assets/audio-natural/zm_yunjian/13.mp3",
+        "如封似閉": "assets/audio-natural/zm_yunjian/14.mp3",
+        "如封似闭": "assets/audio-natural/zm_yunjian/14.mp3",
+        "十字手": "assets/audio-natural/zm_yunjian/15.mp3",
+        "抱虎歸山": "assets/audio-natural/zm_yunjian/16.mp3",
+        "抱虎归山": "assets/audio-natural/zm_yunjian/16.mp3",
+        "肘底看捶": "assets/audio-natural/zm_yunjian/17.mp3",
+        "右倒攆猴": "assets/audio-natural/zm_yunjian/18.mp3",
+        "右倒撵猴": "assets/audio-natural/zm_yunjian/18.mp3",
+        "左倒攆猴": "assets/audio-natural/zm_yunjian/19.mp3",
+        "左倒撵猴": "assets/audio-natural/zm_yunjian/19.mp3",
+        "斜飛勢": "assets/audio-natural/zm_yunjian/20.mp3",
+        "斜飞势": "assets/audio-natural/zm_yunjian/20.mp3",
+        "左雲手": "assets/audio-natural/zm_yunjian/21.mp3",
+        "左云手": "assets/audio-natural/zm_yunjian/21.mp3",
+        "右雲手": "assets/audio-natural/zm_yunjian/22.mp3",
+        "右云手": "assets/audio-natural/zm_yunjian/22.mp3",
+        "單鞭下勢": "assets/audio-natural/zm_yunjian/23.mp3",
+        "单鞭下势": "assets/audio-natural/zm_yunjian/23.mp3",
+        "右金雞獨立": "assets/audio-natural/zm_yunjian/24.mp3",
+        "右金鸡独立": "assets/audio-natural/zm_yunjian/24.mp3",
+        "左金雞獨立": "assets/audio-natural/zm_yunjian/25.mp3",
+        "左金鸡独立": "assets/audio-natural/zm_yunjian/25.mp3",
+        "右分腳": "assets/audio-natural/zm_yunjian/26.mp3",
+        "右分脚": "assets/audio-natural/zm_yunjian/26.mp3",
+        "左分腳": "assets/audio-natural/zm_yunjian/27.mp3",
+        "左分脚": "assets/audio-natural/zm_yunjian/27.mp3",
+        "轉身蹬腳": "assets/audio-natural/zm_yunjian/28.mp3",
+        "转身蹬脚": "assets/audio-natural/zm_yunjian/28.mp3",
+        "進步栽捶": "assets/audio-natural/zm_yunjian/29.mp3",
+        "进步栽捶": "assets/audio-natural/zm_yunjian/29.mp3",
+        "玉女穿梭一": "assets/audio-natural/zm_yunjian/30.mp3",
+        "玉女穿梭二": "assets/audio-natural/zm_yunjian/31.mp3",
+        "玉女穿梭三": "assets/audio-natural/zm_yunjian/32.mp3",
+        "玉女穿梭四": "assets/audio-natural/zm_yunjian/33.mp3",
+        "上步七星": "assets/audio-natural/zm_yunjian/34.mp3",
+        "退步跨虎": "assets/audio-natural/zm_yunjian/35.mp3",
+        "轉身擺蓮": "assets/audio-natural/zm_yunjian/36.mp3",
+        "转身摆莲": "assets/audio-natural/zm_yunjian/36.mp3",
+        "彎躬射虎": "assets/audio-natural/zm_yunjian/37.mp3",
+        "弯躬射虎": "assets/audio-natural/zm_yunjian/37.mp3",
+        "請放鬆肩膀，準備開始練習。": "assets/audio-natural/zm_yunjian/test.mp3",
+        "请放松肩膀，准备开始练习。": "assets/audio-natural/zm_yunjian/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/zm_yunjian/01.mp3",
+          "aliases": [
+            "預備式・起勢",
+            "预备式・起势"
+          ],
+          "spokenText": "下一式，预备式，起势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘pei↘ ʂɨ↘, ʨʰi↓ʂɨ↘.",
+          "sha256": "c0369663d2921db6a85a89f07709f9022a0f8a5ad01ed4e4c7581a83ce4b69b5",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0570589,
+          "decodedPeak": 0.5574244,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/zm_yunjian/02.mp3",
+          "aliases": [
+            "攬雀尾・左掤",
+            "揽雀尾・左掤"
+          ],
+          "spokenText": "下一式，揽雀尾，左掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʦwo↓ pʰə↗ŋ.",
+          "sha256": "e5f3236d5be77098f9aa860bd5d3b6c92ac1f36f9839a870cdd323f726c39e84",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0581264,
+          "decodedPeak": 0.5549902,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/zm_yunjian/03.mp3",
+          "aliases": [
+            "攬雀尾・右掤",
+            "揽雀尾・右掤"
+          ],
+          "spokenText": "下一式，揽雀尾，右掤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, jou↘ pʰə↗ŋ.",
+          "sha256": "ac039ef0b17bc4b405ce0bafcaf4f69ce521cfafa8900736efb7380f1298ea37",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0584867,
+          "decodedPeak": 0.5438629,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/zm_yunjian/04.mp3",
+          "aliases": [
+            "攬雀尾・捋",
+            "揽雀尾・捋"
+          ],
+          "spokenText": "下一式，揽雀尾，捋。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ly↓.",
+          "sha256": "170c26ca8dc9f19034367b5a77f01a37ee7271539e75cd27c3db727d61d8cba8",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.054619,
+          "decodedPeak": 0.5556672,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/zm_yunjian/05.mp3",
+          "aliases": [
+            "攬雀尾・擠",
+            "揽雀尾・挤"
+          ],
+          "spokenText": "下一式，揽雀尾，挤。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, ʨi↓.",
+          "sha256": "4f00a00b6860baee1e4916ab572cbec36b2d08b2f47532af3f67898d6de8665e",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0555356,
+          "decodedPeak": 0.5519061,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/zm_yunjian/06.mp3",
+          "aliases": [
+            "攬雀尾・按",
+            "揽雀尾・按"
+          ],
+          "spokenText": "下一式，揽雀尾，按。",
+          "phonemes": "ɕja↘i→ʂɨ↘, la↓nʨʰɥe↘wei↓, a↘n.",
+          "sha256": "600788b15f5836569fab742490896284a02554d015b1e55e73ee8234aba078c9",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0563903,
+          "decodedPeak": 0.5110148,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/zm_yunjian/07.mp3",
+          "aliases": [
+            "單鞭",
+            "单鞭"
+          ],
+          "spokenText": "下一式，单鞭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n.",
+          "sha256": "ae22ae6c1fde84ce5207166320866bba3b0876ebc73665421d25938c3640cf41",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.0525499,
+          "decodedPeak": 0.5215433,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/zm_yunjian/08.mp3",
+          "aliases": [
+            "提手"
+          ],
+          "spokenText": "下一式，提手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰi↗ʂou↓.",
+          "sha256": "a950c46c2d4ed980098487131ba3f756cc9bdefeb52d9fe768b3e13a28d73aa3",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.0522232,
+          "decodedPeak": 0.5597563,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/zm_yunjian/09.mp3",
+          "aliases": [
+            "靠"
+          ],
+          "spokenText": "下一式，靠。",
+          "phonemes": "ɕja↘i→ʂɨ↘, kʰau↘.",
+          "sha256": "f205b2171053557a1aead8b62cfb30876c927d47f8136016a4f8264800517368",
+          "bytes": 20397,
+          "durationSeconds": 2.45,
+          "decodedRMS": 0.0512565,
+          "decodedPeak": 0.5158713,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/zm_yunjian/10.mp3",
+          "aliases": [
+            "白鶴亮翅",
+            "白鹤亮翅"
+          ],
+          "spokenText": "下一式，白鹤亮翅。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pai↗xɤ↘ lja↘ŋ ꭧʰɨ↘.",
+          "sha256": "cae2360c75a23eb4188bce3f906022a592dfaa6667f98611ee2d542aa9d0e87a",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0557688,
+          "decodedPeak": 0.4948288,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/zm_yunjian/11.mp3",
+          "aliases": [
+            "左摟膝拗步",
+            "左搂膝拗步"
+          ],
+          "spokenText": "下一式，左搂膝拗步。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ lou↓ ɕi→ au↘pu↘.",
+          "sha256": "f4b8f67cbe5d338a7175e69920f23c439a328ac52fdcf6c02a644b60a79a7046",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0584191,
+          "decodedPeak": 0.5276564,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/zm_yunjian/12.mp3",
+          "aliases": [
+            "手揮琵琶",
+            "手挥琵琶"
+          ],
+          "spokenText": "下一式，手挥琵琶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂou↓xwei→ pʰi↗pʰa↗.",
+          "sha256": "86a8006a488d5fcb6c5f6f6c9bca783768df72bfdc5adddd0d6ce3c5b77d0ae7",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0574966,
+          "decodedPeak": 0.5211954,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/zm_yunjian/13.mp3",
+          "aliases": [
+            "進步搬攔捶",
+            "进步搬拦捶"
+          ],
+          "spokenText": "下一式，进步搬拦捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ pa→nla↗n ꭧʰwei↗.",
+          "sha256": "10f4eec8ebcb2f8ade3291692b7d0ab2bd52011146b50759b238e567bf47a479",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0580754,
+          "decodedPeak": 0.5361396,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/zm_yunjian/14.mp3",
+          "aliases": [
+            "如封似閉",
+            "如封似闭"
+          ],
+          "spokenText": "下一式，如封似闭。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɻu↗fə→ŋ ʂɨ↘pi↘.",
+          "sha256": "768a07c8644a0dfa9c1dd23d4fee1fdbfa299cfe46aba5314b496945e1d60eef",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0541531,
+          "decodedPeak": 0.5652887,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/zm_yunjian/15.mp3",
+          "aliases": [
+            "十字手"
+          ],
+          "spokenText": "下一式，十字手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂɨ↗ʦɨ↘ ʂou↓.",
+          "sha256": "ffe449086290b6aabeffbffa9d99098bdde0d8846b0078fdb87163c67b9e7a08",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0540473,
+          "decodedPeak": 0.5790732,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/zm_yunjian/16.mp3",
+          "aliases": [
+            "抱虎歸山",
+            "抱虎归山"
+          ],
+          "spokenText": "下一式，抱虎归山。",
+          "phonemes": "ɕja↘i→ʂɨ↘, pau↘xu↓ kwei→ʂa→n.",
+          "sha256": "54698224cb4e8bb3074b79e6102276463cf4288ffac8f75c5d8cfafcab9d44ee",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0578292,
+          "decodedPeak": 0.5718803,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/zm_yunjian/17.mp3",
+          "aliases": [
+            "肘底看捶"
+          ],
+          "spokenText": "下一式，肘底看捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧou↓ti↓ kʰa↘n ꭧʰwei↗.",
+          "sha256": "d0f3d04e36d7d0045d32807a3ee985a9f6fc7c6a27bc9b7ca65a3c07aeb037f7",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.057915,
+          "decodedPeak": 0.5481748,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/zm_yunjian/18.mp3",
+          "aliases": [
+            "右倒攆猴",
+            "右倒撵猴"
+          ],
+          "spokenText": "下一式，右倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ tau↘ njɛ↓n xou↗.",
+          "sha256": "84cf5c2236d2dd43d9d74668f93416304a244a6fdc89725859705adb57cdaae8",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0562486,
+          "decodedPeak": 0.5208055,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/zm_yunjian/19.mp3",
+          "aliases": [
+            "左倒攆猴",
+            "左倒撵猴"
+          ],
+          "spokenText": "下一式，左倒撵猴。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓tau↘ njɛ↓n xou↗.",
+          "sha256": "6ccb9f23355916065d86cc3ddd41f41c812411c14fcfc7d7dc86c8e8a8acc584",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0551369,
+          "decodedPeak": 0.5143828,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/zm_yunjian/20.mp3",
+          "aliases": [
+            "斜飛勢",
+            "斜飞势"
+          ],
+          "spokenText": "下一式，斜飞势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ɕje↗ fei→ʂɨ↘.",
+          "sha256": "4c96bfe16319efc472adc46b8e2a469b60b377974468594b3b046db23802df02",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.053938,
+          "decodedPeak": 0.5679447,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/zm_yunjian/21.mp3",
+          "aliases": [
+            "左雲手",
+            "左云手"
+          ],
+          "spokenText": "下一式，左云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓y↗n ʂou↓.",
+          "sha256": "5cc11753bc97ff7d4e4a463174991cc1f236e8a6f9aef34f4a40671e8ef6085d",
+          "bytes": 23469,
+          "durationSeconds": 2.85,
+          "decodedRMS": 0.0539755,
+          "decodedPeak": 0.5461936,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/zm_yunjian/22.mp3",
+          "aliases": [
+            "右雲手",
+            "右云手"
+          ],
+          "spokenText": "下一式，右云手。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘y↗n ʂou↓.",
+          "sha256": "a35bcae4788a580bde824b9a9ecd3271c2efc6c0e54494f349a5cb82c2af2617",
+          "bytes": 23661,
+          "durationSeconds": 2.875,
+          "decodedRMS": 0.0561289,
+          "decodedPeak": 0.550686,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/zm_yunjian/23.mp3",
+          "aliases": [
+            "單鞭下勢",
+            "单鞭下势"
+          ],
+          "spokenText": "下一式，单鞭下势。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ta→npjɛ→n ɕja↘ʂɨ↘.",
+          "sha256": "56c274e681bd3af633392c16c8b63c74240d530d477d00a5ea72374a91346613",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0553314,
+          "decodedPeak": 0.5075818,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/zm_yunjian/24.mp3",
+          "aliases": [
+            "右金雞獨立",
+            "右金鸡独立"
+          ],
+          "spokenText": "下一式，右金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘ ʨi→nʨi→tu↗li↘.",
+          "sha256": "638a9c4644919900ca774fafd84a05b921b99eb222a2746359c15150716b2fa2",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.05596,
+          "decodedPeak": 0.5614508,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/zm_yunjian/25.mp3",
+          "aliases": [
+            "左金雞獨立",
+            "左金鸡独立"
+          ],
+          "spokenText": "下一式，左金鸡独立。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓ ʨi→nʨi→tu↗li↘.",
+          "sha256": "6c41b297e1dd9268d7e6bcad037ba46dfae55d9cf1714d97a82602319bce7354",
+          "bytes": 26157,
+          "durationSeconds": 3.175,
+          "decodedRMS": 0.0566952,
+          "decodedPeak": 0.5667579,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/zm_yunjian/26.mp3",
+          "aliases": [
+            "右分腳",
+            "右分脚"
+          ],
+          "spokenText": "下一式，右分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, jou↘fə→n ʨjau↓.",
+          "sha256": "7878eee75200018f4762a6ac779663e82d35e2c6dd390bb4935c62a696aabdc7",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0577644,
+          "decodedPeak": 0.5598399,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/zm_yunjian/27.mp3",
+          "aliases": [
+            "左分腳",
+            "左分脚"
+          ],
+          "spokenText": "下一式，左分脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʦwo↓fə→n ʨjau↓.",
+          "sha256": "a16c057a5dbac8a5f0ce9d819b448d2a5a82e46241c0b3067d9a7cbfe9313d73",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.0563329,
+          "decodedPeak": 0.5683985,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/zm_yunjian/28.mp3",
+          "aliases": [
+            "轉身蹬腳",
+            "转身蹬脚"
+          ],
+          "spokenText": "下一式，转身蹬脚。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n tə→ŋʨjau↓.",
+          "sha256": "381749c779147f757505bc786308a1a3408283bce24faee204fca1d53bad6b0d",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0570944,
+          "decodedPeak": 0.5614317,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/zm_yunjian/29.mp3",
+          "aliases": [
+            "進步栽捶",
+            "进步栽捶"
+          ],
+          "spokenText": "下一式，进步栽捶。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʨi↘npu↘ ʦai→ ꭧʰwei↗.",
+          "sha256": "9d8bff46919042c76458341c2654b63578429a01b4946e6d414376f2480d8e77",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0578662,
+          "decodedPeak": 0.5623246,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/zm_yunjian/30.mp3",
+          "aliases": [
+            "玉女穿梭一"
+          ],
+          "spokenText": "下一式，玉女穿梭一。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ i→.",
+          "sha256": "ffa94730430c5f4e3257c82f55df19e492025802c8ca8e143e55940ddd889c3e",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0575772,
+          "decodedPeak": 0.5580875,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/zm_yunjian/31.mp3",
+          "aliases": [
+            "玉女穿梭二"
+          ],
+          "spokenText": "下一式，玉女穿梭二。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ ɚ↘.",
+          "sha256": "7dad09773d13e3fd68d0f43151af1beb6d0df2f84a970547f2fef7846d5fe8d9",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0578383,
+          "decodedPeak": 0.5290852,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/zm_yunjian/32.mp3",
+          "aliases": [
+            "玉女穿梭三"
+          ],
+          "spokenText": "下一式，玉女穿梭三。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sa→n.",
+          "sha256": "e09e0da7c975938001635a76ad0d220ef14d04cf54291aa2127f6157ea717d38",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0583728,
+          "decodedPeak": 0.5569713,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/zm_yunjian/33.mp3",
+          "aliases": [
+            "玉女穿梭四"
+          ],
+          "spokenText": "下一式，玉女穿梭四。",
+          "phonemes": "ɕja↘i→ʂɨ↘, y↘ny↓ ꭧʰwa→nswo→ sɨ↘.",
+          "sha256": "9b0b8ca894ce0b7989ed85dd80f950e43330d77893636dac04e3e35ca5b776e8",
+          "bytes": 26733,
+          "durationSeconds": 3.25,
+          "decodedRMS": 0.0580017,
+          "decodedPeak": 0.5774033,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/zm_yunjian/34.mp3",
+          "aliases": [
+            "上步七星"
+          ],
+          "spokenText": "下一式，上步七星。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ʂa↘ŋpu↘ ʨʰi→ɕi→ŋ.",
+          "sha256": "23203ea882303897ade0cb12fb7fd7ac9c3ef7115501722dd5186ca8d3629bc7",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.055268,
+          "decodedPeak": 0.5641113,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/zm_yunjian/35.mp3",
+          "aliases": [
+            "退步跨虎"
+          ],
+          "spokenText": "下一式，退步跨虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, tʰwei↘pu↘ kʰwa↘xu↓.",
+          "sha256": "432c34f7c2e106dd79b899169780dcce57639c40ef3a629cb3d94e470b3a0c53",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0567026,
+          "decodedPeak": 0.4933679,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/zm_yunjian/36.mp3",
+          "aliases": [
+            "轉身擺蓮",
+            "转身摆莲"
+          ],
+          "spokenText": "下一式，转身摆莲。",
+          "phonemes": "ɕja↘i→ʂɨ↘, ꭧwa↓nʂə→n pai↓ljɛ↗n.",
+          "sha256": "a3973aaec9626b90af59c6308a94999bc6795b5c1fc73b78c108feab8c40ba8e",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0566816,
+          "decodedPeak": 0.5687863,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/zm_yunjian/37.mp3",
+          "aliases": [
+            "彎躬射虎",
+            "弯躬射虎"
+          ],
+          "spokenText": "下一式，弯躬射虎。",
+          "phonemes": "ɕja↘i→ʂɨ↘, wa→nkʊ→ŋ ʂɤ↘xu↓.",
+          "sha256": "446ff971ef20614e9f5cae725d14212f65ceb8385b09f7f28ca65e9a4e72bd39",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0536052,
+          "decodedPeak": 0.5303832,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/zm_yunjian/test.mp3",
+          "aliases": [
+            "請放鬆肩膀，準備開始練習。",
+            "请放松肩膀，准备开始练习。"
+          ],
+          "spokenText": "请放松肩膀，准备开始练习。",
+          "phonemes": "ʨʰi↓ŋ fa↘ŋsʊ→ŋ ʨjɛ→npa↓ŋ, ꭧwə↓npei↘ kʰai→ʂɨ↓ ljɛ↘nɕi↗.",
+          "sha256": "2b1f233c6d4f49762566fa09fa458ee5d8687b4e148199893b3cd315cf79634a",
+          "bytes": 33261,
+          "durationSeconds": 4.075,
+          "decodedRMS": 0.0614159,
+          "decodedPeak": 0.7011417,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:af_heart",
+      "name": "Heart",
+      "lang": "en",
+      "actualLang": "en-US",
+      "gender": "female",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "af_heart",
+      "synthetic": true,
+      "priority": 20,
+      "testText": "Relax your shoulders. Get ready to practise.",
+      "clips": {
+        "Preparation and opening": "assets/audio-natural/af_heart/01.mp3",
+        "Left ward-off": "assets/audio-natural/af_heart/02.mp3",
+        "Right ward-off": "assets/audio-natural/af_heart/03.mp3",
+        "Roll back": "assets/audio-natural/af_heart/04.mp3",
+        "Press": "assets/audio-natural/af_heart/05.mp3",
+        "Push": "assets/audio-natural/af_heart/06.mp3",
+        "Single whip": "assets/audio-natural/af_heart/07.mp3",
+        "Raise hands": "assets/audio-natural/af_heart/08.mp3",
+        "Shoulder alignment": "assets/audio-natural/af_heart/09.mp3",
+        "White crane spreads wings": "assets/audio-natural/af_heart/10.mp3",
+        "Left brush knee and push": "assets/audio-natural/af_heart/11.mp3",
+        "Play the lute": "assets/audio-natural/af_heart/12.mp3",
+        "Step, parry and punch": "assets/audio-natural/af_heart/13.mp3",
+        "Apparent close-up": "assets/audio-natural/af_heart/14.mp3",
+        "Cross hands": "assets/audio-natural/af_heart/15.mp3",
+        "Embrace tiger, return to mountain": "assets/audio-natural/af_heart/16.mp3",
+        "Fist under elbow": "assets/audio-natural/af_heart/17.mp3",
+        "Right repulse monkey": "assets/audio-natural/af_heart/18.mp3",
+        "Left repulse monkey": "assets/audio-natural/af_heart/19.mp3",
+        "Diagonal flying": "assets/audio-natural/af_heart/20.mp3",
+        "Cloud hands left": "assets/audio-natural/af_heart/21.mp3",
+        "Cloud hands right": "assets/audio-natural/af_heart/22.mp3",
+        "Low single whip, shallow": "assets/audio-natural/af_heart/23.mp3",
+        "Right golden rooster, low knee": "assets/audio-natural/af_heart/24.mp3",
+        "Left golden rooster, low knee": "assets/audio-natural/af_heart/25.mp3",
+        "Separate right foot, low": "assets/audio-natural/af_heart/26.mp3",
+        "Separate left foot, low": "assets/audio-natural/af_heart/27.mp3",
+        "Turn and heel kick, low": "assets/audio-natural/af_heart/28.mp3",
+        "Step and downward punch": "assets/audio-natural/af_heart/29.mp3",
+        "Fair lady works shuttles 1": "assets/audio-natural/af_heart/30.mp3",
+        "Fair lady works shuttles 2": "assets/audio-natural/af_heart/31.mp3",
+        "Fair lady works shuttles 3": "assets/audio-natural/af_heart/32.mp3",
+        "Fair lady works shuttles 4": "assets/audio-natural/af_heart/33.mp3",
+        "Step up to seven stars": "assets/audio-natural/af_heart/34.mp3",
+        "Step back and ride tiger": "assets/audio-natural/af_heart/35.mp3",
+        "Turn and sweep lotus, low": "assets/audio-natural/af_heart/36.mp3",
+        "Draw bow and shoot tiger": "assets/audio-natural/af_heart/37.mp3",
+        "Relax your shoulders. Get ready to practise.": "assets/audio-natural/af_heart/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/af_heart/01.mp3",
+          "aliases": [
+            "Preparation and opening"
+          ],
+          "spokenText": "Next movement, Preparation and opening.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˌɛpɚɹˈeɪʃən ænd ˈoʊpənɪŋ.",
+          "sha256": "ba869196c9c3617dac38bf28040d0a5c881a4221cacf6a27c674b06cc0868100",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0527027,
+          "decodedPeak": 0.3971525,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/af_heart/02.mp3",
+          "aliases": [
+            "Left ward-off"
+          ],
+          "spokenText": "Next movement, Left ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft wˈɔːɹdˈɔf.",
+          "sha256": "8f302242f6221038c8c209d6f6b729c5b652003aa82a9a016f671190b10e472f",
+          "bytes": 20781,
+          "durationSeconds": 2.5,
+          "decodedRMS": 0.0522057,
+          "decodedPeak": 0.3344039,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/af_heart/03.mp3",
+          "aliases": [
+            "Right ward-off"
+          ],
+          "spokenText": "Next movement, Right ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt wˈɔːɹdˈɔf.",
+          "sha256": "94b485f39a6b87e5fd2f970960db431e8265d7522fc233e35b3cdf31fcab7a0c",
+          "bytes": 20589,
+          "durationSeconds": 2.475,
+          "decodedRMS": 0.0519239,
+          "decodedPeak": 0.3902794,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/af_heart/04.mp3",
+          "aliases": [
+            "Roll back"
+          ],
+          "spokenText": "Next movement, Roll back.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈoʊl bˈæk.",
+          "sha256": "8af16e056f0280819dc4089cff58c7cca9435eb591821597baa88244dd598345",
+          "bytes": 18477,
+          "durationSeconds": 2.225,
+          "decodedRMS": 0.0529547,
+          "decodedPeak": 0.3666843,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/af_heart/05.mp3",
+          "aliases": [
+            "Press"
+          ],
+          "spokenText": "Next movement, Press.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˈɛs.",
+          "sha256": "5391403379c3a8775fa21e932645ae25a9269717e1f1fec7b7b79cfaad705131",
+          "bytes": 15981,
+          "durationSeconds": 1.9,
+          "decodedRMS": 0.0517385,
+          "decodedPeak": 0.3148259,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/af_heart/06.mp3",
+          "aliases": [
+            "Push"
+          ],
+          "spokenText": "Next movement, Push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pˈʊʃ.",
+          "sha256": "09f0d4aabbf636cea4078288c039a88b97b3075c3bab377480cb72a04a005255",
+          "bytes": 16173,
+          "durationSeconds": 1.925,
+          "decodedRMS": 0.0516261,
+          "decodedPeak": 0.3081155,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/af_heart/07.mp3",
+          "aliases": [
+            "Single whip"
+          ],
+          "spokenText": "Next movement, Single whip.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɪŋɡəl wˈɪp.",
+          "sha256": "4d720ebb4a63037645c83eafdf55e354df132071c86cff40d027a3c700af7522",
+          "bytes": 19437,
+          "durationSeconds": 2.35,
+          "decodedRMS": 0.0529275,
+          "decodedPeak": 0.3293607,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/af_heart/08.mp3",
+          "aliases": [
+            "Raise hands"
+          ],
+          "spokenText": "Next movement, Raise hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈeɪz hˈændz.",
+          "sha256": "8c22943f5951294994f9c2c0beb6c09ff01508140898598f25307b582046f2d7",
+          "bytes": 20205,
+          "durationSeconds": 2.42596,
+          "decodedRMS": 0.0518344,
+          "decodedPeak": 0.3109576,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/af_heart/09.mp3",
+          "aliases": [
+            "Shoulder alignment"
+          ],
+          "spokenText": "Next movement, Shoulder alignment.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ʃˈoʊldɚɹ ɐlˈaɪnmənt.",
+          "sha256": "cebd07661c0830a0095c657f4732086a606f2606a3a7b5a918820d5f484b576c",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0522459,
+          "decodedPeak": 0.370572,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/af_heart/10.mp3",
+          "aliases": [
+            "White crane spreads wings"
+          ],
+          "spokenText": "Next movement, White crane spreads wings.",
+          "phonemes": "nˈɛkst mˈuːvmənt, wˈaɪt kɹˈeɪn spɹˈɛdz wˈɪŋz.",
+          "sha256": "ea4bcd61af60a186d5e1de7efcad6be808b2dce8744ce8593925c589188ddb53",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0524492,
+          "decodedPeak": 0.4196443,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/af_heart/11.mp3",
+          "aliases": [
+            "Left brush knee and push"
+          ],
+          "spokenText": "Next movement, Left brush knee and push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft bɹˈʌʃ nˈiː ænd pˈʊʃ.",
+          "sha256": "858042166640c5c3191df2b2b05e9537dc04d63e7e00155fda4a2eb1cfce0054",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0529611,
+          "decodedPeak": 0.4009739,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/af_heart/12.mp3",
+          "aliases": [
+            "Play the lute"
+          ],
+          "spokenText": "Next movement, Play the lute.",
+          "phonemes": "nˈɛkst mˈuːvmənt, plˈeɪ ðə lˈuːt.",
+          "sha256": "976dddfc458c625cd43c7cef4c8de3d4d65fc71b0ab05a6aff3f79e2a77e753c",
+          "bytes": 18093,
+          "durationSeconds": 2.175,
+          "decodedRMS": 0.0527743,
+          "decodedPeak": 0.3581602,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/af_heart/13.mp3",
+          "aliases": [
+            "Step, parry and punch"
+          ],
+          "spokenText": "Next movement, Step, parry and punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp, pˈæɹi ænd pˈʌntʃ.",
+          "sha256": "2a48c29f02c5399eb25ec5e168b96fda2219ea06412be8b0583f0c0f310cc814",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.052573,
+          "decodedPeak": 0.3543381,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/af_heart/14.mp3",
+          "aliases": [
+            "Apparent close-up"
+          ],
+          "spokenText": "Next movement, Apparent close-up.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɐpˈæɹənt klˈoʊsˈʌp.",
+          "sha256": "604948f3b10d3cebb20b68c433c3dcc278630fe6239c69c9993063779e91242a",
+          "bytes": 22317,
+          "durationSeconds": 2.7,
+          "decodedRMS": 0.0520997,
+          "decodedPeak": 0.3188344,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/af_heart/15.mp3",
+          "aliases": [
+            "Cross hands"
+          ],
+          "spokenText": "Next movement, Cross hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, kɹˈɔs hˈændz.",
+          "sha256": "25931c132e6f8db5a531064cc9ecd2c68fb22de039f9a68e00bb6fc618efed47",
+          "bytes": 20205,
+          "durationSeconds": 2.42596,
+          "decodedRMS": 0.0515999,
+          "decodedPeak": 0.4463993,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/af_heart/16.mp3",
+          "aliases": [
+            "Embrace tiger, return to mountain"
+          ],
+          "spokenText": "Next movement, Embrace tiger, return to mountain.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɛmbɹˈeɪs tˈaɪɡɚ, ɹᵻtˈɜːn tə mˈaʊntɪn.",
+          "sha256": "4316943655adae4b14a44fe966a8ac905c2bd3c175790227fe2e673326216f29",
+          "bytes": 30957,
+          "durationSeconds": 3.775,
+          "decodedRMS": 0.0529237,
+          "decodedPeak": 0.3067232,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/af_heart/17.mp3",
+          "aliases": [
+            "Fist under elbow"
+          ],
+          "spokenText": "Next movement, Fist under elbow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɪst ˌʌndɚɹ ˈɛlboʊ.",
+          "sha256": "24842a94d66c537dbb322e8be3c5ae0a869195e774422c894065a72a85519bcf",
+          "bytes": 22317,
+          "durationSeconds": 2.7,
+          "decodedRMS": 0.0521344,
+          "decodedPeak": 0.3676091,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/af_heart/18.mp3",
+          "aliases": [
+            "Right repulse monkey"
+          ],
+          "spokenText": "Next movement, Right repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "d0614145a8b67c7700f174dfa3b0f71c59901a280836eaba805132fd7bab4bdc",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.0521663,
+          "decodedPeak": 0.4703592,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/af_heart/19.mp3",
+          "aliases": [
+            "Left repulse monkey"
+          ],
+          "spokenText": "Next movement, Left repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "5f0254a9ce5c8eb90d7d9873e29c432792f14353fe07ad9f52939c0d4ee8d921",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0526828,
+          "decodedPeak": 0.4372268,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/af_heart/20.mp3",
+          "aliases": [
+            "Diagonal flying"
+          ],
+          "spokenText": "Next movement, Diagonal flying.",
+          "phonemes": "nˈɛkst mˈuːvmənt, daɪˈæɡənəl flˈaɪɪŋ.",
+          "sha256": "698a6d24aa757f809ed5846874e45de4d73975b45af3159441e5b7b402b248fd",
+          "bytes": 23085,
+          "durationSeconds": 2.8,
+          "decodedRMS": 0.0510104,
+          "decodedPeak": 0.3363599,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/af_heart/21.mp3",
+          "aliases": [
+            "Cloud hands left"
+          ],
+          "spokenText": "Next movement, Cloud hands left.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz lˈɛft.",
+          "sha256": "e9d4f4f11c5fc8780304c05c600fc8e338998553d9384402b7617cb401ccf368",
+          "bytes": 22509,
+          "durationSeconds": 2.725,
+          "decodedRMS": 0.0524622,
+          "decodedPeak": 0.3514378,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/af_heart/22.mp3",
+          "aliases": [
+            "Cloud hands right"
+          ],
+          "spokenText": "Next movement, Cloud hands right.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz ɹˈaɪt.",
+          "sha256": "f6bef9200e7bfed6eff968215ba9597583c99bacd668a093930027f3a9827bab",
+          "bytes": 22317,
+          "durationSeconds": 2.7,
+          "decodedRMS": 0.052182,
+          "decodedPeak": 0.3450538,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/af_heart/23.mp3",
+          "aliases": [
+            "Low single whip, shallow"
+          ],
+          "spokenText": "Next movement, Low single whip, shallow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈoʊ sˈɪŋɡəl wˈɪp, ʃˈæloʊ.",
+          "sha256": "17296a7a513610a671edfe2289946e59153385e33964d44e1df0743d25488195",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0532812,
+          "decodedPeak": 0.3276274,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/af_heart/24.mp3",
+          "aliases": [
+            "Right golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Right golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "a4d31ef230655d4ff087be3d71bd872d28275717f543d10142e4bcc5665f7b00",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0536055,
+          "decodedPeak": 0.4478093,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/af_heart/25.mp3",
+          "aliases": [
+            "Left golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Left golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "99a36278de98ba4b5d67fa0cff238adea2e501526d9e719070c8183ccc2c7f81",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0539925,
+          "decodedPeak": 0.4534326,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/af_heart/26.mp3",
+          "aliases": [
+            "Separate right foot, low"
+          ],
+          "spokenText": "Next movement, Separate right foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət ɹˈaɪt fˈʊt, lˈoʊ.",
+          "sha256": "d9bef632bd747c9da54bb81ce97dd627eef0a664c0ac3edaa9950e15e1688da4",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0525297,
+          "decodedPeak": 0.333422,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/af_heart/27.mp3",
+          "aliases": [
+            "Separate left foot, low"
+          ],
+          "spokenText": "Next movement, Separate left foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət lˈɛft fˈʊt, lˈoʊ.",
+          "sha256": "a632e3585bfffefdfdd349cb89d648771ddc57b08ef8772c0fb92cba48ab6270",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0524712,
+          "decodedPeak": 0.3590329,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/af_heart/28.mp3",
+          "aliases": [
+            "Turn and heel kick, low"
+          ],
+          "spokenText": "Next movement, Turn and heel kick, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd hˈiːl kˈɪk, lˈoʊ.",
+          "sha256": "269d177dbeb5fb3000814829f21ae020832525138ddf0e6e0d249d778e524031",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.0529918,
+          "decodedPeak": 0.298277,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/af_heart/29.mp3",
+          "aliases": [
+            "Step and downward punch"
+          ],
+          "spokenText": "Next movement, Step and downward punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ænd dˈaʊnwɚd pˈʌntʃ.",
+          "sha256": "aacd7f792927fdd6801c0fbcfa08aa6a9a501a72e6b56d86714aa1190f743fe1",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0530027,
+          "decodedPeak": 0.3675001,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/af_heart/30.mp3",
+          "aliases": [
+            "Fair lady works shuttles 1"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 1.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz wˈʌn.",
+          "sha256": "8b5d9c988e92ddfa1a6ba15092a3b14b813fcd673fb0b401faa7c3672b054dd5",
+          "bytes": 26733,
+          "durationSeconds": 3.25,
+          "decodedRMS": 0.0529934,
+          "decodedPeak": 0.3721786,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/af_heart/31.mp3",
+          "aliases": [
+            "Fair lady works shuttles 2"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 2.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz tˈuː.",
+          "sha256": "04d3da2536178018590d0640f0858b3a5f889931297ef0e7a43fba9091f5daf7",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0531158,
+          "decodedPeak": 0.3617519,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/af_heart/32.mp3",
+          "aliases": [
+            "Fair lady works shuttles 3"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 3.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz θɹˈiː.",
+          "sha256": "57b58a45bf73b2369a7ffebb8708fb9fab80aa271dd01d0b6bdc89a01a2da0e5",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0533552,
+          "decodedPeak": 0.3461439,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/af_heart/33.mp3",
+          "aliases": [
+            "Fair lady works shuttles 4"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 4.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz fˈɔːɹ.",
+          "sha256": "412e6ce61c69aea19a1e573d98e97547a7e91191ea18c2a18d36b384660cfa52",
+          "bytes": 27309,
+          "durationSeconds": 3.325,
+          "decodedRMS": 0.0533519,
+          "decodedPeak": 0.3467056,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/af_heart/34.mp3",
+          "aliases": [
+            "Step up to seven stars"
+          ],
+          "spokenText": "Next movement, Step up to seven stars.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ˌʌp tə sˈɛvən stˈɑːɹz.",
+          "sha256": "ebce93423cdf32d35a8146071637cb5ffeae802490c6ddca53a50dc31f21d467",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0522099,
+          "decodedPeak": 0.3408192,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/af_heart/35.mp3",
+          "aliases": [
+            "Step back and ride tiger"
+          ],
+          "spokenText": "Next movement, Step back and ride tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp bˈæk ænd ɹˈaɪd tˈaɪɡɚ.",
+          "sha256": "b891270d7cdc013ffb58bc6e6fde0839b96797cda8fa61426dbdd88cbc338c22",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.0525995,
+          "decodedPeak": 0.3053285,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/af_heart/36.mp3",
+          "aliases": [
+            "Turn and sweep lotus, low"
+          ],
+          "spokenText": "Next movement, Turn and sweep lotus, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd swˈiːp lˈoʊɾəs, lˈoʊ.",
+          "sha256": "67aae773a73a5f3c033422a8348b7e05666dba0de0ec3badd3822b1788e00868",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0521372,
+          "decodedPeak": 0.2856729,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/af_heart/37.mp3",
+          "aliases": [
+            "Draw bow and shoot tiger"
+          ],
+          "spokenText": "Next movement, Draw bow and shoot tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, dɹˈɔː bˈoʊ ænd ʃˈuːt tˈaɪɡɚ.",
+          "sha256": "26f123079ddf2569351ae9c1b6c4cb2e2730e7024f6f91b16120c692384d1c06",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0531593,
+          "decodedPeak": 0.3562489,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/af_heart/test.mp3",
+          "aliases": [
+            "Relax your shoulders. Get ready to practise."
+          ],
+          "spokenText": "Relax your shoulders. Get ready to practise.",
+          "phonemes": "ɹᵻlˈæks jʊɹ ʃˈoʊldɚz. ɡɛt ɹˈɛdi tə pɹˈæktɪs.",
+          "sha256": "14fa7273d8efd22a917dac3eda33d8d01314086bea44b6a5473c24daa9127146",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0514385,
+          "decodedPeak": 0.3536369,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:af_bella",
+      "name": "Bella",
+      "lang": "en",
+      "actualLang": "en-US",
+      "gender": "female",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "af_bella",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "Relax your shoulders. Get ready to practise.",
+      "clips": {
+        "Preparation and opening": "assets/audio-natural/af_bella/01.mp3",
+        "Left ward-off": "assets/audio-natural/af_bella/02.mp3",
+        "Right ward-off": "assets/audio-natural/af_bella/03.mp3",
+        "Roll back": "assets/audio-natural/af_bella/04.mp3",
+        "Press": "assets/audio-natural/af_bella/05.mp3",
+        "Push": "assets/audio-natural/af_bella/06.mp3",
+        "Single whip": "assets/audio-natural/af_bella/07.mp3",
+        "Raise hands": "assets/audio-natural/af_bella/08.mp3",
+        "Shoulder alignment": "assets/audio-natural/af_bella/09.mp3",
+        "White crane spreads wings": "assets/audio-natural/af_bella/10.mp3",
+        "Left brush knee and push": "assets/audio-natural/af_bella/11.mp3",
+        "Play the lute": "assets/audio-natural/af_bella/12.mp3",
+        "Step, parry and punch": "assets/audio-natural/af_bella/13.mp3",
+        "Apparent close-up": "assets/audio-natural/af_bella/14.mp3",
+        "Cross hands": "assets/audio-natural/af_bella/15.mp3",
+        "Embrace tiger, return to mountain": "assets/audio-natural/af_bella/16.mp3",
+        "Fist under elbow": "assets/audio-natural/af_bella/17.mp3",
+        "Right repulse monkey": "assets/audio-natural/af_bella/18.mp3",
+        "Left repulse monkey": "assets/audio-natural/af_bella/19.mp3",
+        "Diagonal flying": "assets/audio-natural/af_bella/20.mp3",
+        "Cloud hands left": "assets/audio-natural/af_bella/21.mp3",
+        "Cloud hands right": "assets/audio-natural/af_bella/22.mp3",
+        "Low single whip, shallow": "assets/audio-natural/af_bella/23.mp3",
+        "Right golden rooster, low knee": "assets/audio-natural/af_bella/24.mp3",
+        "Left golden rooster, low knee": "assets/audio-natural/af_bella/25.mp3",
+        "Separate right foot, low": "assets/audio-natural/af_bella/26.mp3",
+        "Separate left foot, low": "assets/audio-natural/af_bella/27.mp3",
+        "Turn and heel kick, low": "assets/audio-natural/af_bella/28.mp3",
+        "Step and downward punch": "assets/audio-natural/af_bella/29.mp3",
+        "Fair lady works shuttles 1": "assets/audio-natural/af_bella/30.mp3",
+        "Fair lady works shuttles 2": "assets/audio-natural/af_bella/31.mp3",
+        "Fair lady works shuttles 3": "assets/audio-natural/af_bella/32.mp3",
+        "Fair lady works shuttles 4": "assets/audio-natural/af_bella/33.mp3",
+        "Step up to seven stars": "assets/audio-natural/af_bella/34.mp3",
+        "Step back and ride tiger": "assets/audio-natural/af_bella/35.mp3",
+        "Turn and sweep lotus, low": "assets/audio-natural/af_bella/36.mp3",
+        "Draw bow and shoot tiger": "assets/audio-natural/af_bella/37.mp3",
+        "Relax your shoulders. Get ready to practise.": "assets/audio-natural/af_bella/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/af_bella/01.mp3",
+          "aliases": [
+            "Preparation and opening"
+          ],
+          "spokenText": "Next movement, Preparation and opening.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˌɛpɚɹˈeɪʃən ænd ˈoʊpənɪŋ.",
+          "sha256": "2909ce8002d64a54a41687df77b98c6dcf2ae14b5c138b4c49455bde530421e0",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0602248,
+          "decodedPeak": 0.4078472,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/af_bella/02.mp3",
+          "aliases": [
+            "Left ward-off"
+          ],
+          "spokenText": "Next movement, Left ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft wˈɔːɹdˈɔf.",
+          "sha256": "484d338cef6bddfb9ed2ee39c7e09dd059f362cd6d4a717d27de98a1e666cd2b",
+          "bytes": 23277,
+          "durationSeconds": 2.825,
+          "decodedRMS": 0.0598333,
+          "decodedPeak": 0.4871085,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/af_bella/03.mp3",
+          "aliases": [
+            "Right ward-off"
+          ],
+          "spokenText": "Next movement, Right ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt wˈɔːɹdˈɔf.",
+          "sha256": "6952412e190354b7f2fba5adc7036443e5136b7c0b35d5b8dc427b7fda34240a",
+          "bytes": 23085,
+          "durationSeconds": 2.8,
+          "decodedRMS": 0.0588684,
+          "decodedPeak": 0.5190088,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/af_bella/04.mp3",
+          "aliases": [
+            "Roll back"
+          ],
+          "spokenText": "Next movement, Roll back.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈoʊl bˈæk.",
+          "sha256": "1c9a74ace6baa60b81cf9d76e2874a5eed84d2759e3f2866a9ad128e8f73650c",
+          "bytes": 20973,
+          "durationSeconds": 2.525,
+          "decodedRMS": 0.059734,
+          "decodedPeak": 0.438581,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/af_bella/05.mp3",
+          "aliases": [
+            "Press"
+          ],
+          "spokenText": "Next movement, Press.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˈɛs.",
+          "sha256": "e6459dd2124576d985029fba2e035fb1311264becd7bb048d13e775cc0e91e09",
+          "bytes": 17709,
+          "durationSeconds": 2.125,
+          "decodedRMS": 0.060914,
+          "decodedPeak": 0.4158133,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/af_bella/06.mp3",
+          "aliases": [
+            "Push"
+          ],
+          "spokenText": "Next movement, Push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pˈʊʃ.",
+          "sha256": "689cf72f8ce3658c6e38e2d64eac5249fe4f3fdce969b8742330ef3e5189d5fa",
+          "bytes": 17901,
+          "durationSeconds": 2.15,
+          "decodedRMS": 0.060465,
+          "decodedPeak": 0.4184882,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/af_bella/07.mp3",
+          "aliases": [
+            "Single whip"
+          ],
+          "spokenText": "Next movement, Single whip.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɪŋɡəl wˈɪp.",
+          "sha256": "5f8676cef4b2a139734bbfe3ac89acf632b5ae33715a1e084356951eee145776",
+          "bytes": 21357,
+          "durationSeconds": 2.575,
+          "decodedRMS": 0.0603921,
+          "decodedPeak": 0.387728,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/af_bella/08.mp3",
+          "aliases": [
+            "Raise hands"
+          ],
+          "spokenText": "Next movement, Raise hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈeɪz hˈændz.",
+          "sha256": "7d43fefac756443b35f94ff438127307489370a4abcaeaee489122650f316f16",
+          "bytes": 22701,
+          "durationSeconds": 2.75,
+          "decodedRMS": 0.0591378,
+          "decodedPeak": 0.4540677,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/af_bella/09.mp3",
+          "aliases": [
+            "Shoulder alignment"
+          ],
+          "spokenText": "Next movement, Shoulder alignment.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ʃˈoʊldɚɹ ɐlˈaɪnmənt.",
+          "sha256": "dc04cc4443aa5f6ab6e94bc9ba3ad967da810f79fef8006ae93d896426bfc9c9",
+          "bytes": 24045,
+          "durationSeconds": 2.925,
+          "decodedRMS": 0.0595211,
+          "decodedPeak": 0.3939284,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/af_bella/10.mp3",
+          "aliases": [
+            "White crane spreads wings"
+          ],
+          "spokenText": "Next movement, White crane spreads wings.",
+          "phonemes": "nˈɛkst mˈuːvmənt, wˈaɪt kɹˈeɪn spɹˈɛdz wˈɪŋz.",
+          "sha256": "3245dfb011fb8fda6830278ac9edf84918165208f6144f7cb73ecaf09b5b3683",
+          "bytes": 29037,
+          "durationSeconds": 3.55,
+          "decodedRMS": 0.059962,
+          "decodedPeak": 0.475031,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/af_bella/11.mp3",
+          "aliases": [
+            "Left brush knee and push"
+          ],
+          "spokenText": "Next movement, Left brush knee and push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft bɹˈʌʃ nˈiː ænd pˈʊʃ.",
+          "sha256": "1947f87d492eba663d5a3330275bb121ca22e538972b078bab68b4448f3d37d9",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0601537,
+          "decodedPeak": 0.4551501,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/af_bella/12.mp3",
+          "aliases": [
+            "Play the lute"
+          ],
+          "spokenText": "Next movement, Play the lute.",
+          "phonemes": "nˈɛkst mˈuːvmənt, plˈeɪ ðə lˈuːt.",
+          "sha256": "dc3ddf9279923bd575ce70af66918ff3562c48dad8582f63583b6184ea15e03c",
+          "bytes": 20973,
+          "durationSeconds": 2.525,
+          "decodedRMS": 0.0608797,
+          "decodedPeak": 0.4073228,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/af_bella/13.mp3",
+          "aliases": [
+            "Step, parry and punch"
+          ],
+          "spokenText": "Next movement, Step, parry and punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp, pˈæɹi ænd pˈʌntʃ.",
+          "sha256": "7bae09c44ff9031c91cc2b3834afb855c3a8ce1140de753d9e26a8d1f5eed8b7",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0620484,
+          "decodedPeak": 0.4644642,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/af_bella/14.mp3",
+          "aliases": [
+            "Apparent close-up"
+          ],
+          "spokenText": "Next movement, Apparent close-up.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɐpˈæɹənt klˈoʊsˈʌp.",
+          "sha256": "8c92539de050e3c53c5a864a1a856ddd726498a1bb4ac8d88d2efc6be03fdb6f",
+          "bytes": 24621,
+          "durationSeconds": 3.0,
+          "decodedRMS": 0.060624,
+          "decodedPeak": 0.4291626,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/af_bella/15.mp3",
+          "aliases": [
+            "Cross hands"
+          ],
+          "spokenText": "Next movement, Cross hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, kɹˈɔs hˈændz.",
+          "sha256": "25f8b5b6f8455a499c6b8d6bedd334e792c3d114f3a45781df97ac8faa4f3586",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.060279,
+          "decodedPeak": 0.4465998,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/af_bella/16.mp3",
+          "aliases": [
+            "Embrace tiger, return to mountain"
+          ],
+          "spokenText": "Next movement, Embrace tiger, return to mountain.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɛmbɹˈeɪs tˈaɪɡɚ, ɹᵻtˈɜːn tə mˈaʊntɪn.",
+          "sha256": "589b8f1c7aee125242eaa9a30a187d4f2aad064189b71d7d939d334859308fc5",
+          "bytes": 34221,
+          "durationSeconds": 4.2,
+          "decodedRMS": 0.062278,
+          "decodedPeak": 0.4619494,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/af_bella/17.mp3",
+          "aliases": [
+            "Fist under elbow"
+          ],
+          "spokenText": "Next movement, Fist under elbow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɪst ˌʌndɚɹ ˈɛlboʊ.",
+          "sha256": "fb25d2415a6b6d4e5dab9e786b09fc02dd773e3c01cd3987f2c1b60a52c6514d",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.0610172,
+          "decodedPeak": 0.4395695,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/af_bella/18.mp3",
+          "aliases": [
+            "Right repulse monkey"
+          ],
+          "spokenText": "Next movement, Right repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "f26140eaefbf434339c942d88af7a97a819c723d32ffabc175922e6c1bfb3f43",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0586683,
+          "decodedPeak": 0.5787345,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/af_bella/19.mp3",
+          "aliases": [
+            "Left repulse monkey"
+          ],
+          "spokenText": "Next movement, Left repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "3dca866901a3bbe6976dbbfc000ec46563844675855baedd27fa2de649589001",
+          "bytes": 27309,
+          "durationSeconds": 3.325,
+          "decodedRMS": 0.0597453,
+          "decodedPeak": 0.4527242,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/af_bella/20.mp3",
+          "aliases": [
+            "Diagonal flying"
+          ],
+          "spokenText": "Next movement, Diagonal flying.",
+          "phonemes": "nˈɛkst mˈuːvmənt, daɪˈæɡənəl flˈaɪɪŋ.",
+          "sha256": "b745f7199888203ed43d39dd98d779a226dfd7cbc154df1b3efdfae25e8b2f80",
+          "bytes": 26349,
+          "durationSeconds": 3.2,
+          "decodedRMS": 0.0574745,
+          "decodedPeak": 0.3958704,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/af_bella/21.mp3",
+          "aliases": [
+            "Cloud hands left"
+          ],
+          "spokenText": "Next movement, Cloud hands left.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz lˈɛft.",
+          "sha256": "3496b8cbc3dad7663a65af6424940a0a11093f4be184ad38a79dc89cc55b92de",
+          "bytes": 25389,
+          "durationSeconds": 3.075,
+          "decodedRMS": 0.0595958,
+          "decodedPeak": 0.41769,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/af_bella/22.mp3",
+          "aliases": [
+            "Cloud hands right"
+          ],
+          "spokenText": "Next movement, Cloud hands right.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz ɹˈaɪt.",
+          "sha256": "b11f17d1080690319b8384a5e12db402156319c65010ef5954ea84fd91f28bad",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0595124,
+          "decodedPeak": 0.4268198,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/af_bella/23.mp3",
+          "aliases": [
+            "Low single whip, shallow"
+          ],
+          "spokenText": "Next movement, Low single whip, shallow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈoʊ sˈɪŋɡəl wˈɪp, ʃˈæloʊ.",
+          "sha256": "6b269a33661b4e5cb645a6cb97ef1eefc86a7101a7941a6b63bf8fedc5f39240",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0621555,
+          "decodedPeak": 0.4552348,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/af_bella/24.mp3",
+          "aliases": [
+            "Right golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Right golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "e2c93cc629962983a59b4070c70a8fb3c9f054cc485b98a159e89bbb404e0a33",
+          "bytes": 31533,
+          "durationSeconds": 3.85,
+          "decodedRMS": 0.0593286,
+          "decodedPeak": 0.5196133,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/af_bella/25.mp3",
+          "aliases": [
+            "Left golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Left golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "782c46c0675a0c361121b2f6f45671cf9582e83a6f98d860491b1671388b3051",
+          "bytes": 31149,
+          "durationSeconds": 3.8,
+          "decodedRMS": 0.0594118,
+          "decodedPeak": 0.4997125,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/af_bella/26.mp3",
+          "aliases": [
+            "Separate right foot, low"
+          ],
+          "spokenText": "Next movement, Separate right foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət ɹˈaɪt fˈʊt, lˈoʊ.",
+          "sha256": "24218c4ba609bbc53b2d095a553026396d188275dba2a8f6f2b2b24f112cee58",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0617108,
+          "decodedPeak": 0.4546714,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/af_bella/27.mp3",
+          "aliases": [
+            "Separate left foot, low"
+          ],
+          "spokenText": "Next movement, Separate left foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət lˈɛft fˈʊt, lˈoʊ.",
+          "sha256": "d666ee847c8bb53854b15821315d25971a490d1a08ee3c86062599a564ecdb3c",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0615922,
+          "decodedPeak": 0.4503999,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/af_bella/28.mp3",
+          "aliases": [
+            "Turn and heel kick, low"
+          ],
+          "spokenText": "Next movement, Turn and heel kick, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd hˈiːl kˈɪk, lˈoʊ.",
+          "sha256": "cea95265a05659d246692ae648da9ffbe95800985438f9780f51c9c3f4562e2a",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0605118,
+          "decodedPeak": 0.4309408,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/af_bella/29.mp3",
+          "aliases": [
+            "Step and downward punch"
+          ],
+          "spokenText": "Next movement, Step and downward punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ænd dˈaʊnwɚd pˈʌntʃ.",
+          "sha256": "be9168ae68f48611a9c322701bcd94f74b205efaed1e90a7f504ab09e8e7f6f0",
+          "bytes": 26925,
+          "durationSeconds": 3.275,
+          "decodedRMS": 0.0614872,
+          "decodedPeak": 0.4310093,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/af_bella/30.mp3",
+          "aliases": [
+            "Fair lady works shuttles 1"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 1.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz wˈʌn.",
+          "sha256": "00aafb5379277f42f76dd5ac0350a87699e8ff557c417c85fdd8686184482443",
+          "bytes": 29229,
+          "durationSeconds": 3.575,
+          "decodedRMS": 0.0609062,
+          "decodedPeak": 0.4420864,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/af_bella/31.mp3",
+          "aliases": [
+            "Fair lady works shuttles 2"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 2.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz tˈuː.",
+          "sha256": "5804cdf730786cc369bd884aba8a57fc2194857b0ba4e2c08e8538482bf9ae47",
+          "bytes": 29421,
+          "durationSeconds": 3.6,
+          "decodedRMS": 0.0612242,
+          "decodedPeak": 0.4531754,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/af_bella/32.mp3",
+          "aliases": [
+            "Fair lady works shuttles 3"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 3.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz θɹˈiː.",
+          "sha256": "32596865814daf586247d3d45d74622cdb3029c7cd9de00807ba7d1fc146cc72",
+          "bytes": 30189,
+          "durationSeconds": 3.675,
+          "decodedRMS": 0.0607186,
+          "decodedPeak": 0.4340423,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/af_bella/33.mp3",
+          "aliases": [
+            "Fair lady works shuttles 4"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 4.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz fˈɔːɹ.",
+          "sha256": "227a4601261a2900f26cd866b0dc808f3db15e2575e32f1124c966af995ff3db",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0614686,
+          "decodedPeak": 0.4576868,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/af_bella/34.mp3",
+          "aliases": [
+            "Step up to seven stars"
+          ],
+          "spokenText": "Next movement, Step up to seven stars.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ˌʌp tə sˈɛvən stˈɑːɹz.",
+          "sha256": "01af6de7dc4358698e2faccdcbab69c8b00d76f494614d474d030ad90aad6dfe",
+          "bytes": 27885,
+          "durationSeconds": 3.4,
+          "decodedRMS": 0.0614305,
+          "decodedPeak": 0.4549938,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/af_bella/35.mp3",
+          "aliases": [
+            "Step back and ride tiger"
+          ],
+          "spokenText": "Next movement, Step back and ride tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp bˈæk ænd ɹˈaɪd tˈaɪɡɚ.",
+          "sha256": "3f6b32b496e5b9f2eef275d1370c624181e5a265c26ef2cc29819574ed395a3d",
+          "bytes": 29421,
+          "durationSeconds": 3.6,
+          "decodedRMS": 0.061168,
+          "decodedPeak": 0.4723157,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/af_bella/36.mp3",
+          "aliases": [
+            "Turn and sweep lotus, low"
+          ],
+          "spokenText": "Next movement, Turn and sweep lotus, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd swˈiːp lˈoʊɾəs, lˈoʊ.",
+          "sha256": "67013a56bdbfce2cfc59c0d1fec2f3a8fcc651f493704282ba9f79b4fe22fb0b",
+          "bytes": 30381,
+          "durationSeconds": 3.7,
+          "decodedRMS": 0.0599738,
+          "decodedPeak": 0.4305658,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/af_bella/37.mp3",
+          "aliases": [
+            "Draw bow and shoot tiger"
+          ],
+          "spokenText": "Next movement, Draw bow and shoot tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, dɹˈɔː bˈoʊ ænd ʃˈuːt tˈaɪɡɚ.",
+          "sha256": "afd44a4717130fecbf3e18a8b6904480b7c2b249884935290f1ddeea3d2867d3",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0604672,
+          "decodedPeak": 0.440367,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/af_bella/test.mp3",
+          "aliases": [
+            "Relax your shoulders. Get ready to practise."
+          ],
+          "spokenText": "Relax your shoulders. Get ready to practise.",
+          "phonemes": "ɹᵻlˈæks jʊɹ ʃˈoʊldɚz. ɡɛt ɹˈɛdi tə pɹˈæktɪs.",
+          "sha256": "24418a8e2b8a2411fdb84cb995235f85cd8b6b1b9f8b8015c631e83d73de4d48",
+          "bytes": 29805,
+          "durationSeconds": 3.62596,
+          "decodedRMS": 0.0577627,
+          "decodedPeak": 0.4688591,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:am_michael",
+      "name": "Michael",
+      "lang": "en",
+      "actualLang": "en-US",
+      "gender": "male",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "am_michael",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "Relax your shoulders. Get ready to practise.",
+      "clips": {
+        "Preparation and opening": "assets/audio-natural/am_michael/01.mp3",
+        "Left ward-off": "assets/audio-natural/am_michael/02.mp3",
+        "Right ward-off": "assets/audio-natural/am_michael/03.mp3",
+        "Roll back": "assets/audio-natural/am_michael/04.mp3",
+        "Press": "assets/audio-natural/am_michael/05.mp3",
+        "Push": "assets/audio-natural/am_michael/06.mp3",
+        "Single whip": "assets/audio-natural/am_michael/07.mp3",
+        "Raise hands": "assets/audio-natural/am_michael/08.mp3",
+        "Shoulder alignment": "assets/audio-natural/am_michael/09.mp3",
+        "White crane spreads wings": "assets/audio-natural/am_michael/10.mp3",
+        "Left brush knee and push": "assets/audio-natural/am_michael/11.mp3",
+        "Play the lute": "assets/audio-natural/am_michael/12.mp3",
+        "Step, parry and punch": "assets/audio-natural/am_michael/13.mp3",
+        "Apparent close-up": "assets/audio-natural/am_michael/14.mp3",
+        "Cross hands": "assets/audio-natural/am_michael/15.mp3",
+        "Embrace tiger, return to mountain": "assets/audio-natural/am_michael/16.mp3",
+        "Fist under elbow": "assets/audio-natural/am_michael/17.mp3",
+        "Right repulse monkey": "assets/audio-natural/am_michael/18.mp3",
+        "Left repulse monkey": "assets/audio-natural/am_michael/19.mp3",
+        "Diagonal flying": "assets/audio-natural/am_michael/20.mp3",
+        "Cloud hands left": "assets/audio-natural/am_michael/21.mp3",
+        "Cloud hands right": "assets/audio-natural/am_michael/22.mp3",
+        "Low single whip, shallow": "assets/audio-natural/am_michael/23.mp3",
+        "Right golden rooster, low knee": "assets/audio-natural/am_michael/24.mp3",
+        "Left golden rooster, low knee": "assets/audio-natural/am_michael/25.mp3",
+        "Separate right foot, low": "assets/audio-natural/am_michael/26.mp3",
+        "Separate left foot, low": "assets/audio-natural/am_michael/27.mp3",
+        "Turn and heel kick, low": "assets/audio-natural/am_michael/28.mp3",
+        "Step and downward punch": "assets/audio-natural/am_michael/29.mp3",
+        "Fair lady works shuttles 1": "assets/audio-natural/am_michael/30.mp3",
+        "Fair lady works shuttles 2": "assets/audio-natural/am_michael/31.mp3",
+        "Fair lady works shuttles 3": "assets/audio-natural/am_michael/32.mp3",
+        "Fair lady works shuttles 4": "assets/audio-natural/am_michael/33.mp3",
+        "Step up to seven stars": "assets/audio-natural/am_michael/34.mp3",
+        "Step back and ride tiger": "assets/audio-natural/am_michael/35.mp3",
+        "Turn and sweep lotus, low": "assets/audio-natural/am_michael/36.mp3",
+        "Draw bow and shoot tiger": "assets/audio-natural/am_michael/37.mp3",
+        "Relax your shoulders. Get ready to practise.": "assets/audio-natural/am_michael/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/am_michael/01.mp3",
+          "aliases": [
+            "Preparation and opening"
+          ],
+          "spokenText": "Next movement, Preparation and opening.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˌɛpɚɹˈeɪʃən ænd ˈoʊpənɪŋ.",
+          "sha256": "3cce14d3873884eff81b2216f99b4cbf45cf87c13b55dd95e79ba8619ca337fb",
+          "bytes": 28653,
+          "durationSeconds": 3.5,
+          "decodedRMS": 0.0480069,
+          "decodedPeak": 0.4168063,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/am_michael/02.mp3",
+          "aliases": [
+            "Left ward-off"
+          ],
+          "spokenText": "Next movement, Left ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft wˈɔːɹdˈɔf.",
+          "sha256": "85ae2ddfc093feea5c15c025b9c9dc2a4b361350d672cc8498c3907707a633fe",
+          "bytes": 22893,
+          "durationSeconds": 2.775,
+          "decodedRMS": 0.0464872,
+          "decodedPeak": 0.3226402,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/am_michael/03.mp3",
+          "aliases": [
+            "Right ward-off"
+          ],
+          "spokenText": "Next movement, Right ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt wˈɔːɹdˈɔf.",
+          "sha256": "7ef79349d29da9a0c39e062fca90a865cdb1db8c60b720f92a7a1450300264c3",
+          "bytes": 23085,
+          "durationSeconds": 2.8,
+          "decodedRMS": 0.0461283,
+          "decodedPeak": 0.3080147,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/am_michael/04.mp3",
+          "aliases": [
+            "Roll back"
+          ],
+          "spokenText": "Next movement, Roll back.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈoʊl bˈæk.",
+          "sha256": "eacd760600b76b4918dd98996794815b7776a2659a36f70b3a259e645ea1f6d6",
+          "bytes": 21549,
+          "durationSeconds": 2.6,
+          "decodedRMS": 0.04782,
+          "decodedPeak": 0.3224604,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/am_michael/05.mp3",
+          "aliases": [
+            "Press"
+          ],
+          "spokenText": "Next movement, Press.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˈɛs.",
+          "sha256": "4e9b687526f23cec2b4df05f755f4173a90174fbde64bcf7d133358ec1290a77",
+          "bytes": 18285,
+          "durationSeconds": 2.2,
+          "decodedRMS": 0.048791,
+          "decodedPeak": 0.3623569,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/am_michael/06.mp3",
+          "aliases": [
+            "Push"
+          ],
+          "spokenText": "Next movement, Push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pˈʊʃ.",
+          "sha256": "ac33a5f04006d4577e7f338b63336a40e0fa425dbb77614f07caa92869729265",
+          "bytes": 18477,
+          "durationSeconds": 2.225,
+          "decodedRMS": 0.0513806,
+          "decodedPeak": 0.4306151,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/am_michael/07.mp3",
+          "aliases": [
+            "Single whip"
+          ],
+          "spokenText": "Next movement, Single whip.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɪŋɡəl wˈɪp.",
+          "sha256": "1fabaad27503bfcafb2a68b98f745a98cc517d1031dc83092f75a82489db5697",
+          "bytes": 21357,
+          "durationSeconds": 2.575,
+          "decodedRMS": 0.0465522,
+          "decodedPeak": 0.4455555,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/am_michael/08.mp3",
+          "aliases": [
+            "Raise hands"
+          ],
+          "spokenText": "Next movement, Raise hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈeɪz hˈændz.",
+          "sha256": "2c893f89aeedea2ea1f89f863812bdafcb136b2f3ffee12c714e2d8a59102dff",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.0469132,
+          "decodedPeak": 0.3770328,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/am_michael/09.mp3",
+          "aliases": [
+            "Shoulder alignment"
+          ],
+          "spokenText": "Next movement, Shoulder alignment.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ʃˈoʊldɚɹ ɐlˈaɪnmənt.",
+          "sha256": "694c87b41a51576de651a158d8daf47a07b7868cb5591ac643f3c18051f2ba26",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0471278,
+          "decodedPeak": 0.3097843,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/am_michael/10.mp3",
+          "aliases": [
+            "White crane spreads wings"
+          ],
+          "spokenText": "Next movement, White crane spreads wings.",
+          "phonemes": "nˈɛkst mˈuːvmənt, wˈaɪt kɹˈeɪn spɹˈɛdz wˈɪŋz.",
+          "sha256": "514094029f55ecb7d2978147a9c467e7caa2e6771ba416303c7fe087c9cba1a9",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.047741,
+          "decodedPeak": 0.4383319,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/am_michael/11.mp3",
+          "aliases": [
+            "Left brush knee and push"
+          ],
+          "spokenText": "Next movement, Left brush knee and push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft bɹˈʌʃ nˈiː ænd pˈʊʃ.",
+          "sha256": "ba16eb639e766909ad0da799c36e44ee25f836c383006b5ed5c46f3dce29e20d",
+          "bytes": 28269,
+          "durationSeconds": 3.45,
+          "decodedRMS": 0.0479249,
+          "decodedPeak": 0.3752366,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/am_michael/12.mp3",
+          "aliases": [
+            "Play the lute"
+          ],
+          "spokenText": "Next movement, Play the lute.",
+          "phonemes": "nˈɛkst mˈuːvmənt, plˈeɪ ðə lˈuːt.",
+          "sha256": "a7f89f981378ea699b4548a544c3b1a76ae7dcefa6de0bcc3e5c40e890207680",
+          "bytes": 20973,
+          "durationSeconds": 2.525,
+          "decodedRMS": 0.0480013,
+          "decodedPeak": 0.4116614,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/am_michael/13.mp3",
+          "aliases": [
+            "Step, parry and punch"
+          ],
+          "spokenText": "Next movement, Step, parry and punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp, pˈæɹi ænd pˈʌntʃ.",
+          "sha256": "6dbe3c629418aedb82c1a96790df2fba44943a58a9e3b344fa8ac62b76fdfb88",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.046779,
+          "decodedPeak": 0.4295794,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/am_michael/14.mp3",
+          "aliases": [
+            "Apparent close-up"
+          ],
+          "spokenText": "Next movement, Apparent close-up.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɐpˈæɹənt klˈoʊsˈʌp.",
+          "sha256": "7cef54de2dbc640fc189aaf29043ca57a6e94abdc7c9d3361cab35c783f03b2d",
+          "bytes": 24429,
+          "durationSeconds": 2.975,
+          "decodedRMS": 0.0450196,
+          "decodedPeak": 0.3687968,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/am_michael/15.mp3",
+          "aliases": [
+            "Cross hands"
+          ],
+          "spokenText": "Next movement, Cross hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, kɹˈɔs hˈændz.",
+          "sha256": "9fb8e20f70197e2827bfafbc9b2cf4e83e1cd95ab37853ba7123546d22d0ff75",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.047182,
+          "decodedPeak": 0.3583629,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/am_michael/16.mp3",
+          "aliases": [
+            "Embrace tiger, return to mountain"
+          ],
+          "spokenText": "Next movement, Embrace tiger, return to mountain.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɛmbɹˈeɪs tˈaɪɡɚ, ɹᵻtˈɜːn tə mˈaʊntɪn.",
+          "sha256": "bf5386d89f522e783dbcfeaa08cd407d9040a8ce7060edb3e72ae9dd0d4e9e7f",
+          "bytes": 34989,
+          "durationSeconds": 4.275,
+          "decodedRMS": 0.0444853,
+          "decodedPeak": 0.3348099,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/am_michael/17.mp3",
+          "aliases": [
+            "Fist under elbow"
+          ],
+          "spokenText": "Next movement, Fist under elbow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɪst ˌʌndɚɹ ˈɛlboʊ.",
+          "sha256": "a16fc8bd04f507eaba089e67b43d027b1f9216a7de9fd9fceb1ddc8e438a90a9",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0466794,
+          "decodedPeak": 0.3269602,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/am_michael/18.mp3",
+          "aliases": [
+            "Right repulse monkey"
+          ],
+          "spokenText": "Next movement, Right repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "2e63814c4dc7e102b66fd5734996174c6de3fbcc221b56b41fa1a887d7c09d0e",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0467568,
+          "decodedPeak": 0.3930085,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/am_michael/19.mp3",
+          "aliases": [
+            "Left repulse monkey"
+          ],
+          "spokenText": "Next movement, Left repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "443c1209f82c397556fe37fb2d2d6fbddc87185b9a6fb7052eaff80f33f05583",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0469425,
+          "decodedPeak": 0.3979449,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/am_michael/20.mp3",
+          "aliases": [
+            "Diagonal flying"
+          ],
+          "spokenText": "Next movement, Diagonal flying.",
+          "phonemes": "nˈɛkst mˈuːvmənt, daɪˈæɡənəl flˈaɪɪŋ.",
+          "sha256": "4d2424c28559b67e868fa0fe740dd53a80ac8edfb898ef27c17823a37dcc6afd",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.0444785,
+          "decodedPeak": 0.2883123,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/am_michael/21.mp3",
+          "aliases": [
+            "Cloud hands left"
+          ],
+          "spokenText": "Next movement, Cloud hands left.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz lˈɛft.",
+          "sha256": "1dcde424ae21d00da08f36d25a5c8d24cf8b82d4eb2c003ddfe44308221b8845",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.045901,
+          "decodedPeak": 0.3291663,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/am_michael/22.mp3",
+          "aliases": [
+            "Cloud hands right"
+          ],
+          "spokenText": "Next movement, Cloud hands right.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz ɹˈaɪt.",
+          "sha256": "949bea2642f056f5356f1b7813de194d0148784fae5309a032af2673959c9da2",
+          "bytes": 25005,
+          "durationSeconds": 3.02596,
+          "decodedRMS": 0.045225,
+          "decodedPeak": 0.3485865,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/am_michael/23.mp3",
+          "aliases": [
+            "Low single whip, shallow"
+          ],
+          "spokenText": "Next movement, Low single whip, shallow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈoʊ sˈɪŋɡəl wˈɪp, ʃˈæloʊ.",
+          "sha256": "0c58257a6d5a81c1343e0d3596072368b12c59c866afcd0d193cb3abb90fe8aa",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0470945,
+          "decodedPeak": 0.3302166,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/am_michael/24.mp3",
+          "aliases": [
+            "Right golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Right golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "cdcbbe5c3ecd8c2d51267eaba2ab4577bf6480a1aa24351d7daf7428be9aa697",
+          "bytes": 32877,
+          "durationSeconds": 4.025,
+          "decodedRMS": 0.0485358,
+          "decodedPeak": 0.426864,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/am_michael/25.mp3",
+          "aliases": [
+            "Left golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Left golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "96083c994fcac697b65446d415e69767504527b640e191980bfdd5700de52bbf",
+          "bytes": 32109,
+          "durationSeconds": 3.925,
+          "decodedRMS": 0.0486016,
+          "decodedPeak": 0.3801978,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/am_michael/26.mp3",
+          "aliases": [
+            "Separate right foot, low"
+          ],
+          "spokenText": "Next movement, Separate right foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət ɹˈaɪt fˈʊt, lˈoʊ.",
+          "sha256": "77bc0b1e296f0a5bee84351d58d212b0f1b8d677fa5f9eef22ded425611f7134",
+          "bytes": 28077,
+          "durationSeconds": 3.425,
+          "decodedRMS": 0.0473579,
+          "decodedPeak": 0.3600398,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/am_michael/27.mp3",
+          "aliases": [
+            "Separate left foot, low"
+          ],
+          "spokenText": "Next movement, Separate left foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət lˈɛft fˈʊt, lˈoʊ.",
+          "sha256": "7bb6d43eb084f3a306befb97294ac29e30a5fd710b853629b0c4d612d8b6714d",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0473111,
+          "decodedPeak": 0.3435699,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/am_michael/28.mp3",
+          "aliases": [
+            "Turn and heel kick, low"
+          ],
+          "spokenText": "Next movement, Turn and heel kick, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd hˈiːl kˈɪk, lˈoʊ.",
+          "sha256": "b5fe1ab11550abccb590e4fe21f7f981f18a5dbd0bed584f0fdfbfb9a68041d5",
+          "bytes": 27693,
+          "durationSeconds": 3.375,
+          "decodedRMS": 0.0462439,
+          "decodedPeak": 0.3080028,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/am_michael/29.mp3",
+          "aliases": [
+            "Step and downward punch"
+          ],
+          "spokenText": "Next movement, Step and downward punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ænd dˈaʊnwɚd pˈʌntʃ.",
+          "sha256": "f67e7dd4752a4a66a43d3ea305289fdc4bcde21d5faad554e836d8cadf407ce7",
+          "bytes": 27309,
+          "durationSeconds": 3.325,
+          "decodedRMS": 0.0474629,
+          "decodedPeak": 0.4073608,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/am_michael/30.mp3",
+          "aliases": [
+            "Fair lady works shuttles 1"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 1.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz wˈʌn.",
+          "sha256": "2dd4a47a9a5472a9c2303fbd056c39dd64df5aec96d94be034a24dc3341be52e",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0467699,
+          "decodedPeak": 0.3307621,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/am_michael/31.mp3",
+          "aliases": [
+            "Fair lady works shuttles 2"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 2.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz tˈuː.",
+          "sha256": "c1fc253c3a2d94ce9ae1bf12f58849e0e20f297c41eb842505d253b5af124952",
+          "bytes": 29997,
+          "durationSeconds": 3.65,
+          "decodedRMS": 0.0462355,
+          "decodedPeak": 0.377159,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/am_michael/32.mp3",
+          "aliases": [
+            "Fair lady works shuttles 3"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 3.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz θɹˈiː.",
+          "sha256": "0495feef7db11240379f29508d9bcdab0c4d39625de26509562b2d47938c9475",
+          "bytes": 30573,
+          "durationSeconds": 3.725,
+          "decodedRMS": 0.0465681,
+          "decodedPeak": 0.3614066,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/am_michael/33.mp3",
+          "aliases": [
+            "Fair lady works shuttles 4"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 4.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz fˈɔːɹ.",
+          "sha256": "94e752926aeef0063f52e37975d6636c908ef235928def1c3fed129d567ab123",
+          "bytes": 30957,
+          "durationSeconds": 3.775,
+          "decodedRMS": 0.0462262,
+          "decodedPeak": 0.3207445,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/am_michael/34.mp3",
+          "aliases": [
+            "Step up to seven stars"
+          ],
+          "spokenText": "Next movement, Step up to seven stars.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ˌʌp tə sˈɛvən stˈɑːɹz.",
+          "sha256": "13c74628b6fd8d0a58428e03e85c97c77caaa6b25d63a2d34cb338e176ee22bc",
+          "bytes": 29037,
+          "durationSeconds": 3.55,
+          "decodedRMS": 0.047928,
+          "decodedPeak": 0.4438314,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/am_michael/35.mp3",
+          "aliases": [
+            "Step back and ride tiger"
+          ],
+          "spokenText": "Next movement, Step back and ride tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp bˈæk ænd ɹˈaɪd tˈaɪɡɚ.",
+          "sha256": "9029566ef9a27220c4a188ed217b69e25e2f87dde4a9617016a7c6ece0466436",
+          "bytes": 29421,
+          "durationSeconds": 3.6,
+          "decodedRMS": 0.0464575,
+          "decodedPeak": 0.4080629,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/am_michael/36.mp3",
+          "aliases": [
+            "Turn and sweep lotus, low"
+          ],
+          "spokenText": "Next movement, Turn and sweep lotus, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd swˈiːp lˈoʊɾəs, lˈoʊ.",
+          "sha256": "fafd3dcb3f59196b2a7b6ce54597e5139beade32368f0df151667cd7defc1198",
+          "bytes": 30381,
+          "durationSeconds": 3.7,
+          "decodedRMS": 0.0461569,
+          "decodedPeak": 0.325967,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/am_michael/37.mp3",
+          "aliases": [
+            "Draw bow and shoot tiger"
+          ],
+          "spokenText": "Next movement, Draw bow and shoot tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, dɹˈɔː bˈoʊ ænd ʃˈuːt tˈaɪɡɚ.",
+          "sha256": "434f89b31c72a715029f69ad1776ca00da716c512134bb564a7afa3419809538",
+          "bytes": 28845,
+          "durationSeconds": 3.525,
+          "decodedRMS": 0.0474875,
+          "decodedPeak": 0.2898867,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/am_michael/test.mp3",
+          "aliases": [
+            "Relax your shoulders. Get ready to practise."
+          ],
+          "spokenText": "Relax your shoulders. Get ready to practise.",
+          "phonemes": "ɹᵻlˈæks jʊɹ ʃˈoʊldɚz. ɡɛt ɹˈɛdi tə pɹˈæktɪs.",
+          "sha256": "962cb6fe5b48ea98faa752ca452850ba9182b874de34b1f9faa6c3bd69cbb9a5",
+          "bytes": 31725,
+          "durationSeconds": 3.875,
+          "decodedRMS": 0.0470887,
+          "decodedPeak": 0.3392263,
+          "sampleRate": 24000
+        }
+      ]
+    },
+    {
+      "id": "kokoro:am_puck",
+      "name": "Puck",
+      "lang": "en",
+      "actualLang": "en-US",
+      "gender": "male",
+      "source": "Kokoro-82M v1.0",
+      "sourceVoice": "am_puck",
+      "synthetic": true,
+      "priority": 10,
+      "testText": "Relax your shoulders. Get ready to practise.",
+      "clips": {
+        "Preparation and opening": "assets/audio-natural/am_puck/01.mp3",
+        "Left ward-off": "assets/audio-natural/am_puck/02.mp3",
+        "Right ward-off": "assets/audio-natural/am_puck/03.mp3",
+        "Roll back": "assets/audio-natural/am_puck/04.mp3",
+        "Press": "assets/audio-natural/am_puck/05.mp3",
+        "Push": "assets/audio-natural/am_puck/06.mp3",
+        "Single whip": "assets/audio-natural/am_puck/07.mp3",
+        "Raise hands": "assets/audio-natural/am_puck/08.mp3",
+        "Shoulder alignment": "assets/audio-natural/am_puck/09.mp3",
+        "White crane spreads wings": "assets/audio-natural/am_puck/10.mp3",
+        "Left brush knee and push": "assets/audio-natural/am_puck/11.mp3",
+        "Play the lute": "assets/audio-natural/am_puck/12.mp3",
+        "Step, parry and punch": "assets/audio-natural/am_puck/13.mp3",
+        "Apparent close-up": "assets/audio-natural/am_puck/14.mp3",
+        "Cross hands": "assets/audio-natural/am_puck/15.mp3",
+        "Embrace tiger, return to mountain": "assets/audio-natural/am_puck/16.mp3",
+        "Fist under elbow": "assets/audio-natural/am_puck/17.mp3",
+        "Right repulse monkey": "assets/audio-natural/am_puck/18.mp3",
+        "Left repulse monkey": "assets/audio-natural/am_puck/19.mp3",
+        "Diagonal flying": "assets/audio-natural/am_puck/20.mp3",
+        "Cloud hands left": "assets/audio-natural/am_puck/21.mp3",
+        "Cloud hands right": "assets/audio-natural/am_puck/22.mp3",
+        "Low single whip, shallow": "assets/audio-natural/am_puck/23.mp3",
+        "Right golden rooster, low knee": "assets/audio-natural/am_puck/24.mp3",
+        "Left golden rooster, low knee": "assets/audio-natural/am_puck/25.mp3",
+        "Separate right foot, low": "assets/audio-natural/am_puck/26.mp3",
+        "Separate left foot, low": "assets/audio-natural/am_puck/27.mp3",
+        "Turn and heel kick, low": "assets/audio-natural/am_puck/28.mp3",
+        "Step and downward punch": "assets/audio-natural/am_puck/29.mp3",
+        "Fair lady works shuttles 1": "assets/audio-natural/am_puck/30.mp3",
+        "Fair lady works shuttles 2": "assets/audio-natural/am_puck/31.mp3",
+        "Fair lady works shuttles 3": "assets/audio-natural/am_puck/32.mp3",
+        "Fair lady works shuttles 4": "assets/audio-natural/am_puck/33.mp3",
+        "Step up to seven stars": "assets/audio-natural/am_puck/34.mp3",
+        "Step back and ride tiger": "assets/audio-natural/am_puck/35.mp3",
+        "Turn and sweep lotus, low": "assets/audio-natural/am_puck/36.mp3",
+        "Draw bow and shoot tiger": "assets/audio-natural/am_puck/37.mp3",
+        "Relax your shoulders. Get ready to practise.": "assets/audio-natural/am_puck/test.mp3"
+      },
+      "records": [
+        {
+          "id": "01",
+          "path": "assets/audio-natural/am_puck/01.mp3",
+          "aliases": [
+            "Preparation and opening"
+          ],
+          "spokenText": "Next movement, Preparation and opening.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˌɛpɚɹˈeɪʃən ænd ˈoʊpənɪŋ.",
+          "sha256": "5ceed127ed6b8644e7476c7bde91276a7ca7f93b47aa84d70da4e37d1cd5849e",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.0843998,
+          "decodedPeak": 0.7341895,
+          "sampleRate": 24000
+        },
+        {
+          "id": "02",
+          "path": "assets/audio-natural/am_puck/02.mp3",
+          "aliases": [
+            "Left ward-off"
+          ],
+          "spokenText": "Next movement, Left ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft wˈɔːɹdˈɔf.",
+          "sha256": "1cfe9755ae5f4c7e49b1ce81700747c2eb962ce62a27e80cd64c57c8cf61c26e",
+          "bytes": 18669,
+          "durationSeconds": 2.25,
+          "decodedRMS": 0.0852898,
+          "decodedPeak": 0.48765,
+          "sampleRate": 24000
+        },
+        {
+          "id": "03",
+          "path": "assets/audio-natural/am_puck/03.mp3",
+          "aliases": [
+            "Right ward-off"
+          ],
+          "spokenText": "Next movement, Right ward-off.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt wˈɔːɹdˈɔf.",
+          "sha256": "c3fdfbc092b8ae6c61171684da2ae4086b04beaa31529e97da358926a8df299f",
+          "bytes": 18285,
+          "durationSeconds": 2.2,
+          "decodedRMS": 0.0841057,
+          "decodedPeak": 0.4408371,
+          "sampleRate": 24000
+        },
+        {
+          "id": "04",
+          "path": "assets/audio-natural/am_puck/04.mp3",
+          "aliases": [
+            "Roll back"
+          ],
+          "spokenText": "Next movement, Roll back.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈoʊl bˈæk.",
+          "sha256": "d8acf411b32f339fd6736a642226022803e0a8672b459834faade7a4712d8fee",
+          "bytes": 16557,
+          "durationSeconds": 1.975,
+          "decodedRMS": 0.0857038,
+          "decodedPeak": 0.4666681,
+          "sampleRate": 24000
+        },
+        {
+          "id": "05",
+          "path": "assets/audio-natural/am_puck/05.mp3",
+          "aliases": [
+            "Press"
+          ],
+          "spokenText": "Next movement, Press.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pɹˈɛs.",
+          "sha256": "6254c82c8cc3d7d43148d498a6bc1c48d5c9cf329f78f62687bc2d576bc3ac47",
+          "bytes": 15789,
+          "durationSeconds": 1.875,
+          "decodedRMS": 0.087142,
+          "decodedPeak": 0.6294727,
+          "sampleRate": 24000
+        },
+        {
+          "id": "06",
+          "path": "assets/audio-natural/am_puck/06.mp3",
+          "aliases": [
+            "Push"
+          ],
+          "spokenText": "Next movement, Push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, pˈʊʃ.",
+          "sha256": "a553fd7f48072fd8968b3aed0d52aec1c15b451cd474a057aad45b1b3e566770",
+          "bytes": 15597,
+          "durationSeconds": 1.85,
+          "decodedRMS": 0.0870485,
+          "decodedPeak": 0.5997009,
+          "sampleRate": 24000
+        },
+        {
+          "id": "07",
+          "path": "assets/audio-natural/am_puck/07.mp3",
+          "aliases": [
+            "Single whip"
+          ],
+          "spokenText": "Next movement, Single whip.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɪŋɡəl wˈɪp.",
+          "sha256": "7359cd3dbe3ecbfaf039cd335f464363169b0b10df898971f00cebb13e800fa8",
+          "bytes": 17709,
+          "durationSeconds": 2.125,
+          "decodedRMS": 0.0836968,
+          "decodedPeak": 0.5477523,
+          "sampleRate": 24000
+        },
+        {
+          "id": "08",
+          "path": "assets/audio-natural/am_puck/08.mp3",
+          "aliases": [
+            "Raise hands"
+          ],
+          "spokenText": "Next movement, Raise hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈeɪz hˈændz.",
+          "sha256": "41c5808172b0af7651ac9dfe3f54622f3692f930d437aafb5f11ec0311670630",
+          "bytes": 18477,
+          "durationSeconds": 2.225,
+          "decodedRMS": 0.0866991,
+          "decodedPeak": 0.5987207,
+          "sampleRate": 24000
+        },
+        {
+          "id": "09",
+          "path": "assets/audio-natural/am_puck/09.mp3",
+          "aliases": [
+            "Shoulder alignment"
+          ],
+          "spokenText": "Next movement, Shoulder alignment.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ʃˈoʊldɚɹ ɐlˈaɪnmənt.",
+          "sha256": "df4ceab00e4b87d8ae1a3ca44426a4df1cfeb22f3eaaab20344455b6e2b65050",
+          "bytes": 19821,
+          "durationSeconds": 2.4,
+          "decodedRMS": 0.085337,
+          "decodedPeak": 0.4881916,
+          "sampleRate": 24000
+        },
+        {
+          "id": "10",
+          "path": "assets/audio-natural/am_puck/10.mp3",
+          "aliases": [
+            "White crane spreads wings"
+          ],
+          "spokenText": "Next movement, White crane spreads wings.",
+          "phonemes": "nˈɛkst mˈuːvmənt, wˈaɪt kɹˈeɪn spɹˈɛdz wˈɪŋz.",
+          "sha256": "6ec18c7f75a6b842ffcc1e5f104af04c400ccf334d7efd1dc9e826aab09f030e",
+          "bytes": 24045,
+          "durationSeconds": 2.925,
+          "decodedRMS": 0.0844677,
+          "decodedPeak": 0.6893386,
+          "sampleRate": 24000
+        },
+        {
+          "id": "11",
+          "path": "assets/audio-natural/am_puck/11.mp3",
+          "aliases": [
+            "Left brush knee and push"
+          ],
+          "spokenText": "Next movement, Left brush knee and push.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft bɹˈʌʃ nˈiː ænd pˈʊʃ.",
+          "sha256": "d098098a63d720a7ac84c0b7fdb817ed0acec5324fc9ad9a3186dc23cbf907c2",
+          "bytes": 22701,
+          "durationSeconds": 2.75,
+          "decodedRMS": 0.0830209,
+          "decodedPeak": 0.5263424,
+          "sampleRate": 24000
+        },
+        {
+          "id": "12",
+          "path": "assets/audio-natural/am_puck/12.mp3",
+          "aliases": [
+            "Play the lute"
+          ],
+          "spokenText": "Next movement, Play the lute.",
+          "phonemes": "nˈɛkst mˈuːvmənt, plˈeɪ ðə lˈuːt.",
+          "sha256": "bcc1716aab7c7b1bfa6076f6dabf93c1951b4ea4f9ade58c02bf63de3f942c1d",
+          "bytes": 17325,
+          "durationSeconds": 2.075,
+          "decodedRMS": 0.0839938,
+          "decodedPeak": 0.5938337,
+          "sampleRate": 24000
+        },
+        {
+          "id": "13",
+          "path": "assets/audio-natural/am_puck/13.mp3",
+          "aliases": [
+            "Step, parry and punch"
+          ],
+          "spokenText": "Next movement, Step, parry and punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp, pˈæɹi ænd pˈʌntʃ.",
+          "sha256": "e24d423153acfb3867c290a7028ea8475330e1da5e4565a0e2489c39b140ab4c",
+          "bytes": 21549,
+          "durationSeconds": 2.6,
+          "decodedRMS": 0.0839523,
+          "decodedPeak": 0.526527,
+          "sampleRate": 24000
+        },
+        {
+          "id": "14",
+          "path": "assets/audio-natural/am_puck/14.mp3",
+          "aliases": [
+            "Apparent close-up"
+          ],
+          "spokenText": "Next movement, Apparent close-up.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɐpˈæɹənt klˈoʊsˈʌp.",
+          "sha256": "a38e3f53372ea7f90e9c8961c820529c3f5b06cd8405131010560929ad2fd999",
+          "bytes": 19821,
+          "durationSeconds": 2.4,
+          "decodedRMS": 0.0820182,
+          "decodedPeak": 0.4786429,
+          "sampleRate": 24000
+        },
+        {
+          "id": "15",
+          "path": "assets/audio-natural/am_puck/15.mp3",
+          "aliases": [
+            "Cross hands"
+          ],
+          "spokenText": "Next movement, Cross hands.",
+          "phonemes": "nˈɛkst mˈuːvmənt, kɹˈɔs hˈændz.",
+          "sha256": "158611488da7bfd675423899a61dfff95d6c779ec2ef0ce8d1c551012d4d9a4b",
+          "bytes": 18669,
+          "durationSeconds": 2.25,
+          "decodedRMS": 0.0866331,
+          "decodedPeak": 0.7063448,
+          "sampleRate": 24000
+        },
+        {
+          "id": "16",
+          "path": "assets/audio-natural/am_puck/16.mp3",
+          "aliases": [
+            "Embrace tiger, return to mountain"
+          ],
+          "spokenText": "Next movement, Embrace tiger, return to mountain.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɛmbɹˈeɪs tˈaɪɡɚ, ɹᵻtˈɜːn tə mˈaʊntɪn.",
+          "sha256": "87ef8e36e84d1baf267abc045b52fdd1624d4d55f28f73dbbcb53b54cc5dcaac",
+          "bytes": 29037,
+          "durationSeconds": 3.55,
+          "decodedRMS": 0.0837889,
+          "decodedPeak": 0.5388582,
+          "sampleRate": 24000
+        },
+        {
+          "id": "17",
+          "path": "assets/audio-natural/am_puck/17.mp3",
+          "aliases": [
+            "Fist under elbow"
+          ],
+          "spokenText": "Next movement, Fist under elbow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɪst ˌʌndɚɹ ˈɛlboʊ.",
+          "sha256": "dbd32bcae945daa3ed22b15634e1304a3ee58ebf4adfd61ea3362a1ba22b5867",
+          "bytes": 21357,
+          "durationSeconds": 2.575,
+          "decodedRMS": 0.08395,
+          "decodedPeak": 0.506572,
+          "sampleRate": 24000
+        },
+        {
+          "id": "18",
+          "path": "assets/audio-natural/am_puck/18.mp3",
+          "aliases": [
+            "Right repulse monkey"
+          ],
+          "spokenText": "Next movement, Right repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "70d0e1dff66270721e64a6e04e47490b35b1b8ae17e97962984e43131898368a",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0823188,
+          "decodedPeak": 0.4935001,
+          "sampleRate": 24000
+        },
+        {
+          "id": "19",
+          "path": "assets/audio-natural/am_puck/19.mp3",
+          "aliases": [
+            "Left repulse monkey"
+          ],
+          "spokenText": "Next movement, Left repulse monkey.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɹᵻpˈʌls mˈʌŋki.",
+          "sha256": "7f60b75febc474dbf7ae966e6dc14f730ed2e853e6be803a5835c53f46c1bb16",
+          "bytes": 21933,
+          "durationSeconds": 2.65,
+          "decodedRMS": 0.0826067,
+          "decodedPeak": 0.546551,
+          "sampleRate": 24000
+        },
+        {
+          "id": "20",
+          "path": "assets/audio-natural/am_puck/20.mp3",
+          "aliases": [
+            "Diagonal flying"
+          ],
+          "spokenText": "Next movement, Diagonal flying.",
+          "phonemes": "nˈɛkst mˈuːvmənt, daɪˈæɡənəl flˈaɪɪŋ.",
+          "sha256": "572f77c4048e778231ffa7bc76216911d53ad6b37533548c81e09a50c0b4de58",
+          "bytes": 21165,
+          "durationSeconds": 2.55,
+          "decodedRMS": 0.0822136,
+          "decodedPeak": 0.5225571,
+          "sampleRate": 24000
+        },
+        {
+          "id": "21",
+          "path": "assets/audio-natural/am_puck/21.mp3",
+          "aliases": [
+            "Cloud hands left"
+          ],
+          "spokenText": "Next movement, Cloud hands left.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz lˈɛft.",
+          "sha256": "c3ddc21b99cbb5c512913b07672c514151470bf3be97cce9bf498baca03edf56",
+          "bytes": 21165,
+          "durationSeconds": 2.55,
+          "decodedRMS": 0.0831119,
+          "decodedPeak": 0.5038617,
+          "sampleRate": 24000
+        },
+        {
+          "id": "22",
+          "path": "assets/audio-natural/am_puck/22.mp3",
+          "aliases": [
+            "Cloud hands right"
+          ],
+          "spokenText": "Next movement, Cloud hands right.",
+          "phonemes": "nˈɛkst mˈuːvmənt, klˈaʊd hˈændz ɹˈaɪt.",
+          "sha256": "908e97227f180f986d1a3632a9a6c4cf3353704d1605d46b6d36a842713459b0",
+          "bytes": 20973,
+          "durationSeconds": 2.525,
+          "decodedRMS": 0.0818545,
+          "decodedPeak": 0.5358006,
+          "sampleRate": 24000
+        },
+        {
+          "id": "23",
+          "path": "assets/audio-natural/am_puck/23.mp3",
+          "aliases": [
+            "Low single whip, shallow"
+          ],
+          "spokenText": "Next movement, Low single whip, shallow.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈoʊ sˈɪŋɡəl wˈɪp, ʃˈæloʊ.",
+          "sha256": "70c6936d3eb732f69b660419f2a01a81c20b8b4eef30dc0caec7409a94b817c6",
+          "bytes": 22701,
+          "durationSeconds": 2.75,
+          "decodedRMS": 0.0835351,
+          "decodedPeak": 0.5478234,
+          "sampleRate": 24000
+        },
+        {
+          "id": "24",
+          "path": "assets/audio-natural/am_puck/24.mp3",
+          "aliases": [
+            "Right golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Right golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, ɹˈaɪt ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "3e1d08e012a19113310c172f91ae4f6026abe4b0eb279980b0e6ff747f04eba1",
+          "bytes": 27501,
+          "durationSeconds": 3.35,
+          "decodedRMS": 0.0834053,
+          "decodedPeak": 0.5618852,
+          "sampleRate": 24000
+        },
+        {
+          "id": "25",
+          "path": "assets/audio-natural/am_puck/25.mp3",
+          "aliases": [
+            "Left golden rooster, low knee"
+          ],
+          "spokenText": "Next movement, Left golden rooster, low knee.",
+          "phonemes": "nˈɛkst mˈuːvmənt, lˈɛft ɡˈoʊldən ɹˈuːstɚ, lˈoʊ nˈiː.",
+          "sha256": "524fb1b14edc2990f2c587e9454a25be1e99e54b717a6846aaed5b3e4b1f626b",
+          "bytes": 27117,
+          "durationSeconds": 3.3,
+          "decodedRMS": 0.0840589,
+          "decodedPeak": 0.5438482,
+          "sampleRate": 24000
+        },
+        {
+          "id": "26",
+          "path": "assets/audio-natural/am_puck/26.mp3",
+          "aliases": [
+            "Separate right foot, low"
+          ],
+          "spokenText": "Next movement, Separate right foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət ɹˈaɪt fˈʊt, lˈoʊ.",
+          "sha256": "a7f840f9d130d92a126dd39ff4168bcf46c29ca76937753bad4370bf98e5c87b",
+          "bytes": 22509,
+          "durationSeconds": 2.725,
+          "decodedRMS": 0.0816974,
+          "decodedPeak": 0.4714235,
+          "sampleRate": 24000
+        },
+        {
+          "id": "27",
+          "path": "assets/audio-natural/am_puck/27.mp3",
+          "aliases": [
+            "Separate left foot, low"
+          ],
+          "spokenText": "Next movement, Separate left foot, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, sˈɛpɹət lˈɛft fˈʊt, lˈoʊ.",
+          "sha256": "503779d85d8fe7543a4325f428aec83bb7a96d980bf33d01d78fa185db7e8e94",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.0817848,
+          "decodedPeak": 0.4975037,
+          "sampleRate": 24000
+        },
+        {
+          "id": "28",
+          "path": "assets/audio-natural/am_puck/28.mp3",
+          "aliases": [
+            "Turn and heel kick, low"
+          ],
+          "spokenText": "Next movement, Turn and heel kick, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd hˈiːl kˈɪk, lˈoʊ.",
+          "sha256": "10ee443aa0aca91b7648fd1efc03d7c67e3bd0e9db567035c8b1b680b487ce7d",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.082374,
+          "decodedPeak": 0.491775,
+          "sampleRate": 24000
+        },
+        {
+          "id": "29",
+          "path": "assets/audio-natural/am_puck/29.mp3",
+          "aliases": [
+            "Step and downward punch"
+          ],
+          "spokenText": "Next movement, Step and downward punch.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ænd dˈaʊnwɚd pˈʌntʃ.",
+          "sha256": "3844b9e0cb2e3748e1f58833b217fda09b51f95f1acf66eddfb6c7f26479fb0b",
+          "bytes": 22125,
+          "durationSeconds": 2.675,
+          "decodedRMS": 0.0836402,
+          "decodedPeak": 0.5146455,
+          "sampleRate": 24000
+        },
+        {
+          "id": "30",
+          "path": "assets/audio-natural/am_puck/30.mp3",
+          "aliases": [
+            "Fair lady works shuttles 1"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 1.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz wˈʌn.",
+          "sha256": "5d4d7e0a83600cb15834baec49aae8947c6fa79b444e9682c540277affa27c48",
+          "bytes": 25773,
+          "durationSeconds": 3.125,
+          "decodedRMS": 0.0851428,
+          "decodedPeak": 0.5645245,
+          "sampleRate": 24000
+        },
+        {
+          "id": "31",
+          "path": "assets/audio-natural/am_puck/31.mp3",
+          "aliases": [
+            "Fair lady works shuttles 2"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 2.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz tˈuː.",
+          "sha256": "5a4112a83b1f0637ce080e88a66050c07e7e5098d52a680a1437275abc46a405",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0838092,
+          "decodedPeak": 0.4828534,
+          "sampleRate": 24000
+        },
+        {
+          "id": "32",
+          "path": "assets/audio-natural/am_puck/32.mp3",
+          "aliases": [
+            "Fair lady works shuttles 3"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 3.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz θɹˈiː.",
+          "sha256": "bc504c4a1e7ce6d6cbef2abb0a8c13d63bdbacd62968d4f393269e041794362a",
+          "bytes": 25965,
+          "durationSeconds": 3.15,
+          "decodedRMS": 0.0850316,
+          "decodedPeak": 0.4964347,
+          "sampleRate": 24000
+        },
+        {
+          "id": "33",
+          "path": "assets/audio-natural/am_puck/33.mp3",
+          "aliases": [
+            "Fair lady works shuttles 4"
+          ],
+          "spokenText": "Next movement, Fair lady works shuttles 4.",
+          "phonemes": "nˈɛkst mˈuːvmənt, fˈɛɹ lˈeɪdi wˈɜːks ʃˈʌɾəlz fˈɔːɹ.",
+          "sha256": "bdb150a98144c094c5bacda87ea53c4f5cac12ecdd98a22ad61709d130825c39",
+          "bytes": 26541,
+          "durationSeconds": 3.225,
+          "decodedRMS": 0.084339,
+          "decodedPeak": 0.5187392,
+          "sampleRate": 24000
+        },
+        {
+          "id": "34",
+          "path": "assets/audio-natural/am_puck/34.mp3",
+          "aliases": [
+            "Step up to seven stars"
+          ],
+          "spokenText": "Next movement, Step up to seven stars.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp ˌʌp tə sˈɛvən stˈɑːɹz.",
+          "sha256": "f8c48c8459860754224256466addefd421fe4046bb6174982beba9b5672f4cd4",
+          "bytes": 24237,
+          "durationSeconds": 2.95,
+          "decodedRMS": 0.0838799,
+          "decodedPeak": 0.5765241,
+          "sampleRate": 24000
+        },
+        {
+          "id": "35",
+          "path": "assets/audio-natural/am_puck/35.mp3",
+          "aliases": [
+            "Step back and ride tiger"
+          ],
+          "spokenText": "Next movement, Step back and ride tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, stˈɛp bˈæk ænd ɹˈaɪd tˈaɪɡɚ.",
+          "sha256": "d778aba6a36f0d0e6b4c5bb2e686abc06c8c95d4a6c7fed231d58329e8d24cdf",
+          "bytes": 24045,
+          "durationSeconds": 2.925,
+          "decodedRMS": 0.082552,
+          "decodedPeak": 0.496296,
+          "sampleRate": 24000
+        },
+        {
+          "id": "36",
+          "path": "assets/audio-natural/am_puck/36.mp3",
+          "aliases": [
+            "Turn and sweep lotus, low"
+          ],
+          "spokenText": "Next movement, Turn and sweep lotus, low.",
+          "phonemes": "nˈɛkst mˈuːvmənt, tˈɜːn ænd swˈiːp lˈoʊɾəs, lˈoʊ.",
+          "sha256": "6e5a793142f74a9d55d3723a2a2031937b056cf2f756c9177ac90f594f471f03",
+          "bytes": 25581,
+          "durationSeconds": 3.1,
+          "decodedRMS": 0.0816499,
+          "decodedPeak": 0.512087,
+          "sampleRate": 24000
+        },
+        {
+          "id": "37",
+          "path": "assets/audio-natural/am_puck/37.mp3",
+          "aliases": [
+            "Draw bow and shoot tiger"
+          ],
+          "spokenText": "Next movement, Draw bow and shoot tiger.",
+          "phonemes": "nˈɛkst mˈuːvmənt, dɹˈɔː bˈoʊ ænd ʃˈuːt tˈaɪɡɚ.",
+          "sha256": "8cdebbfc6725cb77e88be39b92e882d739e8cf4edb3e6bda0ce8fccc98a60a36",
+          "bytes": 23469,
+          "durationSeconds": 2.85,
+          "decodedRMS": 0.0841629,
+          "decodedPeak": 0.7021073,
+          "sampleRate": 24000
+        },
+        {
+          "id": "test",
+          "path": "assets/audio-natural/am_puck/test.mp3",
+          "aliases": [
+            "Relax your shoulders. Get ready to practise."
+          ],
+          "spokenText": "Relax your shoulders. Get ready to practise.",
+          "phonemes": "ɹᵻlˈæks jʊɹ ʃˈoʊldɚz. ɡɛt ɹˈɛdi tə pɹˈæktɪs.",
+          "sha256": "5f896ca99f647fac93de056191abc878a62fac15060970a800b480d3d177751d",
+          "bytes": 25197,
+          "durationSeconds": 3.05,
+          "decodedRMS": 0.0827885,
+          "decodedPeak": 0.5538078,
+          "sampleRate": 24000
+        }
+      ]
+    }
+  ]
+}
